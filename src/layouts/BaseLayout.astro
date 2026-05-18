@@ -1,0 +1,41 @@
+---
+import "../styles/global.css";
+
+const {
+  title = "Gestión de alquileres en Valencia | DosLlavesGestión",
+  description = "Gestión integral de alquileres en Valencia para propietarios que quieren rentabilidad sin ocuparse de inquilinos, incidencias ni cobros.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+
+    <link rel="icon" href="/favicon.svg" />
+  </head>
+
+  <body>
+    <slot />
+
+    <script>
+      import { initAnimations } from "../scripts/animations";
+
+      document.addEventListener("DOMContentLoaded", () => {
+        initAnimations();
+      });
+
+      document.addEventListener("astro:page-load", () => {
+        initAnimations();
+      });
+    </script>
+  </body>
+</html>

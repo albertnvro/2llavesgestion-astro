@@ -1,0 +1,32 @@
+---
+
+const steps = [
+  ["01", "Valoración", "Revisamos zona, habitaciones, estado y objetivo del propietario."],
+  ["02", "Estrategia", "Decidimos modalidad: habitaciones, larga estancia o gestión ya alquilada."],
+  ["03", "Preparación", "Optimizamos la vivienda y la presentación comercial."],
+  ["04", "Selección", "Filtramos interesados y organizamos documentación."],
+  ["05", "Contrato", "Coordinamos condiciones, inventario y entrada."],
+  ["06", "Gestión", "Cobros, incidencias, comunicación y seguimiento mensual."],
+];
+---
+
+<section class="section section-white" id="proceso">
+  <div class="shell section-heading">
+    <p class="eyebrow eyebrow-dark">Proceso</p>
+    <h2>Cómo funciona paso a paso.</h2>
+    <p>
+      Un proceso sencillo para que el propietario sepa qué ocurre después de
+      dejar sus datos.
+    </p>
+  </div>
+
+  <div class="shell process-grid">
+    {steps.map(([number, title, text]) => (
+      <article class="process-card">
+        <span>{number}</span>
+        <h3>{title}</h3>
+        <p>{text}</p>
+      </article>
+    ))}
+  </div>
+</section>

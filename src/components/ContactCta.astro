@@ -1,0 +1,87 @@
+---
+
+---
+
+<section class="section contact-section" id="contacto">
+  <div class="shell contact-grid">
+    <div class="contact-copy">
+      <p class="eyebrow eyebrow-dark">Valoración gratuita</p>
+
+      <h2>Hablemos de tu vivienda.</h2>
+
+      <p>
+        Dinos dónde está, cuántas habitaciones tiene y qué quieres conseguir.
+        Te diremos qué modalidad puede encajar mejor.
+      </p>
+
+      <ul class="check-list">
+        <li>Sin compromiso</li>
+        <li>Respuesta personalizada</li>
+        <li>Estrategia clara de alquiler</li>
+        <li>Valencia y alrededores</li>
+      </ul>
+    </div>
+
+    <form class="contact-form" id="lead-form">
+      <label>
+        Nombre
+        <input name="nombre" type="text" placeholder="Tu nombre" required />
+      </label>
+
+      <label>
+        Teléfono
+        <input name="telefono" type="tel" placeholder="Tu teléfono" required />
+      </label>
+
+      <label>
+        Zona de la vivienda
+        <input
+          name="zona"
+          type="text"
+          placeholder="Valencia, Mislata, Burjassot..."
+          required
+        />
+      </label>
+
+      <label>
+        Situación actual
+        <select name="situacion">
+          <option>Vivienda vacía</option>
+          <option>Ya está alquilada</option>
+          <option>Quiero alquiler por habitaciones</option>
+          <option>Quiero larga estancia</option>
+          <option>No sé qué modalidad conviene</option>
+        </select>
+      </label>
+
+      <button type="submit">Solicitar valoración gratuita</button>
+
+      <p class="form-note">
+        Al enviar, se abrirá WhatsApp con los datos introducidos.
+      </p>
+    </form>
+  </div>
+</section>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>("#lead-form");
+
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const data = new FormData(form);
+
+    const message = [
+      "Hola, quiero una valoración para mi vivienda.",
+      "",
+      `Nombre: ${data.get("nombre") ?? ""}`,
+      `Teléfono: ${data.get("telefono") ?? ""}`,
+      `Zona: ${data.get("zona") ?? ""}`,
+      `Situación: ${data.get("situacion") ?? ""}`,
+    ].join("\n");
+
+    const url = `https://wa.me/34623512885?text=${encodeURIComponent(message)}`;
+
+    window.open(url, "_blank");
+  });
+</script>

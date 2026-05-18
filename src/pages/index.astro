@@ -1,0 +1,67 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import ScrollStory from "../components/ScrollStory.astro";
+import Services from "../components/Services.astro";
+import Process from "../components/Process.astro";
+import ContactCta from "../components/ContactCta.astro";
+---
+
+<BaseLayout>
+  <Header />
+
+  <main>
+    <Hero />
+
+    <section class="section section-white">
+      <div class="shell section-heading">
+        <p class="eyebrow eyebrow-dark">Para propietarios</p>
+
+        <h2>
+          La vivienda trabaja para ti.
+          Tú no deberías trabajar para la vivienda.
+        </h2>
+
+        <p>
+          DosLlavesGestión convierte el alquiler en un proceso ordenado:
+          estrategia, inquilinos, cobros, incidencias y seguimiento.
+        </p>
+      </div>
+
+      <div class="shell feature-grid">
+        <article class="feature-card">
+          <span>01</span>
+          <h3>Tiempo recuperado</h3>
+          <p>
+            Dejamos de convertir cada avería, llamada o duda del inquilino en
+            una interrupción para el propietario.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <span>02</span>
+          <h3>Inquilinos filtrados</h3>
+          <p>
+            Selección, documentación y seguimiento para reducir riesgos antes
+            de firmar.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <span>03</span>
+          <h3>Modalidad correcta</h3>
+          <p>
+            Definimos si conviene alquiler por habitaciones, larga estancia o
+            administración integral.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <ScrollStory />
+    <Services />
+    <Process />
+    <ContactCta />
+  </main>
+</BaseLayout>
