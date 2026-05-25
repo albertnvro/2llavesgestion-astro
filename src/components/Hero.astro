@@ -1,74 +1,124 @@
----
-
----
-
 <section class="hero">
-  <div class="shell hero-grid">
-    <div class="hero-copy">
-      <p class="eyebrow">Gestión integral de alquileres en Valencia</p>
+  <div class="hero-deco" aria-hidden="true">
+    <span class="brand-object brand-object-key">
+      <svg viewBox="0 0 120 120" fill="none">
+        <path d="M45 67a24 24 0 1 1 16.8-7.1L99 97.2 86.5 110 76 99.5 66.5 109 55 97.5l9.5-9.5-15.8-15.8A24 24 0 0 1 45 67Z" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="45" cy="43" r="8" stroke="currentColor" stroke-width="8"/>
+      </svg>
+    </span>
+
+    <span class="brand-object brand-object-house">
+      <svg viewBox="0 0 120 120" fill="none">
+        <path d="M20 56 60 24l40 32" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M31 52v48h58V52" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M51 100V72h18v28" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+
+    <span class="brand-object brand-object-contract">
+      <svg viewBox="0 0 120 120" fill="none">
+        <path d="M34 14h42l18 18v74H34V14Z" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
+        <path d="M76 14v20h20" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
+        <path d="M48 52h34M48 68h34M48 84h22" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+      </svg>
+    </span>
+
+    <span class="brand-object brand-object-door">
+      <svg viewBox="0 0 120 120" fill="none">
+        <path d="M37 106V16h46v90" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M28 106h64" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="70" cy="62" r="4" fill="currentColor"/>
+      </svg>
+    </span>
+
+    <span class="brand-pill brand-pill-a"></span>
+    <span class="brand-pill brand-pill-b"></span>
+  </div>
+
+  <div class="shell hero-inner">
+    <div class="hero-content reveal">
+      <p class="eyebrow">Valencia · Castellón · Propietarios e inversores</p>
 
       <h1>
-        Alquila tu vivienda sin
-        <span>gestionar problemas.</span>
+        Transformamos tu piso.
+        <span>Lo convertimos en una inversión rentable.</span>
       </h1>
 
       <p class="hero-lead">
-        Para propietarios que quieren rentabilidad sin llamadas, conflictos ni
-        improvisación. Nos ocupamos de inquilinos, contratos, cobros,
-        incidencias, mantenimiento y comunicación diaria.
+        Analizamos, optimizamos y gestionamos tu inmueble de principio a fin:
+        estrategia, reforma, preparación, inquilinos, cobros, incidencias y mantenimiento.
       </p>
 
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#contacto">
-          Solicitar valoración gratuita
-        </a>
+      <form class="hero-search" id="hero-form">
+        <input
+          type="text"
+          name="zona"
+          placeholder="¿Dónde está tu vivienda?"
+          aria-label="Zona de la vivienda"
+        />
+        <button type="submit">Valorar gratis</button>
+      </form>
 
-        <a
-          class="btn btn-secondary"
-          href="https://wa.me/34623512885"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Hablar por WhatsApp
-        </a>
-      </div>
-
-      <div class="pills">
-        <span>Alquiler por habitaciones</span>
-        <span>Larga estancia</span>
-        <span>Gestión diaria</span>
-        <span>Valencia y alrededores</span>
+      <div class="hero-proof">
+        <span>✓ Gestión 360º</span>
+        <span>✓ Alquiler tradicional y habitaciones</span>
+        <span>✓ Reformas orientadas a rentabilidad</span>
       </div>
     </div>
 
-    <div class="hero-visual" aria-hidden="true">
-      <div class="control-card">
-        <div class="control-top">
-          <strong>Rental Control</strong>
-          <span>Activo</span>
-        </div>
+    <div class="hero-visual reveal" aria-hidden="true">
+      <div class="image-card image-card-main">
+        <img
+          src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1100&q=82"
+          alt=""
+        />
+      </div>
 
-        <div class="control-main">
-          <small>Gestión 360º</small>
-          <strong>0</strong>
-          <p>llamadas de gestión para ti</p>
-        </div>
+      <div class="float-card card-top">
+        <small>Análisis</small>
+        <strong>rentabilidad estimada</strong>
+      </div>
 
-        <div class="control-list">
-          <div>
-            <span>Inquilinos</span>
-            <strong>Filtro y selección</strong>
-          </div>
-          <div>
-            <span>Cobros</span>
-            <strong>Seguimiento mensual</strong>
-          </div>
-          <div>
-            <span>Incidencias</span>
-            <strong>Mantenimiento coordinado</strong>
-          </div>
-        </div>
+      <div class="float-card card-right">
+        <small>Transformación</small>
+        <strong>mejora del activo</strong>
+      </div>
+
+      <div class="float-card card-bottom">
+        <small>Gestión</small>
+        <strong>operativa delegada</strong>
+      </div>
+
+      <div class="mini-form-card">
+        <small>Ruta recomendada</small>
+        <strong>Gestión integral delegada</strong>
+        <span>Valencia / Castellón</span>
       </div>
     </div>
   </div>
+
+  <svg class="hero-wave" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 55L80 49.2C160 43.3 320 31.7 480 36.7C640 41.7 800 63.3 960 69.2C1120 75 1280 63.3 1360 57.5L1440 51.7V110H0V55Z" />
+  </svg>
 </section>
+
+<script>
+  const heroForm = document.querySelector("#hero-form");
+
+  heroForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const data = new FormData(heroForm);
+    const zona = data.get("zona") || "";
+
+    window.location.href = "#contacto";
+
+    setTimeout(() => {
+      const zoneInput = document.querySelector('#lead-form [name="zona"]');
+
+      if (zoneInput instanceof HTMLInputElement && zona) {
+        zoneInput.value = String(zona);
+      }
+    }, 250);
+  });
+</script>

@@ -1,0 +1,72 @@
+<svg width="900" height="720" viewBox="0 0 900 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="40" x2="760" y2="680" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8F3EA"/>
+      <stop offset="0.55" stop-color="#EAF3F0"/>
+      <stop offset="1" stop-color="#DCEFEB"/>
+    </linearGradient>
+
+    <linearGradient id="teal" x1="260" y1="160" x2="650" y2="560" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2F7774"/>
+      <stop offset="1" stop-color="#173E46"/>
+    </linearGradient>
+
+    <linearGradient id="coral" x1="160" y1="120" x2="520" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F2A69B"/>
+      <stop offset="1" stop-color="#D96B61"/>
+    </linearGradient>
+
+    <filter id="shadow" x="0" y="0" width="900" height="720" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="34" flood-color="#173E46" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+
+  <rect width="900" height="720" rx="48" fill="url(#bg)"/>
+
+  <circle cx="718" cy="138" r="88" fill="#FFFFFF" fill-opacity="0.62"/>
+  <circle cx="190" cy="590" r="116" fill="#FFFFFF" fill-opacity="0.55"/>
+  <circle cx="748" cy="560" r="44" fill="#F2A69B" fill-opacity="0.22"/>
+
+  <g filter="url(#shadow)">
+    <rect x="182" y="126" width="536" height="444" rx="42" fill="white"/>
+    <rect x="210" y="154" width="480" height="388" rx="32" fill="#F7FAF8"/>
+
+    <path d="M296 392C296 320 354 262 426 262H474C546 262 604 320 604 392V542H296V392Z" fill="#EAF3F0"/>
+    <path d="M450 210L610 330H290L450 210Z" fill="url(#teal)"/>
+    <rect x="352" y="354" width="92" height="188" rx="18" fill="#2F7774"/>
+    <rect x="474" y="354" width="96" height="74" rx="16" fill="#FFFFFF"/>
+    <rect x="474" y="454" width="96" height="74" rx="16" fill="#FFFFFF"/>
+    <circle cx="424" cy="448" r="7" fill="#F8F3EA"/>
+
+    <path d="M260 234C292 204 330 188 374 186" stroke="#D96B61" stroke-width="12" stroke-linecap="round"/>
+    <path d="M636 234C604 204 566 188 522 186" stroke="#D96B61" stroke-width="12" stroke-linecap="round"/>
+
+    <rect x="252" y="108" width="204" height="72" rx="22" fill="white"/>
+    <circle cx="286" cy="144" r="16" fill="#DCEFEB"/>
+    <path d="M282 144L287 149L298 137" stroke="#2F7774" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="314" y="139" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="15" font-weight="800" fill="#173E46">Vivienda</text>
+    <text x="314" y="160" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#6B7683">gestión activa</text>
+
+    <rect x="492" y="108" width="184" height="72" rx="22" fill="white"/>
+    <circle cx="526" cy="144" r="16" fill="#FCE6E2"/>
+    <path d="M520 144H532" stroke="#D96B61" stroke-width="4" stroke-linecap="round"/>
+    <path d="M526 138V150" stroke="#D96B61" stroke-width="4" stroke-linecap="round"/>
+    <text x="554" y="139" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="15" font-weight="800" fill="#173E46">Cobros</text>
+    <text x="554" y="160" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#6B7683">revisados</text>
+
+    <rect x="178" y="474" width="226" height="86" rx="24" fill="white"/>
+    <circle cx="218" cy="517" r="18" fill="#EAF3F0"/>
+    <path d="M211 518L217 524L230 510" stroke="#2F7774" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="248" y="511" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="15" font-weight="850" fill="#173E46">Incidencia resuelta</text>
+    <text x="248" y="534" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#6B7683">sin llamadas para ti</text>
+
+    <rect x="534" y="474" width="230" height="86" rx="24" fill="white"/>
+    <circle cx="574" cy="517" r="18" fill="#FCE6E2"/>
+    <path d="M566 517C574 509 582 509 590 517" stroke="#D96B61" stroke-width="4" stroke-linecap="round"/>
+    <text x="604" y="511" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="15" font-weight="850" fill="#173E46">Resumen enviado</text>
+    <text x="604" y="534" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#6B7683">propietario informado</text>
+  </g>
+
+  <path d="M118 336C146 292 178 270 214 270" stroke="#2F7774" stroke-opacity="0.22" stroke-width="12" stroke-linecap="round"/>
+  <path d="M728 316C764 342 784 376 790 420" stroke="#D96B61" stroke-opacity="0.24" stroke-width="12" stroke-linecap="round"/>
+</svg>

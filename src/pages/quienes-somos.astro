@@ -1,0 +1,350 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const oscarImage = `${import.meta.env.BASE_URL}images/oscar-ochando.jpg`;
+
+const pageTitle = "Quiénes somos | DosLlavesGestión";
+const pageDescription =
+  "Conoce DosLlavesGestión y a Óscar Ochando: transformación, optimización y gestión integral de activos inmobiliarios en Valencia y Castellón.";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.dosllavesgestion.com/#organization",
+      name: "DosLlavesGestión",
+      url: "https://www.dosllavesgestion.com",
+      description:
+        "Empresa especializada en transformación, optimización y gestión integral de activos inmobiliarios en Valencia y Castellón.",
+      sameAs: ["https://www.instagram.com/oscarochando"],
+      areaServed: [
+        {
+          "@type": "AdministrativeArea",
+          name: "Valencia",
+        },
+        {
+          "@type": "AdministrativeArea",
+          name: "Castellón",
+        },
+      ],
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.dosllavesgestion.com/#oscar-ochando",
+      name: "Óscar Ochando",
+      image: "https://www.dosllavesgestion.com/images/oscar-ochando.jpg",
+      worksFor: {
+        "@id": "https://www.dosllavesgestion.com/#organization",
+      },
+      sameAs: ["https://www.instagram.com/oscarochando"],
+    },
+    {
+      "@type": "AboutPage",
+      "@id": "https://www.dosllavesgestion.com/quienes-somos/#webpage",
+      url: "https://www.dosllavesgestion.com/quienes-somos/",
+      name: pageTitle,
+      description: pageDescription,
+      isPartOf: {
+        "@id": "https://www.dosllavesgestion.com/#website",
+      },
+      about: {
+        "@id": "https://www.dosllavesgestion.com/#organization",
+      },
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/quienes-somos/"
+  ogImage="/images/oscar-ochando.jpg"
+>
+  <Header />
+
+  <main>
+    <section class="about-hero">
+      <div class="about-hero-bg" aria-hidden="true">
+        <span class="about-orb about-orb-a"></span>
+        <span class="about-orb about-orb-b"></span>
+        <span class="about-line about-line-a"></span>
+        <span class="about-line about-line-b"></span>
+      </div>
+
+      <div class="shell about-hero-layout">
+        <div class="about-hero-copy reveal">
+          <p class="eyebrow">Quiénes somos</p>
+
+          <h1>
+            No somos una inmobiliaria tradicional.
+            <span>Somos el operador que hace rentable tu activo.</span>
+          </h1>
+
+          <p>
+            DosLlavesGestión nace para acompañar a propietarios e inversores que
+            quieren transformar, optimizar y delegar la gestión de sus inmuebles
+            sin asumir toda la operativa diaria.
+          </p>
+
+          <div class="about-hero-actions">
+            <a href="/#lead-wizard" class="about-btn about-btn-primary">
+              Valorar mi inmueble
+            </a>
+
+            <a
+              href="https://www.instagram.com/oscarochando"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="about-btn about-btn-secondary"
+            >
+              Ver Instagram de Óscar
+            </a>
+          </div>
+        </div>
+
+        <div class="about-hero-media reveal">
+          <figure>
+            <img
+              src={oscarImage}
+              alt="Óscar Ochando, fundador de DosLlavesGestión"
+              loading="eager"
+            />
+          </figure>
+
+          <div class="about-media-card about-media-card-a">
+            <span>Enfoque inversor</span>
+            <strong>Rentabilidad antes que improvisación</strong>
+          </div>
+
+          <div class="about-media-card about-media-card-b">
+            <span>Gestión 360º</span>
+            <strong>De la estrategia a la operación diaria</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-manifesto">
+      <div class="shell about-manifesto-layout">
+        <div class="about-manifesto-kicker reveal">
+          <p class="eyebrow light">Nuestra visión</p>
+        </div>
+
+        <div class="about-manifesto-text reveal">
+          <h2>
+            Convertimos viviendas normales en activos más rentables.
+          </h2>
+
+          <p>
+            Nuestro trabajo no termina al encontrar un inquilino. Analizamos el
+            inmueble, detectamos oportunidades, mejoramos el activo cuando es
+            necesario y nos ocupamos de la gestión real: contratos, cobros,
+            incidencias, mantenimiento, entradas, salidas y seguimiento.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-difference">
+      <div class="shell section-heading reveal">
+        <p class="eyebrow light">Qué nos diferencia</p>
+
+        <h2>
+          Pensamos cada inmueble como una inversión, no como un simple piso.
+        </h2>
+
+        <p>
+          El objetivo es aumentar valor, reducir problemas y liberar al
+          propietario de la operativa diaria.
+        </p>
+      </div>
+
+      <div class="shell about-difference-grid">
+        <article class="about-difference-card reveal">
+          <span>01</span>
+          <h3>Análisis antes de actuar</h3>
+          <p>
+            Estudiamos zona, estado, demanda, distribución y potencial antes de
+            recomendar una estrategia.
+          </p>
+        </article>
+
+        <article class="about-difference-card reveal">
+          <span>02</span>
+          <h3>Transformación con retorno</h3>
+          <p>
+            No reformamos solo para que quede bonito. Preparamos inmuebles con
+            foco en rentabilidad, durabilidad y ocupación.
+          </p>
+        </article>
+
+        <article class="about-difference-card reveal">
+          <span>03</span>
+          <h3>Gestión integral real</h3>
+          <p>
+            El propietario no delega solo una parte. Puede delegar estrategia,
+            comercialización, inquilinos, cobros e incidencias.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="about-oscar" id="oscar">
+      <div class="shell about-oscar-layout">
+        <div class="about-oscar-media reveal">
+          <figure>
+            <img
+              src={oscarImage}
+              alt="Óscar Ochando trabajando con tablet"
+              loading="lazy"
+            />
+          </figure>
+        </div>
+
+        <div class="about-oscar-copy reveal">
+          <p class="eyebrow light">Óscar Ochando</p>
+
+          <h2>
+            La cara visible de una gestión inmobiliaria más moderna.
+          </h2>
+
+          <p>
+            Óscar trabaja la marca personal desde redes sociales para acercar la
+            inversión inmobiliaria, la gestión de alquileres y la transformación
+            de activos a propietarios que buscan claridad antes de tomar decisiones.
+          </p>
+
+          <p>
+            Su papel dentro de DosLlavesGestión es conectar estrategia y
+            ejecución: entender qué necesita el propietario, detectar el
+            potencial del inmueble y convertirlo en un proyecto gestionable,
+            rentable y profesional.
+          </p>
+
+          <div class="about-oscar-tags">
+            <span>Contenido educativo</span>
+            <span>Gestión de alquileres</span>
+            <span>Reformas con ROI</span>
+            <span>Alquiler por habitaciones</span>
+            <span>Inversión inmobiliaria</span>
+          </div>
+
+          <a
+            href="https://www.instagram.com/oscarochando"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="about-btn about-btn-primary"
+          >
+            Seguir a Óscar en Instagram
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-method">
+      <div class="shell section-heading reveal">
+        <p class="eyebrow light">Método DosLlaves</p>
+
+        <h2>
+          De inmueble sin estrategia a activo inmobiliario operado.
+        </h2>
+
+        <p>
+          Un método pensado para propietarios e inversores que quieren resultados
+          sin vivir pendientes del día a día.
+        </p>
+      </div>
+
+      <div class="shell about-method-grid">
+        <article class="about-method-step reveal">
+          <span>01</span>
+          <h3>Diagnóstico</h3>
+          <p>Revisamos inmueble, zona, estado, demanda y objetivo.</p>
+        </article>
+
+        <article class="about-method-step reveal">
+          <span>02</span>
+          <h3>Estrategia</h3>
+          <p>Definimos si conviene alquiler tradicional, habitaciones o transformación.</p>
+        </article>
+
+        <article class="about-method-step reveal">
+          <span>03</span>
+          <h3>Transformación</h3>
+          <p>Mejoramos el activo cuando hay oportunidad real de retorno.</p>
+        </article>
+
+        <article class="about-method-step reveal">
+          <span>04</span>
+          <h3>Operación</h3>
+          <p>Nos ocupamos de inquilinos, contratos, cobros, incidencias y mantenimiento.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="about-values">
+      <div class="shell about-values-layout">
+        <div class="about-values-copy reveal">
+          <p class="eyebrow dark">Valores</p>
+
+          <h2>
+            Rentabilidad, transparencia y tranquilidad.
+          </h2>
+
+          <p>
+            La web debe transmitir una marca moderna, elegante, premium, limpia,
+            profesional e inversora. Esa es también la forma en la que queremos
+            que el propietario perciba el servicio: claro, ordenado y sin humo.
+          </p>
+        </div>
+
+        <div class="about-values-grid reveal">
+          <span>Confianza</span>
+          <span>Rentabilidad</span>
+          <span>Transparencia</span>
+          <span>Cercanía</span>
+          <span>Eficiencia</span>
+          <span>Servicio premium</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-final-cta">
+      <div class="shell about-final-card reveal">
+        <p class="eyebrow dark">Siguiente paso</p>
+
+        <h2>
+          ¿Quieres saber qué potencial tiene tu inmueble?
+        </h2>
+
+        <p>
+          Empieza con una valoración. Revisamos la vivienda, la zona y tu objetivo
+          para decirte qué ruta puede tener más sentido.
+        </p>
+
+        <div class="about-hero-actions">
+          <a href="/#lead-wizard" class="about-btn about-btn-primary">
+            Empezar valoración
+          </a>
+
+          <a
+            href="https://wa.me/34623512885?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20DosLlavesGesti%C3%B3n."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="about-btn about-btn-secondary"
+          >
+            Hablar por WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</BaseLayout>

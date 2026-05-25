@@ -1,0 +1,159 @@
+---
+
+---
+
+<section class="diagnostic-section" id="diagnostico">
+  <div class="shell diagnostic-layout">
+    <div class="diagnostic-copy">
+      <p class="eyebrow eyebrow-dark">Diagnóstico gratuito</p>
+
+      <h2>
+        Cada vivienda necesita una estrategia distinta.
+      </h2>
+
+      <p>
+        No es lo mismo alquilar por habitaciones, buscar estabilidad con larga
+        estancia o delegar una vivienda que ya está alquilada. El primer paso
+        es entender en qué punto estás.
+      </p>
+
+      <div class="diagnostic-options" role="tablist" aria-label="Situación de la vivienda">
+        <button class="diagnostic-option is-active" type="button" data-case="vacia">
+          Tengo una vivienda vacía
+        </button>
+
+        <button class="diagnostic-option" type="button" data-case="alquilada">
+          Ya está alquilada
+        </button>
+
+        <button class="diagnostic-option" type="button" data-case="rentabilidad">
+          Quiero más rentabilidad
+        </button>
+
+        <button class="diagnostic-option" type="button" data-case="estabilidad">
+          Quiero estabilidad
+        </button>
+
+        <button class="diagnostic-option" type="button" data-case="duda">
+          No sé qué modalidad elegir
+        </button>
+      </div>
+    </div>
+
+    <div class="diagnostic-panel-wrap">
+      <article class="diagnostic-panel is-active" data-case="vacia">
+        <span>Recomendación inicial</span>
+        <h3>Analizar modalidad antes de publicar</h3>
+        <p>
+          Una vivienda vacía permite decidir con calma si conviene larga
+          estancia, alquiler por habitaciones o una preparación previa para
+          mejorar el resultado.
+        </p>
+
+        <ul>
+          <li>Revisión de zona y demanda</li>
+          <li>Análisis de habitaciones y estado</li>
+          <li>Definición de modalidad de alquiler</li>
+          <li>Preparación y publicación</li>
+        </ul>
+
+        <a href="#contacto">Solicitar diagnóstico gratuito</a>
+      </article>
+
+      <article class="diagnostic-panel" data-case="alquilada">
+        <span>Recomendación inicial</span>
+        <h3>Delegar la administración diaria</h3>
+        <p>
+          Si la vivienda ya está alquilada, el foco está en quitarte gestión:
+          cobros, comunicación, incidencias, mantenimiento y seguimiento.
+        </p>
+
+        <ul>
+          <li>Comunicación con inquilinos</li>
+          <li>Seguimiento de cobros</li>
+          <li>Gestión de incidencias</li>
+          <li>Información clara al propietario</li>
+        </ul>
+
+        <a href="#contacto">Quiero delegar mi alquiler</a>
+      </article>
+
+      <article class="diagnostic-panel" data-case="rentabilidad">
+        <span>Recomendación inicial</span>
+        <h3>Valorar alquiler por habitaciones</h3>
+        <p>
+          Si buscas más rentabilidad, hay que revisar si la vivienda, la zona y
+          la distribución permiten una gestión por habitaciones sin improvisar.
+        </p>
+
+        <ul>
+          <li>Optimización de ocupación</li>
+          <li>Filtro individual de inquilinos</li>
+          <li>Gestión de rotación</li>
+          <li>Incidencias centralizadas</li>
+        </ul>
+
+        <a href="#contacto">Valorar alquiler por habitaciones</a>
+      </article>
+
+      <article class="diagnostic-panel" data-case="estabilidad">
+        <span>Recomendación inicial</span>
+        <h3>Priorizar larga estancia</h3>
+        <p>
+          Si quieres continuidad y menos rotación, la larga estancia puede
+          encajar mejor, siempre que haya una buena selección inicial.
+        </p>
+
+        <ul>
+          <li>Filtro de inquilinos</li>
+          <li>Contrato e inventario</li>
+          <li>Seguimiento mensual</li>
+          <li>Menor rotación operativa</li>
+        </ul>
+
+        <a href="#contacto">Valorar larga estancia</a>
+      </article>
+
+      <article class="diagnostic-panel" data-case="duda">
+        <span>Recomendación inicial</span>
+        <h3>Empezar con una valoración personalizada</h3>
+        <p>
+          Si no tienes claro qué modalidad elegir, lo mejor es analizar la
+          vivienda antes de decidir. La estrategia correcta depende de la zona,
+          el estado, las habitaciones y tu objetivo.
+        </p>
+
+        <ul>
+          <li>Diagnóstico de la vivienda</li>
+          <li>Comparativa de modalidades</li>
+          <li>Riesgos y oportunidades</li>
+          <li>Plan de gestión recomendado</li>
+        </ul>
+
+        <a href="#contacto">Pedir valoración gratuita</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<script>
+  const options = document.querySelectorAll(".diagnostic-option");
+  const panels = document.querySelectorAll(".diagnostic-panel");
+
+  options.forEach((option) => {
+    option.addEventListener("click", () => {
+      const selectedCase = option.getAttribute("data-case");
+
+      options.forEach((item) => {
+        item.classList.toggle("is-active", item === option);
+      });
+
+      panels.forEach((panel) => {
+        panel.classList.toggle(
+          "is-active",
+          panel.getAttribute("data-case") === selectedCase
+        );
+      });
+    });
+  });
+</script>

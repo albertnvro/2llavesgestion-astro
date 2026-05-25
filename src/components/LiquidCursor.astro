@@ -1,0 +1,74 @@
+<div class="liquid-cursor" aria-hidden="true">
+  <svg class="liquid-cursor-filter">
+    <defs>
+      <filter id="cursor-goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
+        <feColorMatrix
+          in="blur"
+          mode="matrix"
+          values="1 0 0 0 0
+                  0 1 0 0 0
+                  0 0 1 0 0
+                  0 0 0 18 -7"
+          result="goo"
+        />
+        <feBlend in="SourceGraphic" in2="goo" />
+      </filter>
+    </defs>
+  </svg>
+
+  <div class="cursor-goo">
+    <span class="cursor-blob cursor-blob-1"></span>
+    <span class="cursor-blob cursor-blob-2"></span>
+    <span class="cursor-blob cursor-blob-3"></span>
+    <span class="cursor-blob cursor-blob-4"></span>
+    <span class="cursor-dot"></span>
+  </div>
+</div>
+
+<script>
+  import gsap from "gsap";
+
+  const finePointer = window.matchMedia("(pointer: fine)").matches;
+  const cursor = document.querySelector(".liquid-cursor");
+
+  if (cursor && finePointer) {
+    const pieces = [...document.querySelectorAll(".cursor-dot, .cursor-blob")];
+
+    const setters = pieces.map((piece, index) => {
+      gsap.set(piece, { x: window.innerWidth / 2, y: window.innerHeight / 2 });
+
+      return {
+        x: gsap.quickTo(piece, "x", {
+          duration: index === 0 ? 0.08 : 0.22 + index * 0.055,
+          ease: "power3.out",
+        }),
+        y: gsap.quickTo(piece, "y", {
+          duration: index === 0 ? 0.08 : 0.22 + index * 0.055,
+          ease: "power3.out",
+        }),
+      };
+    });
+
+    window.addEventListener("pointermove", (event) => {
+      setters.forEach((setter) => {
+        setter.x(event.clientX);
+        setter.y(event.clientY);
+      });
+    });
+
+    const interactive = document.querySelectorAll(
+      "a, button, input, select, textarea, .service-card, .control-tab"
+    );
+
+    interactive.forEach((element) => {
+      element.addEventListener("mouseenter", () => {
+        document.body.classList.add("cursor-expanded");
+      });
+
+      element.addEventListener("mouseleave", () => {
+        document.body.classList.remove("cursor-expanded");
+      });
+    });
+  }
+</script>

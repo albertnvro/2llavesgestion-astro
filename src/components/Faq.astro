@@ -1,0 +1,61 @@
+<section class="section faq-section" id="faq">
+  <div class="shell faq-layout">
+    <div class="faq-copy reveal">
+      <p class="eyebrow light">FAQ</p>
+
+      <h2>Dudas habituales antes de delegar.</h2>
+
+      <p>
+        Respuestas rápidas para propietarios e inversores que quieren rentabilizar
+        su inmueble sin asumir toda la operativa.
+      </p>
+    </div>
+
+    <div class="faq-list reveal" data-accordion>
+      <details open>
+        <summary>¿Puedo delegar una vivienda que ya está alquilada?</summary>
+        <p>Sí. Podemos ayudarte con cobros, comunicación, incidencias, mantenimiento y seguimiento sin cambiar necesariamente el modelo de alquiler.</p>
+      </details>
+
+      <details>
+        <summary>¿También trabajáis viviendas que necesitan reforma?</summary>
+        <p>Sí. DosLlavesGestión puede analizar el activo, plantear mejoras, coordinar reforma, preparar la vivienda y ponerla en alquiler con una estrategia de rentabilidad.</p>
+      </details>
+
+      <details>
+        <summary>¿Qué modalidad me conviene?</summary>
+        <p>Depende de zona, distribución, estado de la vivienda, inversión necesaria y objetivo del propietario. Por eso empezamos con una valoración.</p>
+      </details>
+
+      <details>
+        <summary>¿Trabajáis solo en Valencia?</summary>
+        <p>Actuamos principalmente en Valencia y Castellón, valorando cada inmueble según zona, demanda y viabilidad operativa.</p>
+      </details>
+
+      <details>
+        <summary>¿La valoración gratuita me obliga a contratar?</summary>
+        <p>No. Es un diagnóstico inicial para entender tu caso, explicarte opciones y ver si nuestra gestión encaja con tu objetivo.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<script>
+  const accordions = document.querySelectorAll("[data-accordion]");
+
+  accordions.forEach((accordion) => {
+    const items = accordion.querySelectorAll("details");
+
+    items.forEach((item) => {
+      item.addEventListener("toggle", () => {
+        if (!item.open) return;
+
+        items.forEach((otherItem) => {
+          if (otherItem !== item) {
+            otherItem.removeAttribute("open");
+          }
+        });
+      });
+    });
+  });
+</script>

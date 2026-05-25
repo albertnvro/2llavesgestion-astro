@@ -12,6 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "^2.0.2",
     "astro": "^6.3.5",
     "gsap": "^3.15.0"
   }

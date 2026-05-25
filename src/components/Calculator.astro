@@ -1,0 +1,115 @@
+<section class="section calculator-section" id="calculadora">
+  <div class="shell strategy-header reveal">
+    <p class="eyebrow light">Calculadora de estrategia</p>
+
+    <h2>¿Qué necesita realmente tu inmueble?</h2>
+
+    <p>
+      Cada propietario parte de una situación distinta. Esta herramienta te ayuda
+      a orientar la primera decisión: estabilidad, rentabilidad, transformación
+      o gestión integral delegada.
+    </p>
+  </div>
+
+  <div class="shell strategy-workspace reveal">
+    <div class="strategy-options-wide" id="strategy-options">
+      <button class="strategy-option is-active" type="button" data-mode="tradicional">
+        <span>01</span>
+        <strong>Tengo alquilado mi piso y quiero estabilidad</strong>
+        <small>Gestión tradicional / administración diaria</small>
+      </button>
+
+      <button class="strategy-option" type="button" data-mode="delegada">
+        <span>02</span>
+        <strong>Quiero más rentabilidad, pero no tengo tiempo</strong>
+        <small>Gestión integral delegada</small>
+      </button>
+
+      <button class="strategy-option" type="button" data-mode="habitaciones">
+        <span>03</span>
+        <strong>Quiero valorar alquiler por habitaciones</strong>
+        <small>Optimización de ingresos y ocupación</small>
+      </button>
+
+      <button class="strategy-option" type="button" data-mode="transformacion">
+        <span>04</span>
+        <strong>Mi vivienda necesita reforma o preparación</strong>
+        <small>Transformación del activo + puesta en alquiler</small>
+      </button>
+
+      <button class="strategy-option" type="button" data-mode="inversor">
+        <span>05</span>
+        <strong>Soy inversor y busco maximizar rentabilidad</strong>
+        <small>Análisis, estrategia y operación 360º</small>
+      </button>
+    </div>
+
+    <div class="strategy-result strategy-result-wide">
+      <div>
+        <small>Ruta recomendada</small>
+        <h3 id="strategy-title">Gestión tradicional con seguimiento</h3>
+        <p id="strategy-text">
+          Encaja si ya tienes inquilino y quieres quitarte la comunicación diaria,
+          cobros, incidencias y mantenimiento sin cambiar el modelo de alquiler.
+        </p>
+      </div>
+
+      <ul id="strategy-list">
+        <li>Comunicación con inquilino</li>
+        <li>Control de cobros</li>
+        <li>Incidencias y mantenimiento</li>
+      </ul>
+
+      <a id="strategy-cta" href="#contacto">Pedir valoración de esta ruta</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const strategyButtons = document.querySelectorAll(".strategy-option");
+  const strategyTitle = document.querySelector("#strategy-title");
+  const strategyText = document.querySelector("#strategy-text");
+  const strategyList = document.querySelector("#strategy-list");
+
+  const strategies = {
+    tradicional: {
+      title: "Gestión tradicional con seguimiento",
+      text: "Encaja si ya tienes inquilino y quieres quitarte la comunicación diaria, cobros, incidencias y mantenimiento sin cambiar el modelo de alquiler.",
+      items: ["Comunicación con inquilino", "Control de cobros", "Incidencias y mantenimiento"],
+    },
+    delegada: {
+      title: "Gestión integral delegada",
+      text: "Para propietarios que quieren rentabilizar su vivienda sin ocuparse de la operativa: estrategia, comercialización, selección, cobros e incidencias.",
+      items: ["Estrategia de alquiler", "Selección de inquilinos", "Operativa diaria delegada"],
+    },
+    habitaciones: {
+      title: "Alquiler por habitaciones",
+      text: "Puede encajar si la vivienda tiene distribución adecuada y buscas aumentar ingresos con una gestión específica de ocupación, rotación y perfiles compatibles.",
+      items: ["Análisis de distribución", "Selección por perfiles", "Gestión de rotación e incidencias"],
+    },
+    transformacion: {
+      title: "Transformación del activo",
+      text: "Para viviendas infrautilizadas o poco atractivas. Revisamos reforma, amueblado, home staging y preparación comercial con foco en retorno.",
+      items: ["Reforma orientada a ROI", "Amueblado y preparación", "Puesta en alquiler optimizada"],
+    },
+    inversor: {
+      title: "Estrategia para inversores",
+      text: "Pensado para quienes buscan maximizar rentabilidad, optimizar activos y delegar la operación completa con visión de inversión.",
+      items: ["Análisis de rentabilidad", "Optimización del activo", "Gestión 360º"],
+    },
+  };
+
+  strategyButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const mode = button.dataset.mode;
+      const selected = strategies[mode];
+
+      strategyButtons.forEach((item) => item.classList.remove("is-active"));
+      button.classList.add("is-active");
+
+      strategyTitle.textContent = selected.title;
+      strategyText.textContent = selected.text;
+      strategyList.innerHTML = selected.items.map((item) => `<li>${item}</li>`).join("");
+    });
+  });
+</script>

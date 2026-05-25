@@ -1,0 +1,94 @@
+<section class="leadmagnet-section" id="clausula-gratis">
+  <div class="shell leadmagnet-layout">
+    <div class="leadmagnet-copy reveal">
+      <p class="eyebrow light">Recurso gratuito</p>
+
+      <h2>Cláusula gratuita para tu contrato de alquiler.</h2>
+
+      <p>
+        Úsala como punto de partida para ordenar la comunicación de incidencias
+        y reparaciones con tu inquilino. Es una forma sencilla de aportar valor,
+        educar al propietario y traer tráfico desde redes sociales.
+      </p>
+
+      <div class="leadmagnet-warning">
+        <strong>Importante:</strong>
+        <span>
+          Texto orientativo. No sustituye asesoramiento legal ni una revisión profesional del contrato.
+        </span>
+      </div>
+
+      <div class="leadmagnet-actions">
+        <button type="button" id="copy-clause">Copiar cláusula</button>
+        <button type="button" id="download-clause">Descargar .txt</button>
+      </div>
+    </div>
+
+    <article class="clause-card reveal">
+      <span>Cláusula orientativa</span>
+
+      <h3>Comunicación de incidencias y mantenimiento</h3>
+
+      <div class="clause-text" id="clause-text">
+        <p>
+          El arrendatario deberá comunicar al arrendador o a la persona gestora designada,
+          por escrito y en el plazo más breve posible, cualquier avería, desperfecto,
+          incidencia o necesidad de reparación que afecte a la vivienda arrendada.
+        </p>
+
+        <p>
+          La comunicación deberá incluir, cuando sea posible, una descripción clara de la incidencia,
+          fotografías o vídeos, fecha de detección y cualquier información que permita valorar
+          adecuadamente la intervención necesaria.
+        </p>
+
+        <p>
+          El arrendatario facilitará el acceso a la vivienda, previa coordinación razonable,
+          para que el arrendador, la empresa gestora o los técnicos designados puedan verificar
+          el estado de la vivienda y ejecutar las reparaciones que correspondan.
+        </p>
+
+        <p>
+          Las reparaciones urgentes necesarias para evitar un daño inminente o una incomodidad grave
+          deberán ser comunicadas de forma inmediata. Las pequeñas reparaciones derivadas del desgaste
+          por el uso ordinario de la vivienda serán asumidas según lo previsto por la normativa aplicable
+          y lo pactado en el contrato.
+        </p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<script>
+  const copyButton = document.querySelector("#copy-clause");
+  const downloadButton = document.querySelector("#download-clause");
+  const clause = document.querySelector("#clause-text");
+
+  function getClauseText() {
+    return clause?.textContent?.replace(/\s+/g, " ").trim() || "";
+  }
+
+  copyButton?.addEventListener("click", async () => {
+    const text = getClauseText();
+
+    await navigator.clipboard.writeText(text);
+
+    copyButton.textContent = "Cláusula copiada";
+    setTimeout(() => {
+      copyButton.textContent = "Copiar cláusula";
+    }, 1800);
+  });
+
+  downloadButton?.addEventListener("click", () => {
+    const text = getClauseText();
+    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "clausula-incidencias-alquiler-dosllaves.txt";
+    link.click();
+
+    URL.revokeObjectURL(url);
+  });
+</script>

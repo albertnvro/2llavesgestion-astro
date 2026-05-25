@@ -1,0 +1,151 @@
+<section class="control-experience" id="sistema">
+  <div class="shell control-layout">
+    <div class="control-copy">
+      <p class="eyebrow eyebrow-dark">Sistema de gestión</p>
+
+      <h2>
+        Una experiencia de alquiler más ordenada para el propietario.
+      </h2>
+
+      <p>
+        La diferencia está en convertir cada mensaje, cobro o incidencia en un
+        proceso trazable. No desaparece la gestión: desaparece de tu día a día.
+      </p>
+
+      <div class="control-tabs" role="tablist">
+        <button class="control-tab is-active" data-mode="incidencia" type="button">
+          Incidencia
+        </button>
+        <button class="control-tab" data-mode="cobro" type="button">
+          Cobro
+        </button>
+        <button class="control-tab" data-mode="inquilino" type="button">
+          Inquilino
+        </button>
+      </div>
+    </div>
+
+    <div class="control-stage">
+      <article class="control-screen is-active" data-mode="incidencia">
+        <div class="screen-header">
+          <span>Ticket de gestión</span>
+          <strong>Incidencia en curso</strong>
+        </div>
+
+        <div class="screen-flow">
+          <div class="flow-card muted">
+            <small>Entrada</small>
+            <strong>“Hay una fuga en el baño”</strong>
+          </div>
+
+          <div class="flow-arrow"></div>
+
+          <div class="flow-card active">
+            <small>DosLlavesGestión</small>
+            <strong>Técnico coordinado</strong>
+          </div>
+
+          <div class="flow-arrow"></div>
+
+          <div class="flow-card ok">
+            <small>Salida</small>
+            <strong>Propietario informado</strong>
+          </div>
+        </div>
+
+        <p>
+          La incidencia se canaliza, se coordina y se comunica sin que el
+          propietario tenga que resolverlo por su cuenta.
+        </p>
+      </article>
+
+      <article class="control-screen" data-mode="cobro">
+        <div class="screen-header">
+          <span>Seguimiento económico</span>
+          <strong>Cobro pendiente</strong>
+        </div>
+
+        <div class="screen-flow">
+          <div class="flow-card muted">
+            <small>Entrada</small>
+            <strong>Pago no registrado</strong>
+          </div>
+
+          <div class="flow-arrow"></div>
+
+          <div class="flow-card active">
+            <small>DosLlavesGestión</small>
+            <strong>Seguimiento activado</strong>
+          </div>
+
+          <div class="flow-arrow"></div>
+
+          <div class="flow-card ok">
+            <small>Salida</small>
+            <strong>Registro actualizado</strong>
+          </div>
+        </div>
+
+        <p>
+          El propietario no persigue pagos ni mensajes: el seguimiento queda
+          dentro de un proceso de control.
+        </p>
+      </article>
+
+      <article class="control-screen" data-mode="inquilino">
+        <div class="screen-header">
+          <span>Selección documentada</span>
+          <strong>Nuevo interesado</strong>
+        </div>
+
+        <div class="screen-flow">
+          <div class="flow-card muted">
+            <small>Entrada</small>
+            <strong>Candidato interesado</strong>
+          </div>
+
+          <div class="flow-arrow"></div>
+
+          <div class="flow-card active">
+            <small>DosLlavesGestión</small>
+            <strong>Filtro y documentación</strong>
+          </div>
+
+          <div class="flow-arrow"></div>
+
+          <div class="flow-card ok">
+            <small>Salida</small>
+            <strong>Decisión con criterio</strong>
+          </div>
+        </div>
+
+        <p>
+          Menos riesgo antes de firmar: selección, documentación y comunicación
+          se gestionan con método.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<script>
+  const tabs = document.querySelectorAll(".control-tab");
+  const screens = document.querySelectorAll(".control-screen");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const mode = tab.getAttribute("data-mode");
+
+      tabs.forEach((item) => {
+        item.classList.toggle("is-active", item === tab);
+      });
+
+      screens.forEach((screen) => {
+        screen.classList.toggle(
+          "is-active",
+          screen.getAttribute("data-mode") === mode
+        );
+      });
+    });
+  });
+</script>

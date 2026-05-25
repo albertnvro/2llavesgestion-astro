@@ -1,70 +1,91 @@
----
-
----
-
 <section class="section contact-section" id="contacto">
-  <div class="shell contact-grid">
-    <div class="contact-copy">
-      <p class="eyebrow eyebrow-dark">Valoración gratuita</p>
+  <div class="shell contact-layout">
+    <div class="contact-copy reveal">
+      <p class="eyebrow dark">Valoración gratuita</p>
 
-      <h2>Hablemos de tu vivienda.</h2>
+      <h2>Empezamos con tu inmueble.</h2>
 
       <p>
-        Dinos dónde está, cuántas habitaciones tiene y qué quieres conseguir.
-        Te diremos qué modalidad puede encajar mejor.
+        Cuéntanos dónde está, en qué punto se encuentra y qué quieres conseguir.
+        Te diremos qué ruta puede encajar mejor: estabilidad, rentabilidad,
+        transformación o gestión integral.
       </p>
 
-      <ul class="check-list">
-        <li>Sin compromiso</li>
-        <li>Respuesta personalizada</li>
-        <li>Estrategia clara de alquiler</li>
-        <li>Valencia y alrededores</li>
-      </ul>
+      <div class="contact-points">
+        <span>Valencia y Castellón</span>
+        <span>Propietarios e inversores</span>
+        <span>Valoración personalizada</span>
+      </div>
     </div>
 
-    <form class="contact-form" id="lead-form">
-      <label>
-        Nombre
-        <input name="nombre" type="text" placeholder="Tu nombre" required />
+    <form class="contact-form reveal" id="lead-form">
+      <div class="form-options">
+        <label class="choice-card">
+          <input type="radio" name="necesidad" value="Tengo alquilado mi piso y quiero estabilidad" checked />
+          <span>
+            <strong>Tengo alquilado mi piso y quiero estabilidad</strong>
+            <small>Quiero delegar gestión tradicional, cobros e incidencias.</small>
+          </span>
+        </label>
+
+        <label class="choice-card">
+          <input type="radio" name="necesidad" value="Quiero más rentabilidad pero no tengo tiempo para gestionar" />
+          <span>
+            <strong>Quiero más rentabilidad, pero no tengo tiempo</strong>
+            <small>Necesito una gestión integral delegada.</small>
+          </span>
+        </label>
+
+        <label class="choice-card">
+          <input type="radio" name="necesidad" value="Quiero transformar o preparar mi vivienda" />
+          <span>
+            <strong>Quiero transformar o preparar mi vivienda</strong>
+            <small>Me interesa reforma, amueblado, home staging o mejora de rentabilidad.</small>
+          </span>
+        </label>
+
+        <label class="choice-card">
+          <input type="radio" name="necesidad" value="Soy inversor y busco rentabilidad" />
+          <span>
+            <strong>Soy inversor y busco rentabilidad</strong>
+            <small>Quiero analizar el inmueble como activo.</small>
+          </span>
+        </label>
+      </div>
+
+      <div class="form-grid">
+        <label class="field">
+          <span>Nombre</span>
+          <input name="nombre" type="text" placeholder="Tu nombre" required />
+        </label>
+
+        <label class="field">
+          <span>Teléfono</span>
+          <input name="telefono" type="tel" placeholder="Tu teléfono" required />
+        </label>
+      </div>
+
+      <label class="field">
+        <span>Zona de la vivienda</span>
+        <input name="zona" type="text" placeholder="Valencia, Castellón, Mislata, Burjassot..." />
       </label>
 
-      <label>
-        Teléfono
-        <input name="telefono" type="tel" placeholder="Tu teléfono" required />
+      <label class="field">
+        <span>Mensaje</span>
+        <textarea name="mensaje" placeholder="Cuéntanos brevemente tu caso."></textarea>
       </label>
 
-      <label>
-        Zona de la vivienda
-        <input
-          name="zona"
-          type="text"
-          placeholder="Valencia, Mislata, Burjassot..."
-          required
-        />
-      </label>
-
-      <label>
-        Situación actual
-        <select name="situacion">
-          <option>Vivienda vacía</option>
-          <option>Ya está alquilada</option>
-          <option>Quiero alquiler por habitaciones</option>
-          <option>Quiero larga estancia</option>
-          <option>No sé qué modalidad conviene</option>
-        </select>
-      </label>
-
-      <button type="submit">Solicitar valoración gratuita</button>
+      <button type="submit">Quiero hablar con DosLlaves</button>
 
       <p class="form-note">
-        Al enviar, se abrirá WhatsApp con los datos introducidos.
+        No hacemos spam. Te contactamos una vez, hablamos y tú decides.
       </p>
     </form>
   </div>
 </section>
 
 <script>
-  const form = document.querySelector<HTMLFormElement>("#lead-form");
+  const form = document.querySelector("#lead-form");
 
   form?.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -72,16 +93,16 @@
     const data = new FormData(form);
 
     const message = [
-      "Hola, quiero una valoración para mi vivienda.",
+      "Hola, quiero una valoración para mi inmueble.",
       "",
+      `Necesidad: ${data.get("necesidad") ?? ""}`,
       `Nombre: ${data.get("nombre") ?? ""}`,
       `Teléfono: ${data.get("telefono") ?? ""}`,
       `Zona: ${data.get("zona") ?? ""}`,
-      `Situación: ${data.get("situacion") ?? ""}`,
+      `Mensaje: ${data.get("mensaje") ?? ""}`,
     ].join("\n");
 
     const url = `https://wa.me/34623512885?text=${encodeURIComponent(message)}`;
-
     window.open(url, "_blank");
   });
 </script>

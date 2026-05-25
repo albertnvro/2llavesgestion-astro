@@ -1,46 +1,48 @@
 ---
 
+const services = [
+  {
+    label: "Rentabilidad",
+    title: "Alquiler por habitaciones",
+    text: "Para viviendas que pueden optimizar ocupación y rendimiento con una gestión profesional.",
+    items: ["Estrategia de habitaciones", "Selección individual", "Rotación controlada"],
+  },
+  {
+    label: "Control",
+    title: "Gestión integral",
+    text: "Delegas la operativa completa: inquilinos, cobros, incidencias, mantenimiento y comunicación.",
+    items: ["Administración diaria", "Cobros y seguimiento", "Incidencias coordinadas"],
+  },
+  {
+    label: "Estabilidad",
+    title: "Larga estancia",
+    text: "Para propietarios que priorizan continuidad, menor rotación y una gestión más estable.",
+    items: ["Filtro de inquilinos", "Contrato e inventario", "Seguimiento mensual"],
+  },
+];
 ---
 
-<section class="section section-dark" id="servicios">
-  <div class="shell section-heading section-heading-dark">
-    <p class="eyebrow">Servicios</p>
-    <h2>Servicios pensados para propietarios.</h2>
+<section class="section services-section" id="servicios">
+  <div class="shell section-heading">
+    <p class="eyebrow eyebrow-dark">Servicios</p>
+    <h2>Tres formas de delegar tu alquiler con criterio.</h2>
     <p>
-      Tres caminos claros según lo que quieres conseguir con tu vivienda:
-      rentabilidad, estabilidad o cero gestión diaria.
+      Elegimos la estrategia según tu vivienda, tu objetivo y el nivel de
+      gestión que quieres dejar en nuestras manos.
     </p>
   </div>
 
-  <div class="shell services">
-    <article class="service-card">
-      <span>Más rentabilidad</span>
-      <h3>Alquiler por habitaciones</h3>
-      <p>
-        Optimización de ocupación, rotación, pagos individuales, mantenimiento
-        y comunicación.
-      </p>
-      <a href="#contacto">Valorar mi vivienda</a>
-    </article>
-
-    <article class="service-card service-card-featured">
-      <span>Más completo</span>
-      <h3>Gestión integral del alquiler</h3>
-      <p>
-        Delegas inquilinos, contratos, cobros, incidencias, mantenimiento y
-        comunicación diaria.
-      </p>
-      <a href="#contacto">Solicitar información</a>
-    </article>
-
-    <article class="service-card">
-      <span>Más estabilidad</span>
-      <h3>Larga estancia</h3>
-      <p>
-        Para propietarios que priorizan continuidad, menor rotación y una
-        administración profesional.
-      </p>
-      <a href="#contacto">Ver si encaja</a>
-    </article>
+  <div class="shell services-grid">
+    {services.map((service) => (
+      <article class="service-card">
+        <span>{service.label}</span>
+        <h3>{service.title}</h3>
+        <p>{service.text}</p>
+        <ul>
+          {service.items.map((item) => <li>{item}</li>)}
+        </ul>
+        <a href="#contacto">Solicitar valoración</a>
+      </article>
+    ))}
   </div>
 </section>

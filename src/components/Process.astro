@@ -1,32 +1,90 @@
 ---
-
 const steps = [
-  ["01", "Valoración", "Revisamos zona, habitaciones, estado y objetivo del propietario."],
-  ["02", "Estrategia", "Decidimos modalidad: habitaciones, larga estancia o gestión ya alquilada."],
-  ["03", "Preparación", "Optimizamos la vivienda y la presentación comercial."],
-  ["04", "Selección", "Filtramos interesados y organizamos documentación."],
-  ["05", "Contrato", "Coordinamos condiciones, inventario y entrada."],
-  ["06", "Gestión", "Cobros, incidencias, comunicación y seguimiento mensual."],
+  {
+    number: "01",
+    title: "Valoramos",
+    text: "Analizamos zona, estado, habitaciones y objetivo del propietario.",
+    tag: "Diagnóstico",
+  },
+  {
+    number: "02",
+    title: "Definimos estrategia",
+    text: "Elegimos modalidad: habitaciones, larga estancia o gestión integral.",
+    tag: "Estrategia",
+  },
+  {
+    number: "03",
+    title: "Preparamos",
+    text: "Organizamos publicación, visitas, documentación y condiciones.",
+    tag: "Preparación",
+  },
+  {
+    number: "04",
+    title: "Seleccionamos",
+    text: "Filtramos interesados para reducir riesgos antes de firmar.",
+    tag: "Filtro",
+  },
+  {
+    number: "05",
+    title: "Formalizamos",
+    text: "Coordinamos contrato, inventario y entrada.",
+    tag: "Contrato",
+  },
+  {
+    number: "06",
+    title: "Gestionamos",
+    text: "Cobros, incidencias, comunicación y seguimiento mensual.",
+    tag: "Gestión diaria",
+  },
 ];
 ---
 
-<section class="section section-white" id="proceso">
-  <div class="shell section-heading">
-    <p class="eyebrow eyebrow-dark">Proceso</p>
-    <h2>Cómo funciona paso a paso.</h2>
-    <p>
-      Un proceso sencillo para que el propietario sepa qué ocurre después de
-      dejar sus datos.
-    </p>
-  </div>
+<section class="section process-section" id="proceso">
+  <div class="shell process-timeline-layout">
+    <aside class="process-intro reveal">
+      <div class="process-pin-card">
+        <p class="eyebrow light">Proceso</p>
 
-  <div class="shell process-grid">
-    {steps.map(([number, title, text]) => (
-      <article class="process-card">
-        <span>{number}</span>
-        <h3>{title}</h3>
-        <p>{text}</p>
-      </article>
-    ))}
+        <h2>
+          De principio a fin, con un proceso que avanza contigo.
+        </h2>
+
+        <p>
+          Cada fase tiene un objetivo claro: pasar de una vivienda pendiente de
+          gestionar a un alquiler controlado, documentado y acompañado.
+        </p>
+
+        <div class="process-summary">
+          <span>Valoración</span>
+          <span>Estrategia</span>
+          <span>Selección</span>
+          <span>Gestión</span>
+        </div>
+
+        <a href="#contacto" class="process-link">
+          Empezar con mi valoración
+        </a>
+      </div>
+    </aside>
+
+    <div class="process-timeline reveal">
+      <div class="timeline-line" aria-hidden="true">
+        <span class="timeline-progress"></span>
+      </div>
+
+      {steps.map((step, index) => (
+        <article class:list={["timeline-step", { "is-active": index === 0 }]}>
+          <div class="timeline-node">
+            <span>{step.number}</span>
+          </div>
+
+          <div class="timeline-card">
+            <small>{step.tag}</small>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+          </div>
+        </article>
+      ))}
+    </div>
   </div>
 </section>

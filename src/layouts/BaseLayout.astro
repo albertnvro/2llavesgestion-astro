@@ -2,9 +2,17 @@
 import "../styles/global.css";
 
 const {
-  title = "Gestión de alquileres en Valencia | DosLlavesGestión",
-  description = "Gestión integral de alquileres en Valencia para propietarios que quieren rentabilidad sin ocuparse de inquilinos, incidencias ni cobros.",
+  title = "DosLlavesGestión | Transformación y gestión integral de activos inmobiliarios",
+  description = "Transformamos, optimizamos y gestionamos activos inmobiliarios en Valencia y Castellón para propietarios e inversores que quieren más rentabilidad y menos gestión diaria.",
+  canonicalPath = "/",
+  ogImage = "/images/oscar-ochando.jpg",
 } = Astro.props;
+
+const siteUrl = "https://www.dosllavesgestion.com";
+const canonicalUrl = `${siteUrl}${canonicalPath}`;
+const ogImageUrl = ogImage.startsWith("http")
+  ? ogImage
+  : `${siteUrl}${ogImage}`;
 ---
 
 <!doctype html>
@@ -15,12 +23,31 @@ const {
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
 
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="DosLlavesGestión" />
+    <meta property="og:image" content={ogImageUrl} />
 
-    <link rel="icon" href="/favicon.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.svg`} />
   </head>
 
   <body>

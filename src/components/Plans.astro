@@ -1,0 +1,62 @@
+---
+const plans = [
+  {
+    label: "Estrategia",
+    title: "Análisis de rentabilidad",
+    text: "Estudiamos el inmueble, la zona, el estado y el potencial para decidir la mejor forma de explotación.",
+    items: ["Estudio de mercado", "Comparativa de zona", "Estrategia recomendada"],
+    featured: false,
+  },
+  {
+    label: "Transformación",
+    title: "Reforma y preparación",
+    text: "Mejoramos el activo para aumentar atractivo, velocidad de alquiler y rentabilidad final.",
+    items: ["Reforma orientada a ROI", "Amueblado y home staging", "Preparación comercial"],
+    featured: false,
+  },
+  {
+    label: "Gestión 360º",
+    title: "Gestión integral delegada",
+    text: "Nos encargamos de la operativa diaria: inquilinos, cobros, incidencias, mantenimiento y seguimiento.",
+    items: ["Cobros y seguimiento", "Incidencias coordinadas", "Propietario informado"],
+    featured: true,
+  },
+  {
+    label: "Rentabilidad",
+    title: "Alquiler por habitaciones",
+    text: "Modelo orientado a optimizar ingresos, ocupación y rentabilidad con una operativa específica.",
+    items: ["Redistribución", "Selección de perfiles", "Operativa por habitaciones"],
+    featured: false,
+  },
+];
+---
+
+<section class="section plans-section" id="planes">
+  <div class="shell section-heading reveal">
+    <p class="eyebrow light">Servicios 360º</p>
+
+    <h2>Mucho más que alquilar una vivienda.</h2>
+
+    <p>
+      DosLlavesGestión analiza, transforma, comercializa y opera activos inmobiliarios
+      para propietarios e inversores que quieren rentabilidad sin asumir la gestión diaria.
+    </p>
+  </div>
+
+  <div class="shell plans-grid plans-grid-extended">
+    {plans.map((plan) => (
+      <article class:list={["plan-card", "reveal", { "is-featured": plan.featured }]}>
+        {plan.featured && <div class="plan-ribbon">Más completo</div>}
+        <span>{plan.label}</span>
+        <h3>{plan.title}</h3>
+        <p>{plan.text}</p>
+
+        <ul>
+          {plan.items.map((item) => <li>{item}</li>)}
+        </ul>
+
+        <a href="#contacto">Solicitar valoración</a>
+      </article>
+    ))}
+  </div>
+</section>

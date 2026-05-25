@@ -1,0 +1,820 @@
+<section class="section lead-wizard-section" id="lead-wizard">
+  <div class="shell lead-wizard-header reveal">
+    <p class="eyebrow light">Valoración profesional</p>
+
+    <h2>Empieza por la dirección de tu inmueble.</h2>
+
+    <p>
+      Con la ubicación podemos orientar mejor la estrategia: zona, tipo de demanda,
+      potencial de alquiler tradicional, habitaciones, reforma o gestión integral.
+    </p>
+  </div>
+
+  <div class="shell lead-wizard reveal">
+    <aside class="wizard-sidebar">
+      <div class="wizard-progress">
+        <span class="wizard-progress-bar"></span>
+      </div>
+
+      <div class="wizard-step-label is-active" data-label-step="1">
+        <span>01</span>
+        <strong>Dirección</strong>
+      </div>
+
+      <div class="wizard-step-label" data-label-step="2">
+        <span>02</span>
+        <strong>Situación</strong>
+      </div>
+
+      <div class="wizard-step-label" data-label-step="3">
+        <span>03</span>
+        <strong>Objetivo</strong>
+      </div>
+
+      <div class="wizard-step-label" data-label-step="4">
+        <span>04</span>
+        <strong>Contacto</strong>
+      </div>
+    </aside>
+
+    <form class="wizard-form" id="property-lead-form">
+      <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" />
+
+      <section class="wizard-panel is-active" data-step="1">
+        <div class="wizard-panel-head">
+          <span>Primer paso</span>
+          <h3>¿Dónde está la vivienda?</h3>
+          <p>
+            Empieza escribiendo la dirección. Google sugerirá coincidencias reales
+            para evitar errores y acelerar la valoración.
+          </p>
+        </div>
+
+        <div class="address-box">
+          <div id="address-autocomplete-root"></div>
+
+          <input
+            id="fallback-address"
+            class="fallback-address"
+            type="text"
+            placeholder="Calle, número, ciudad..."
+          />
+
+          <p class="address-status" id="address-status">
+            Selecciona una dirección para continuar.
+          </p>
+        </div>
+
+        <input type="hidden" name="address" id="lead-address" />
+        <input type="hidden" name="place_id" id="lead-place-id" />
+        <input type="hidden" name="lat" id="lead-lat" />
+        <input type="hidden" name="lng" id="lead-lng" />
+
+        <div class="wizard-actions">
+          <button type="button" class="wizard-next" data-next="2">
+            Continuar
+          </button>
+        </div>
+      </section>
+
+      <section class="wizard-panel" data-step="2">
+        <div class="wizard-panel-head">
+          <span>Situación actual</span>
+          <h3>¿En qué punto está el inmueble?</h3>
+          <p>
+            Así distinguimos entre gestión tradicional, gestión delegada,
+            transformación del activo o alquiler por habitaciones.
+          </p>
+        </div>
+
+        <div class="choice-grid" data-choice-group="situacion">
+          <button type="button" data-value="Vivienda vacía">Vivienda vacía</button>
+          <button type="button" data-value="Ya está alquilada">Ya está alquilada</button>
+          <button type="button" data-value="Necesita reforma o preparación">Necesita reforma</button>
+          <button type="button" data-value="Quiero valorar habitaciones">Quiero valorar habitaciones</button>
+        </div>
+
+        <input type="hidden" name="situacion" id="lead-situacion" />
+
+        <div class="wizard-actions">
+          <button type="button" class="wizard-prev" data-prev="1">Atrás</button>
+          <button type="button" class="wizard-next" data-next="3">Continuar</button>
+        </div>
+      </section>
+
+      <section class="wizard-panel" data-step="3">
+        <div class="wizard-panel-head">
+          <span>Objetivo</span>
+          <h3>¿Qué quieres conseguir?</h3>
+          <p>
+            Esta respuesta nos ayuda a recomendar estabilidad, rentabilidad,
+            reforma orientada a ROI o gestión integral delegada.
+          </p>
+        </div>
+
+        <div class="choice-grid objective-grid" data-choice-group="objetivo">
+          <button type="button" data-value="Quiero estabilidad">
+            <strong>Estabilidad</strong>
+            <small>Gestión tradicional y menos problemas.</small>
+          </button>
+
+          <button type="button" data-value="Quiero más rentabilidad">
+            <strong>Más rentabilidad</strong>
+            <small>Analizar habitaciones, reforma o estrategia.</small>
+          </button>
+
+          <button type="button" data-value="Quiero delegarlo todo">
+            <strong>Delegarlo todo</strong>
+            <small>Gestión integral de principio a fin.</small>
+          </button>
+
+          <button type="button" data-value="Soy inversor">
+            <strong>Soy inversor</strong>
+            <small>Optimizar activo, retorno y operación.</small>
+          </button>
+        </div>
+
+        <input type="hidden" name="objetivo" id="lead-objetivo" />
+
+        <div class="wizard-actions">
+          <button type="button" class="wizard-prev" data-prev="2">Atrás</button>
+          <button type="button" class="wizard-next" data-next="4">Continuar</button>
+        </div>
+      </section>
+
+      <section class="wizard-panel" data-step="4">
+        <div class="wizard-panel-head">
+          <span>Contacto</span>
+          <h3>Te decimos qué ruta encaja mejor.</h3>
+          <p>
+            Déjanos tus datos y te contactamos con una valoración inicial.
+            Sin compromiso.
+          </p>
+        </div>
+
+        <div class="field-grid">
+          <label class="field">
+            <span>Nombre</span>
+            <input name="nombre" type="text" placeholder="Tu nombre" required />
+          </label>
+
+          <label class="field">
+            <span>Teléfono</span>
+            <input name="telefono" type="tel" placeholder="Tu teléfono" required />
+          </label>
+        </div>
+
+        <label class="field">
+          <span>Email</span>
+          <input name="email" type="email" placeholder="tu@email.com" />
+        </label>
+
+        <label class="field">
+          <span>Mensaje</span>
+          <textarea name="mensaje" placeholder="Cuéntanos brevemente tu caso."></textarea>
+        </label>
+
+        <div class="wizard-summary" id="wizard-summary"></div>
+
+        <div class="wizard-actions">
+          <button type="button" class="wizard-prev" data-prev="3">Atrás</button>
+          <button type="submit" class="wizard-submit">Enviar valoración</button>
+        </div>
+
+        <p class="form-note">
+          Si el envío web todavía no está conectado, se abrirá WhatsApp con los datos.
+        </p>
+      </section>
+
+      <section class="wizard-panel wizard-success" data-step="success">
+        <div class="wizard-panel-head">
+          <span>Solicitud recibida</span>
+          <h3>Gracias. Revisaremos tu inmueble.</h3>
+          <p>
+            Hemos recibido la información y te contactaremos para avanzar con la valoración.
+          </p>
+        </div>
+
+        <a class="wizard-success-link" href="https://www.instagram.com/oscarochando" target="_blank" rel="noopener noreferrer">
+          Ver contenido de Óscar en Instagram
+        </a>
+      </section>
+    </form>
+  </div>
+</section>
+
+<script>
+  import { Loader } from "@googlemaps/js-api-loader";
+
+  const apiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
+
+  const lead = {
+    address: "",
+    placeId: "",
+    lat: "",
+    lng: "",
+    situacion: "",
+    objetivo: "",
+  };
+
+  const form = document.querySelector("#property-lead-form");
+  const addressRoot = document.querySelector("#address-autocomplete-root");
+  const fallbackAddress = document.querySelector("#fallback-address");
+  const addressStatus = document.querySelector("#address-status");
+
+  const leadAddress = document.querySelector("#lead-address");
+  const leadPlaceId = document.querySelector("#lead-place-id");
+  const leadLat = document.querySelector("#lead-lat");
+  const leadLng = document.querySelector("#lead-lng");
+  const leadSituacion = document.querySelector("#lead-situacion");
+  const leadObjetivo = document.querySelector("#lead-objetivo");
+
+  function setStep(step) {
+    document.querySelectorAll(".wizard-panel").forEach((panel) => {
+      panel.classList.toggle("is-active", panel.getAttribute("data-step") === String(step));
+    });
+
+    document.querySelectorAll(".wizard-step-label").forEach((label) => {
+      const labelStep = Number(label.getAttribute("data-label-step"));
+      label.classList.toggle("is-active", labelStep === Number(step));
+      label.classList.toggle("is-complete", labelStep < Number(step));
+    });
+
+    const progress = document.querySelector(".wizard-progress-bar");
+    const progressValue = step === "success" ? 1 : (Number(step) - 1) / 3;
+
+    if (progress) {
+      progress.style.transform = `scaleY(${progressValue})`;
+    }
+
+    if (step === 4) {
+      updateSummary();
+    }
+  }
+
+  function updateSummary() {
+    const summary = document.querySelector("#wizard-summary");
+
+    if (!summary) return;
+
+    summary.innerHTML = `
+      <strong>Resumen de valoración</strong>
+      <span>${lead.address || "Dirección pendiente"}</span>
+      <span>${lead.situacion || "Situación pendiente"}</span>
+      <span>${lead.objetivo || "Objetivo pendiente"}</span>
+    `;
+  }
+
+  function validateStep(step) {
+    if (step === 1) {
+      const fallbackValue = fallbackAddress instanceof HTMLInputElement ? fallbackAddress.value.trim() : "";
+
+      if (!lead.address && fallbackValue) {
+        lead.address = fallbackValue;
+        leadAddress.value = fallbackValue;
+      }
+
+      if (!lead.address) {
+        addressStatus.textContent = "Introduce o selecciona una dirección para continuar.";
+        addressStatus.classList.add("is-error");
+        return false;
+      }
+    }
+
+    if (step === 2 && !lead.situacion) {
+      alert("Selecciona la situación actual del inmueble.");
+      return false;
+    }
+
+    if (step === 3 && !lead.objetivo) {
+      alert("Selecciona el objetivo principal.");
+      return false;
+    }
+
+    return true;
+  }
+
+  async function initGoogleAutocomplete() {
+    if (!apiKey || !addressRoot) return;
+
+    try {
+      const loader = new Loader({
+        apiKey,
+        version: "weekly",
+        libraries: ["places"],
+      });
+
+      await loader.load();
+
+      const { PlaceAutocompleteElement } = await google.maps.importLibrary("places");
+
+      const autocomplete = new PlaceAutocompleteElement({
+        includedRegionCodes: ["es"],
+        requestedLanguage: "es",
+        requestedRegion: "ES",
+        placeholder: "Empieza a escribir la dirección...",
+      });
+
+      autocomplete.className = "google-address-element";
+
+      addressRoot.appendChild(autocomplete);
+
+      if (fallbackAddress) {
+        fallbackAddress.classList.add("is-hidden");
+      }
+
+      autocomplete.addEventListener("gmp-select", async (event) => {
+        const place = event.placePrediction.toPlace();
+
+        await place.fetchFields({
+          fields: ["id", "displayName", "formattedAddress", "location"],
+        });
+
+        const placeJson = place.toJSON();
+        const formattedAddress = placeJson.formattedAddress || placeJson.displayName?.text || "";
+
+        lead.address = formattedAddress;
+        lead.placeId = placeJson.id || "";
+        lead.lat = placeJson.location?.lat || "";
+        lead.lng = placeJson.location?.lng || "";
+
+        leadAddress.value = lead.address;
+        leadPlaceId.value = lead.placeId;
+        leadLat.value = lead.lat;
+        leadLng.value = lead.lng;
+
+        addressStatus.textContent = `Dirección seleccionada: ${lead.address}`;
+        addressStatus.classList.remove("is-error");
+        addressStatus.classList.add("is-ok");
+      });
+    } catch (error) {
+      console.warn("Google Places no se ha podido cargar:", error);
+
+      if (addressStatus) {
+        addressStatus.textContent = "Puedes escribir la dirección manualmente.";
+      }
+    }
+  }
+
+  document.querySelectorAll("[data-next]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const currentPanel = button.closest(".wizard-panel");
+      const currentStep = Number(currentPanel?.getAttribute("data-step") || 1);
+      const nextStep = button.getAttribute("data-next");
+
+      if (!validateStep(currentStep)) return;
+
+      setStep(nextStep);
+    });
+  });
+
+  document.querySelectorAll("[data-prev]").forEach((button) => {
+    button.addEventListener("click", () => {
+      setStep(button.getAttribute("data-prev"));
+    });
+  });
+
+  document.querySelectorAll("[data-choice-group]").forEach((group) => {
+    group.querySelectorAll("button").forEach((button) => {
+      button.addEventListener("click", () => {
+        group.querySelectorAll("button").forEach((item) => item.classList.remove("is-active"));
+        button.classList.add("is-active");
+
+        const groupName = group.getAttribute("data-choice-group");
+        const value = button.getAttribute("data-value");
+
+        if (groupName === "situacion") {
+          lead.situacion = value;
+          leadSituacion.value = value;
+        }
+
+        if (groupName === "objetivo") {
+          lead.objetivo = value;
+          leadObjetivo.value = value;
+        }
+      });
+    });
+  });
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!validateStep(3)) return;
+
+    const data = new FormData(form);
+
+    if (data.get("website")) return;
+
+    const payload = Object.fromEntries(data.entries());
+
+    const runningInPreview =
+      location.hostname.includes("localhost") ||
+      location.hostname.includes("github.dev") ||
+      location.hostname.includes("app.github.dev");
+
+    const endpoint = runningInPreview ? "" : "/wp-json/dosllaves/v1/lead";
+
+    let sent = false;
+
+    if (endpoint) {
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        sent = response.ok;
+      } catch (error) {
+        sent = false;
+      }
+    }
+
+    if (sent) {
+      setStep("success");
+      return;
+    }
+
+    const message = [
+      "Hola, quiero una valoración para mi inmueble.",
+      "",
+      `Dirección: ${payload.address || ""}`,
+      `Situación: ${payload.situacion || ""}`,
+      `Objetivo: ${payload.objetivo || ""}`,
+      `Nombre: ${payload.nombre || ""}`,
+      `Teléfono: ${payload.telefono || ""}`,
+      `Email: ${payload.email || ""}`,
+      `Mensaje: ${payload.mensaje || ""}`,
+    ].join("\n");
+
+    window.open(`https://wa.me/34623512885?text=${encodeURIComponent(message)}`, "_blank");
+  });
+
+  initGoogleAutocomplete();
+</script>
+
+<style>
+  .lead-wizard-section {
+    position: relative;
+    background:
+      radial-gradient(circle at 84% 12%, rgba(92, 242, 194, 0.14), transparent 30%),
+      linear-gradient(180deg, #ffffff 0%, var(--primary-light) 100%);
+  }
+
+  .lead-wizard-header {
+    display: grid;
+    justify-items: center;
+    gap: 14px;
+    max-width: 820px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .lead-wizard-header p {
+    max-width: 700px;
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .lead-wizard {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 26px;
+    margin-top: 44px;
+    padding: 18px;
+    border-radius: 34px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(6, 55, 126, 0.12);
+    box-shadow: 0 30px 90px rgba(6, 55, 126, 0.14);
+    backdrop-filter: blur(16px);
+  }
+
+  .wizard-sidebar {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 18px;
+    padding: 28px;
+    border-radius: 26px;
+    background:
+      radial-gradient(circle at 80% 12%, rgba(92, 242, 194, 0.18), transparent 32%),
+      linear-gradient(135deg, var(--primary) 0%, #084aa7 58%, var(--primary-dark) 100%);
+    color: white;
+  }
+
+  .wizard-progress {
+    position: absolute;
+    top: 74px;
+    bottom: 42px;
+    left: 47px;
+    width: 3px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.18);
+    overflow: hidden;
+  }
+
+  .wizard-progress-bar {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.35s ease;
+  }
+
+  .wizard-step-label {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    gap: 12px;
+    align-items: center;
+    opacity: 0.58;
+  }
+
+  .wizard-step-label span {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    background: rgba(255, 255, 255, 0.12);
+    font-weight: 900;
+  }
+
+  .wizard-step-label strong {
+    font-size: 15px;
+  }
+
+  .wizard-step-label.is-active,
+  .wizard-step-label.is-complete {
+    opacity: 1;
+  }
+
+  .wizard-step-label.is-active span,
+  .wizard-step-label.is-complete span {
+    background: var(--accent);
+    color: var(--primary-dark);
+  }
+
+  .wizard-form {
+    min-height: 610px;
+    padding: clamp(24px, 4vw, 42px);
+    border-radius: 28px;
+    background: white;
+  }
+
+  .wizard-panel {
+    display: none;
+    gap: 24px;
+  }
+
+  .wizard-panel.is-active {
+    display: grid;
+  }
+
+  .wizard-panel-head {
+    display: grid;
+    gap: 10px;
+  }
+
+  .wizard-panel-head > span {
+    width: max-content;
+    padding: 7px 10px;
+    border-radius: 999px;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 900;
+  }
+
+  .wizard-panel-head h3 {
+    font-size: clamp(30px, 3.6vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.045em;
+  }
+
+  .wizard-panel-head p {
+    max-width: 700px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .address-box {
+    display: grid;
+    gap: 12px;
+  }
+
+  #address-autocomplete-root gmp-place-autocomplete,
+  .google-address-element {
+    width: 100%;
+    min-height: 58px;
+    --gmp-mat-color-primary: var(--primary);
+    --gmp-mat-color-on-surface: var(--ink);
+    --gmp-mat-color-surface: #ffffff;
+    --gmp-mat-font-family: Urbanist, Open Sans, system-ui, sans-serif;
+  }
+
+  .fallback-address {
+    min-height: 58px;
+    width: 100%;
+    padding: 0 18px;
+    border-radius: 16px;
+    border: 1px solid rgba(6, 55, 126, 0.16);
+    outline: none;
+    font-weight: 700;
+  }
+
+  .fallback-address:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(6, 55, 126, 0.10);
+  }
+
+  .fallback-address.is-hidden {
+    display: none;
+  }
+
+  .address-status {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .address-status.is-error {
+    color: #b42318;
+  }
+
+  .address-status.is-ok {
+    color: var(--primary);
+  }
+
+  .choice-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .choice-grid button {
+    min-height: 112px;
+    display: grid;
+    align-content: center;
+    gap: 5px;
+    padding: 18px;
+    border: 1px solid rgba(6, 55, 126, 0.14);
+    border-radius: 18px;
+    background: white;
+    color: var(--ink);
+    text-align: left;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 12px 34px rgba(6, 55, 126, 0.06);
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .choice-grid button:hover {
+    transform: translateY(-2px);
+  }
+
+  .choice-grid button.is-active {
+    border-color: var(--primary);
+    background: linear-gradient(180deg, #ffffff, var(--primary-light));
+  }
+
+  .objective-grid button small {
+    color: var(--muted);
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .field {
+    display: grid;
+    gap: 8px;
+    color: var(--primary-dark);
+    font-weight: 850;
+  }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    min-height: 52px;
+    border: 1px solid rgba(6, 55, 126, 0.18);
+    border-radius: 14px;
+    padding: 0 15px;
+    outline: none;
+    font-weight: 650;
+  }
+
+  .field textarea {
+    min-height: 120px;
+    padding-top: 14px;
+    resize: vertical;
+  }
+
+  .field input:focus,
+  .field textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(6, 55, 126, 0.10);
+  }
+
+  .wizard-summary {
+    display: grid;
+    gap: 6px;
+    padding: 16px;
+    border-radius: 16px;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+  }
+
+  .wizard-summary strong {
+    font-weight: 900;
+  }
+
+  .wizard-summary span {
+    color: #42536b;
+    font-weight: 700;
+  }
+
+  .wizard-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 6px;
+  }
+
+  .wizard-next,
+  .wizard-submit,
+  .wizard-prev,
+  .wizard-success-link {
+    min-height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 18px;
+    border: 0;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 900;
+    cursor: pointer;
+  }
+
+  .wizard-next,
+  .wizard-submit {
+    background: var(--primary);
+    color: white;
+  }
+
+  .wizard-prev {
+    background: var(--primary-light);
+    color: var(--primary);
+  }
+
+  .wizard-success-link {
+    width: max-content;
+    background: var(--accent);
+    color: var(--primary-dark);
+  }
+
+  .hp-field {
+    display: none !important;
+  }
+
+  @media (max-width: 900px) {
+    .lead-wizard {
+      grid-template-columns: 1fr;
+    }
+
+    .wizard-sidebar {
+      display: none;
+    }
+
+    .wizard-form {
+      min-height: auto;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .choice-grid,
+    .field-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .wizard-actions {
+      flex-direction: column;
+    }
+
+    .wizard-actions button,
+    .wizard-success-link {
+      width: 100%;
+    }
+  }
+</style>

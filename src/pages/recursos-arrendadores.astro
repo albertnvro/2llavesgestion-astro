@@ -1,0 +1,155 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { landlordResources } from "../data/resources";
+
+const pageTitle = "Recursos gratuitos para arrendadores | DosLlavesGestión";
+const pageDescription =
+  "Biblioteca gratuita para arrendadores: cláusulas orientativas, checklists, plantillas de inventario y recursos para alquilar con más seguridad y orden.";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: pageTitle,
+  description: pageDescription,
+  url: "https://www.dosllavesgestion.com/recursos-arrendadores/",
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: landlordResources.map((resource, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: resource.title,
+      description: resource.description,
+      url: `https://www.dosllavesgestion.com/recursos-arrendadores/#${resource.id}`,
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/recursos-arrendadores/"
+>
+  <Header />
+
+  <main>
+    <section class="resources-hero">
+      <div class="shell resources-hero-inner">
+        <p class="eyebrow">Recursos gratuitos para arrendadores</p>
+
+        <h1>
+          Cláusulas, plantillas y checklists para alquilar con más orden.
+        </h1>
+
+        <p>
+          Una biblioteca práctica para propietarios e inversores que quieren reducir
+          improvisación, documentar mejor y gestionar su alquiler con más criterio.
+        </p>
+      </div>
+    </section>
+
+    <section class="resources-page-section">
+      <div class="shell resources-grid">
+        {landlordResources.map((resource, index) => (
+          <button
+            class:list={["resource-card", { "is-active": index === 0 }]}
+            type="button"
+            data-resource={resource.id}
+          >
+            <span>{resource.category}</span>
+            <h2>{resource.title}</h2>
+            <p>{resource.description}</p>
+            <small>{resource.seoKeyword}</small>
+          </button>
+        ))}
+      </div>
+
+      <div class="shell resource-viewer" aria-live="polite">
+        {landlordResources.map((resource, index) => (
+          <article
+            id={resource.id}
+            class:list={["resource-panel", { "is-active": index === 0 }]}
+            data-resource-panel={resource.id}
+          >
+            <div class="resource-panel-header">
+              <span>{resource.category}</span>
+              <h2>{resource.contentTitle}</h2>
+              <p>
+                Texto orientativo para copiar, adaptar y revisar antes de utilizar
+                en un contrato o procedimiento de alquiler.
+              </p>
+            </div>
+
+            <div class="resource-copy-source">
+              {resource.content.map((paragraph) => (
+                <p>{paragraph}</p>
+              ))}
+            </div>
+
+            <div class="resource-disclaimer">
+              <strong>Aviso importante:</strong>
+              <span>
+                Este recurso es informativo y orientativo. No sustituye el asesoramiento
+                legal, fiscal o profesional adaptado a tu caso concreto.
+              </span>
+            </div>
+
+            <button class="resource-copy-button" type="button">
+              Copiar recurso
+            </button>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <script>
+    const cards = document.querySelectorAll(".resource-card");
+    const panels = document.querySelectorAll(".resource-panel");
+
+    cards.forEach((card) => {
+      card.addEventListener("click", () => {
+        const resourceId = card.getAttribute("data-resource");
+
+        cards.forEach((item) => item.classList.toggle("is-active", item === card));
+
+        panels.forEach((panel) => {
+          panel.classList.toggle(
+            "is-active",
+            panel.getAttribute("data-resource-panel") === resourceId
+          );
+        });
+
+        const viewer = document.querySelector(".resource-viewer");
+
+        viewer?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      });
+    });
+
+    const copyButtons = document.querySelectorAll(".resource-copy-button");
+
+    copyButtons.forEach((button) => {
+      button.addEventListener("click", async () => {
+        const panel = button.closest(".resource-panel");
+        const source = panel?.querySelector(".resource-copy-source");
+        const text = source?.textContent?.replace(/\s+/g, " ").trim() || "";
+
+        await navigator.clipboard.writeText(text);
+
+        button.textContent = "Recurso copiado";
+        setTimeout(() => {
+          button.textContent = "Copiar recurso";
+        }, 1800);
+      });
+    });
+  </script>
+</BaseLayout>

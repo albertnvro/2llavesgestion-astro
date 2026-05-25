@@ -7,240 +7,184 @@ export function initAnimations() {
   if (initialized) return;
   initialized = true;
 
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
-  if (prefersReducedMotion) return;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) return;
 
   gsap.registerPlugin(ScrollTrigger);
+  gsap.config({ nullTargetWarn: false });
 
-  gsap.config({
-    nullTargetWarn: false,
-  });
+  const hero = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-  const heroTimeline = gsap.timeline({
-    defaults: {
-      ease: "power3.out",
-    },
-  });
-
-  heroTimeline
-    .from(".site-header", {
-      y: -24,
+  hero
+    .from(".header-shell", {
+      y: -18,
       opacity: 0,
-      duration: 0.7,
+      duration: 0.55,
     })
-    .from(
-      ".hero .eyebrow",
-      {
-        y: 20,
-        opacity: 0,
-        duration: 0.55,
-      },
-      "-=0.25"
-    )
+    .from(".hero .eyebrow", {
+      y: 18,
+      opacity: 0,
+      duration: 0.45,
+    })
     .from(
       ".hero h1",
       {
-        y: 64,
+        y: 44,
         opacity: 0,
-        duration: 0.95,
-        ease: "power4.out",
+        duration: 0.8,
       },
-      "-=0.15"
+      "-=0.2"
     )
     .from(
-      ".hero-lead",
+      ".hero-lead, .hero-search, .hero-proof",
       {
-        y: 28,
+        y: 24,
         opacity: 0,
-        duration: 0.7,
-      },
-      "-=0.35"
-    )
-    .from(
-      ".hero-actions .btn",
-      {
-        y: 22,
-        opacity: 0,
-        duration: 0.6,
+        duration: 0.58,
         stagger: 0.08,
       },
       "-=0.35"
     )
     .from(
-      ".pills span",
+      ".image-card-main",
       {
-        y: 16,
+        y: 26,
         opacity: 0,
-        duration: 0.5,
-        stagger: 0.05,
+        rotate: -3,
+        duration: 0.72,
+      },
+      "-=0.45"
+    )
+    .from(
+      ".float-card, .mini-form-card",
+      {
+        y: 22,
+        opacity: 0,
+        duration: 0.48,
+        stagger: 0.09,
       },
       "-=0.25"
     )
     .from(
-      ".control-card",
+      ".brand-object, .brand-pill",
       {
-        x: 42,
-        y: 24,
-        rotate: 2,
         opacity: 0,
-        duration: 0.85,
-        ease: "power4.out",
+        scale: 0.86,
+        duration: 0.8,
+        stagger: 0.08,
       },
-      "-=0.55"
+      "-=0.7"
     );
 
-  gsap.to(".control-card", {
-    y: -14,
-    duration: 4.2,
+  gsap.to(".image-card-main", {
+    y: -10,
+    duration: 5,
     repeat: -1,
     yoyo: true,
     ease: "sine.inOut",
   });
 
-  gsap.to(".story-orbit", {
-    rotate: 360,
-    duration: 34,
-    repeat: -1,
-    ease: "none",
-  });
-
-  gsap.to(".story-visual-card", {
-    y: -8,
-    duration: 3.4,
+  gsap.to(".float-card, .mini-form-card", {
+    y: -7,
+    duration: 3.8,
     repeat: -1,
     yoyo: true,
     ease: "sine.inOut",
-    stagger: 0.22,
+    stagger: 0.2,
   });
 
-  const storySteps = gsap.utils.toArray<HTMLElement>(".story-step");
-  const storyCards = gsap.utils.toArray<HTMLElement>(".story-visual-card");
-  const progress = document.querySelector<HTMLElement>(".story-progress-inner");
-
-  function setStoryStep(index: number) {
-    storySteps.forEach((step, stepIndex) => {
-      step.classList.toggle("is-active", stepIndex === index);
-    });
-
-    storyCards.forEach((card, cardIndex) => {
-      card.classList.toggle(
-        "is-active",
-        cardIndex === Math.min(index, storyCards.length - 1)
-      );
-    });
-
-    if (progress && storySteps.length > 0) {
-      gsap.to(progress, {
-        scaleY: (index + 1) / storySteps.length,
-        duration: 0.35,
-        ease: "power2.out",
-      });
-    }
-  }
-
-  storySteps.forEach((step, index) => {
-    ScrollTrigger.create({
-      trigger: step,
-      start: "top center",
-      end: "bottom center",
-      onEnter: () => setStoryStep(index),
-      onEnterBack: () => setStoryStep(index),
-    });
+  gsap.to(".brand-object", {
+    y: -22,
+    rotate: "+=8",
+    duration: 7,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut",
+    stagger: 0.45,
   });
 
-  const revealElements = gsap.utils.toArray<HTMLElement>(
-    ".section-heading, .feature-card, .service-card, .process-card, .contact-copy, .contact-form, .story-heading, .story-stage, .story-step"
-  );
+  gsap.to(".brand-pill", {
+    x: 42,
+    duration: 7.2,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut",
+    stagger: 0.5,
+  });
 
-  revealElements.forEach((element, index) => {
-    gsap.from(element, {
+  const revealItems = gsap.utils.toArray<HTMLElement>(".reveal");
+
+  revealItems.forEach((item, index) => {
+    gsap.from(item, {
       scrollTrigger: {
-        trigger: element,
+        trigger: item,
         start: "top 86%",
         once: true,
       },
-      y: 42,
+      y: 28,
       opacity: 0,
-      duration: 0.75,
-      delay: Math.min((index % 4) * 0.05, 0.15),
+      duration: 0.62,
+      delay: Math.min((index % 3) * 0.04, 0.12),
       ease: "power3.out",
     });
   });
 
-  const buttons = document.querySelectorAll<HTMLElement>(
-    ".btn, .service-card a, .contact-form button"
-  );
+  const timeline = document.querySelector<HTMLElement>(".process-timeline");
+  const timelineProgress = document.querySelector<HTMLElement>(".timeline-progress");
+  const timelineSteps = gsap.utils.toArray<HTMLElement>(".timeline-step");
+
+  if (timeline && timelineProgress && timelineSteps.length > 0) {
+    gsap.fromTo(
+      timelineProgress,
+      { scaleY: 0 },
+      {
+        scaleY: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: timeline,
+          start: "top 70%",
+          end: "bottom 46%",
+          scrub: true,
+        },
+      }
+    );
+
+    function setActiveStep(index: number) {
+      timelineSteps.forEach((step, stepIndex) => {
+        step.classList.toggle("is-active", stepIndex === index);
+      });
+    }
+
+    timelineSteps.forEach((step, index) => {
+      ScrollTrigger.create({
+        trigger: step,
+        start: "top 58%",
+        end: "bottom 58%",
+        onEnter: () => setActiveStep(index),
+        onEnterBack: () => setActiveStep(index),
+      });
+    });
+
+    setActiveStep(0);
+  }
+
+  const buttons = document.querySelectorAll<HTMLElement>("a, button");
 
   buttons.forEach((button) => {
-    if (button.dataset.gsapBound === "true") return;
-    button.dataset.gsapBound = "true";
-
     button.addEventListener("mouseenter", () => {
       gsap.to(button, {
-        scale: 1.035,
-        duration: 0.22,
+        y: -2,
+        duration: 0.18,
         ease: "power2.out",
       });
     });
 
     button.addEventListener("mouseleave", () => {
       gsap.to(button, {
-        scale: 1,
-        x: 0,
         y: 0,
-        duration: 0.28,
-        ease: "power2.out",
-      });
-    });
-
-    button.addEventListener("mousemove", (event) => {
-      const rect = button.getBoundingClientRect();
-
-      gsap.to(button, {
-        x: (event.clientX - rect.left - rect.width / 2) * 0.06,
-        y: (event.clientY - rect.top - rect.height / 2) * 0.08,
-        duration: 0.2,
+        duration: 0.22,
         ease: "power2.out",
       });
     });
   });
-
-  const cards = document.querySelectorAll<HTMLElement>(
-    ".feature-card, .service-card, .process-card"
-  );
-
-  cards.forEach((card) => {
-    if (card.dataset.tiltBound === "true") return;
-    card.dataset.tiltBound = "true";
-
-    card.addEventListener("mousemove", (event) => {
-      const rect = card.getBoundingClientRect();
-
-      const x = (event.clientX - rect.left) / rect.width - 0.5;
-      const y = (event.clientY - rect.top) / rect.height - 0.5;
-
-      gsap.to(card, {
-        rotateX: -y * 3,
-        rotateY: x * 4,
-        y: -4,
-        duration: 0.25,
-        ease: "power2.out",
-      });
-    });
-
-    card.addEventListener("mouseleave", () => {
-      gsap.to(card, {
-        rotateX: 0,
-        rotateY: 0,
-        y: 0,
-        duration: 0.35,
-        ease: "power2.out",
-      });
-    });
-  });
-
-  setStoryStep(0);
 }
