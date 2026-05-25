@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const pageTitle = "Política de privacidad | DosLlavesGestión";
+const pageDescription =
+  "Política de privacidad de DosLlavesGestión para solicitudes de valoración, contacto y formularios web.";
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/politica-de-privacidad/"
+>
+  <Header />
+
+  <main>
+    <section class="legal-page">
+      <div class="shell legal-layout">
+        <p class="eyebrow light">Información legal</p>
+
+        <h1>Política de privacidad</h1>
+
+        <p class="legal-intro">
+          Esta política explica de forma resumida cómo se tratan los datos personales
+          facilitados a través de los formularios de DosLlavesGestión.
+        </p>
+
+        <div class="legal-card">
+          <h2>Responsable del tratamiento</h2>
+          <p>
+            El responsable del tratamiento será DosLlavesGestión. Los datos de contacto
+            se facilitarán de forma completa en la versión legal definitiva de esta página.
+          </p>
+        </div>
+
+        <div class="legal-card">
+          <h2>Finalidad</h2>
+          <p>
+            Los datos se utilizarán para responder a solicitudes de valoración,
+            contacto, información sobre servicios de gestión inmobiliaria, transformación
+            de activos, alquiler tradicional, alquiler por habitaciones y gestión integral.
+          </p>
+        </div>
+
+        <div class="legal-card">
+          <h2>Base jurídica</h2>
+          <p>
+            La base jurídica será el consentimiento prestado por la persona interesada
+            al marcar la casilla de aceptación antes de enviar el formulario.
+          </p>
+        </div>
+
+        <div class="legal-card">
+          <h2>Datos tratados</h2>
+          <p>
+            Podrán tratarse datos identificativos y de contacto, como nombre, teléfono,
+            email, dirección del inmueble, situación del inmueble, objetivo del propietario
+            y mensaje enviado.
+          </p>
+        </div>
+
+        <div class="legal-card">
+          <h2>Conservación</h2>
+          <p>
+            Los datos se conservarán durante el tiempo necesario para gestionar la solicitud
+            y, en su caso, durante los plazos exigidos por obligaciones legales aplicables.
+          </p>
+        </div>
+
+        <div class="legal-card">
+          <h2>Derechos</h2>
+          <p>
+            Puedes solicitar el acceso, rectificación, supresión, oposición, limitación
+            del tratamiento y portabilidad de tus datos a través del canal de contacto
+            indicado por DosLlavesGestión.
+          </p>
+        </div>
+
+        <div class="legal-warning">
+          <strong>Nota:</strong>
+          <span>
+            Este texto es una base orientativa y debe ser revisado y adaptado por un asesor
+            legal antes de la publicación definitiva.
+          </span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

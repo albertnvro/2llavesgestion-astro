@@ -20,6 +20,7 @@ const plans = [
     text: "Nos encargamos de la operativa diaria: inquilinos, cobros, incidencias, mantenimiento y seguimiento.",
     items: ["Cobros y seguimiento", "Incidencias coordinadas", "Propietario informado"],
     featured: true,
+    url: "/servicios/gestion-integral-alquiler/",
   },
   {
     label: "Rentabilidad",
@@ -55,7 +56,9 @@ const plans = [
           {plan.items.map((item) => <li>{item}</li>)}
         </ul>
 
-        <a href="#contacto">Solicitar valoración</a>
+        <a href={plan.url || "#contacto"}>
+          {plan.url ? "Ver servicio" : "Solicitar valoración"}
+        </a>
       </article>
     ))}
   </div>

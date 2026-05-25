@@ -12,27 +12,34 @@
 
   <div class="shell lead-wizard reveal">
     <aside class="wizard-sidebar">
-      <div class="wizard-progress">
+      <div class="wizard-progress-rail">
         <span class="wizard-progress-bar"></span>
       </div>
 
+      <div class="wizard-key-end" aria-hidden="true">
+        <svg viewBox="0 0 120 120" fill="none">
+          <path d="M45 67a24 24 0 1 1 16.8-7.1L99 97.2 86.5 110 76 99.5 66.5 109 55 97.5l9.5-9.5-15.8-15.8A24 24 0 0 1 45 67Z" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="45" cy="43" r="8" stroke="currentColor" stroke-width="8"/>
+        </svg>
+      </div>
+
       <div class="wizard-step-label is-active" data-label-step="1">
-        <span>01</span>
+        <span class="wizard-step-dot">01</span>
         <strong>Dirección</strong>
       </div>
 
       <div class="wizard-step-label" data-label-step="2">
-        <span>02</span>
+        <span class="wizard-step-dot">02</span>
         <strong>Situación</strong>
       </div>
 
       <div class="wizard-step-label" data-label-step="3">
-        <span>03</span>
+        <span class="wizard-step-dot">03</span>
         <strong>Objetivo</strong>
       </div>
 
       <div class="wizard-step-label" data-label-step="4">
-        <span>04</span>
+        <span class="wizard-step-dot">04</span>
         <strong>Contacto</strong>
       </div>
     </aside>
@@ -51,17 +58,20 @@
         </div>
 
         <div class="address-box">
-          <div id="address-autocomplete-root"></div>
-
-          <input
-            id="fallback-address"
-            class="fallback-address"
-            type="text"
-            placeholder="Calle, número, ciudad..."
-          />
+          <label class="field">
+            <span>Dirección de la vivienda</span>
+            <input
+              id="address-input"
+              class="address-input"
+              type="text"
+              placeholder="Empieza a escribir la dirección..."
+              autocomplete="street-address"
+            />
+            <div class="address-suggestions" id="address-suggestions" hidden></div>
+          </label>
 
           <p class="address-status" id="address-status">
-            Selecciona una dirección para continuar.
+            Escribe una dirección y selecciona una sugerencia.
           </p>
         </div>
 
@@ -166,7 +176,7 @@
 
         <label class="field">
           <span>Email</span>
-          <input name="email" type="email" placeholder="tu@email.com" />
+          <input name="email" type="email" placeholder="tu@email.com" required />
         </label>
 
         <label class="field">
@@ -174,7 +184,27 @@
           <textarea name="mensaje" placeholder="Cuéntanos brevemente tu caso."></textarea>
         </label>
 
-        <div class="wizard-summary" id="wizard-summary"></div>
+        <div class="wizard-summary" id="wizard-summary" hidden></div>
+
+<input type="hidden" name="privacy_accepted_at" id="lead-privacy-accepted-at" />
+
+        <label class="privacy-check">
+          <input
+            id="lead-privacy"
+            name="privacy"
+            type="checkbox"
+            value="Aceptada"
+            required
+          />
+
+          <span>
+            Acepto la
+            <a href="/politica-de-privacidad/" target="_blank" rel="noopener noreferrer">
+              política de privacidad
+            </a>
+            y autorizo el tratamiento de mis datos para responder a mi solicitud.
+          </span>
+        </label>
 
         <div class="wizard-actions">
           <button type="button" class="wizard-prev" data-prev="3">Atrás</button>
@@ -188,25 +218,40 @@
 
       <section class="wizard-panel wizard-success" data-step="success">
         <div class="wizard-panel-head">
-          <span>Solicitud recibida</span>
-          <h3>Gracias. Revisaremos tu inmueble.</h3>
+          <span>Solicitud enviada</span>
+          <h3>Gracias. Ya tenemos los datos de tu inmueble.</h3>
           <p>
-            Hemos recibido la información y te contactaremos para avanzar con la valoración.
+            Te hemos enviado un email con el resumen de tu solicitud. Nosotros también
+            hemos recibido tus datos y nos pondremos en contacto contigo pronto.
           </p>
         </div>
 
-        <a class="wizard-success-link" href="https://www.instagram.com/oscarochando" target="_blank" rel="noopener noreferrer">
-          Ver contenido de Óscar en Instagram
-        </a>
+        <div class="wizard-success-actions">
+          <a
+            class="wizard-success-link"
+            href="https://www.instagram.com/oscarochando"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ver contenido de Óscar en Instagram
+          </a>
+
+          <a
+            class="wizard-success-link wizard-success-secondary"
+            href="/recursos-arrendadores/"
+          >
+            Ver recursos gratuitos
+          </a>
+        </div>
       </section>
     </form>
   </div>
 </section>
 
 <script>
-  import { Loader } from "@googlemaps/js-api-loader";
+  import { setOptions, importLibrary } from "@googlemaps/js-api-loader";
 
-  const apiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
+  const apiKey = (import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY || "").trim();
 
   const lead = {
     address: "",
@@ -218,8 +263,7 @@
   };
 
   const form = document.querySelector("#property-lead-form");
-  const addressRoot = document.querySelector("#address-autocomplete-root");
-  const fallbackAddress = document.querySelector("#fallback-address");
+  const addressInput = document.querySelector("#address-input");
   const addressStatus = document.querySelector("#address-status");
 
   const leadAddress = document.querySelector("#lead-address");
@@ -254,7 +298,6 @@
 
   function updateSummary() {
     const summary = document.querySelector("#wizard-summary");
-
     if (!summary) return;
 
     summary.innerHTML = `
@@ -263,20 +306,29 @@
       <span>${lead.situacion || "Situación pendiente"}</span>
       <span>${lead.objetivo || "Objetivo pendiente"}</span>
     `;
+
+    summary.hidden = false;
+  }
+
+  function setAddressStatus(message, type = "") {
+    if (!addressStatus) return;
+    addressStatus.textContent = message;
+    addressStatus.classList.remove("is-error", "is-ok");
+    if (type) addressStatus.classList.add(type);
   }
 
   function validateStep(step) {
     if (step === 1) {
-      const fallbackValue = fallbackAddress instanceof HTMLInputElement ? fallbackAddress.value.trim() : "";
+      const typedValue =
+        addressInput instanceof HTMLInputElement ? addressInput.value.trim() : "";
 
-      if (!lead.address && fallbackValue) {
-        lead.address = fallbackValue;
-        leadAddress.value = fallbackValue;
+      if (!lead.address && typedValue) {
+        lead.address = typedValue;
+        leadAddress.value = typedValue;
       }
 
       if (!lead.address) {
-        addressStatus.textContent = "Introduce o selecciona una dirección para continuar.";
-        addressStatus.classList.add("is-error");
+        setAddressStatus("Introduce o selecciona una dirección para continuar.", "is-error");
         return false;
       }
     }
@@ -295,64 +347,228 @@
   }
 
   async function initGoogleAutocomplete() {
-    if (!apiKey || !addressRoot) return;
+    const suggestionsBox = document.querySelector("#address-suggestions");
+
+    console.info("[Google Places debug]", {
+      hasApiKey: Boolean(apiKey),
+      origin: window.location.origin,
+      href: window.location.href,
+    });
+
+    window.gm_authFailure = () => {
+      console.error("[Google Places] Google ha rechazado la API key", {
+        origin: window.location.origin,
+        href: window.location.href,
+      });
+
+      setAddressStatus(
+        "Google ha rechazado la API key. Revisa APIs activas, facturación o restricciones.",
+        "is-error"
+      );
+    };
+
+    if (!(addressInput instanceof HTMLInputElement) || !suggestionsBox) {
+      setAddressStatus("No se ha encontrado el campo de dirección.", "is-error");
+      return;
+    }
+
+    if (!apiKey) {
+      setAddressStatus(
+        "No se ha detectado la API key. Revisa el archivo .env y reinicia Astro.",
+        "is-error"
+      );
+      return;
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function closeSuggestions() {
+      suggestionsBox.hidden = true;
+      suggestionsBox.innerHTML = "";
+    }
+
+    function renderSuggestions(suggestions) {
+      if (!suggestions.length) {
+        closeSuggestions();
+        return;
+      }
+
+      suggestionsBox.innerHTML = suggestions
+        .map((suggestion, index) => {
+          const prediction = suggestion.placePrediction;
+          const main =
+            prediction?.mainText?.text ||
+            prediction?.text?.text ||
+            "Dirección sugerida";
+
+          const secondary =
+            prediction?.secondaryText?.text ||
+            "";
+
+          return `
+            <button type="button" class="address-suggestion" data-index="${index}">
+              <strong>${escapeHtml(main)}</strong>
+              ${secondary ? `<span>${escapeHtml(secondary)}</span>` : ""}
+            </button>
+          `;
+        })
+        .join("");
+
+      suggestionsBox.hidden = false;
+
+      suggestionsBox.querySelectorAll(".address-suggestion").forEach((button) => {
+        button.addEventListener("click", async () => {
+          const index = Number(button.getAttribute("data-index"));
+          const prediction = suggestions[index]?.placePrediction;
+
+          if (!prediction) return;
+
+          const place = prediction.toPlace();
+
+          await place.fetchFields({
+            fields: ["id", "displayName", "formattedAddress", "location"],
+          });
+
+          const formattedAddress =
+            place.formattedAddress ||
+            place.displayName ||
+            addressInput.value.trim() ||
+            "";
+
+          const location = place.location;
+
+          const lat =
+            typeof location?.lat === "function"
+              ? location.lat()
+              : location?.lat || "";
+
+          const lng =
+            typeof location?.lng === "function"
+              ? location.lng()
+              : location?.lng || "";
+
+          lead.address = formattedAddress;
+          lead.placeId = place.id || "";
+          lead.lat = lat;
+          lead.lng = lng;
+
+          addressInput.value = formattedAddress;
+          leadAddress.value = lead.address;
+          leadPlaceId.value = lead.placeId;
+          leadLat.value = String(lead.lat);
+          leadLng.value = String(lead.lng);
+
+          closeSuggestions();
+
+          setAddressStatus(`Dirección seleccionada: ${lead.address}`, "is-ok");
+        });
+      });
+    }
 
     try {
-      const loader = new Loader({
-        apiKey,
-        version: "weekly",
-        libraries: ["places"],
-      });
-
-      await loader.load();
-
-      const { PlaceAutocompleteElement } = await google.maps.importLibrary("places");
-
-      const autocomplete = new PlaceAutocompleteElement({
-        includedRegionCodes: ["es"],
-        requestedLanguage: "es",
-        requestedRegion: "ES",
-        placeholder: "Empieza a escribir la dirección...",
-      });
-
-      autocomplete.className = "google-address-element";
-
-      addressRoot.appendChild(autocomplete);
-
-      if (fallbackAddress) {
-        fallbackAddress.classList.add("is-hidden");
-      }
-
-      autocomplete.addEventListener("gmp-select", async (event) => {
-        const place = event.placePrediction.toPlace();
-
-        await place.fetchFields({
-          fields: ["id", "displayName", "formattedAddress", "location"],
+      if (!window["__dosllavesGoogleMapsConfigured"]) {
+        setOptions({
+          key: apiKey,
+          v: "weekly",
+          language: "es",
+          region: "ES",
         });
 
-        const placeJson = place.toJSON();
-        const formattedAddress = placeJson.formattedAddress || placeJson.displayName?.text || "";
+        window["__dosllavesGoogleMapsConfigured"] = true;
+      }
 
-        lead.address = formattedAddress;
-        lead.placeId = placeJson.id || "";
-        lead.lat = placeJson.location?.lat || "";
-        lead.lng = placeJson.location?.lng || "";
+      const placesLibrary = await importLibrary("places");
 
-        leadAddress.value = lead.address;
-        leadPlaceId.value = lead.placeId;
-        leadLat.value = lead.lat;
-        leadLng.value = lead.lng;
+      const AutocompleteSuggestion =
+        placesLibrary.AutocompleteSuggestion ||
+        google.maps.places.AutocompleteSuggestion;
 
-        addressStatus.textContent = `Dirección seleccionada: ${lead.address}`;
-        addressStatus.classList.remove("is-error");
-        addressStatus.classList.add("is-ok");
+      const AutocompleteSessionToken =
+        placesLibrary.AutocompleteSessionToken ||
+        google.maps.places.AutocompleteSessionToken;
+
+      if (!AutocompleteSuggestion || !AutocompleteSessionToken) {
+        throw new Error(
+          "AutocompleteSuggestion no está disponible. Activa Places API (New) en el mismo proyecto de Google Cloud."
+        );
+      }
+
+      let sessionToken = new AutocompleteSessionToken();
+      let debounceTimer = null;
+
+      setAddressStatus("Google Places conectado. Empieza a escribir la dirección.", "is-ok");
+
+      addressInput.addEventListener("input", () => {
+        const input = addressInput.value.trim();
+
+        lead.address = input;
+        leadAddress.value = input;
+        lead.placeId = "";
+        lead.lat = "";
+        lead.lng = "";
+        leadPlaceId.value = "";
+        leadLat.value = "";
+        leadLng.value = "";
+
+        if (debounceTimer) clearTimeout(debounceTimer);
+
+        if (input.length < 3) {
+          closeSuggestions();
+          setAddressStatus("Escribe al menos 3 caracteres para ver sugerencias.");
+          return;
+        }
+
+        debounceTimer = setTimeout(async () => {
+          try {
+            const response =
+              await AutocompleteSuggestion.fetchAutocompleteSuggestions({
+                input,
+                includedRegionCodes: ["es"],
+                sessionToken,
+              });
+
+            renderSuggestions(response.suggestions || []);
+          } catch (error) {
+            console.error("[Google Places] Error sugerencias:", error);
+            setAddressStatus(
+              "No se han podido cargar sugerencias. Puedes escribir la dirección manualmente.",
+              "is-error"
+            );
+          }
+        }, 260);
+      });
+
+      document.addEventListener("click", (event) => {
+        if (
+          !addressInput.contains(event.target) &&
+          !suggestionsBox.contains(event.target)
+        ) {
+          closeSuggestions();
+        }
       });
     } catch (error) {
-      console.warn("Google Places no se ha podido cargar:", error);
+      console.error("[Google Places] Error real:", error, {
+        hasApiKey: Boolean(apiKey),
+        origin: window.location.origin,
+        href: window.location.href,
+      });
 
-      if (addressStatus) {
-        addressStatus.textContent = "Puedes escribir la dirección manualmente.";
-      }
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Error desconocido cargando Google Places.";
+
+      setAddressStatus(
+        `No se ha podido cargar Google Places: ${message}`,
+        "is-error"
+      );
     }
   }
 
@@ -363,7 +579,6 @@
       const nextStep = button.getAttribute("data-next");
 
       if (!validateStep(currentStep)) return;
-
       setStep(nextStep);
     });
   });
@@ -398,6 +613,17 @@
 
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
+
+    const privacyAcceptedAt = document.querySelector("#lead-privacy-accepted-at");
+
+    if (privacyAcceptedAt) {
+      privacyAcceptedAt.value = new Date().toISOString();
+    }
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
 
     if (!validateStep(3)) return;
 
@@ -461,6 +687,8 @@
     background:
       radial-gradient(circle at 84% 12%, rgba(92, 242, 194, 0.14), transparent 30%),
       linear-gradient(180deg, #ffffff 0%, var(--primary-light) 100%);
+    border-top: 1px solid rgba(6, 55, 126, 0.08);
+    border-bottom: 1px solid rgba(6, 55, 126, 0.08);
   }
 
   .lead-wizard-header {
@@ -503,17 +731,19 @@
       radial-gradient(circle at 80% 12%, rgba(92, 242, 194, 0.18), transparent 32%),
       linear-gradient(135deg, var(--primary) 0%, #084aa7 58%, var(--primary-dark) 100%);
     color: white;
+    overflow: hidden;
   }
 
-  .wizard-progress {
+  .wizard-progress-rail {
     position: absolute;
-    top: 74px;
-    bottom: 42px;
-    left: 47px;
+    top: 58px;
+    bottom: 46px;
+    left: 48px;
     width: 3px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.14);
     overflow: hidden;
+    z-index: 0;
   }
 
   .wizard-progress-bar {
@@ -530,24 +760,32 @@
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: 38px 1fr;
-    gap: 12px;
+    grid-template-columns: 48px 1fr;
     align-items: center;
-    opacity: 0.58;
+    gap: 14px;
+    min-height: 48px;
+    opacity: 0.72;
   }
 
-  .wizard-step-label span {
-    width: 38px;
-    height: 38px;
+  .wizard-step-dot {
+    width: 48px;
+    height: 48px;
     display: grid;
     place-items: center;
-    border-radius: 13px;
-    background: rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    background: #1d59ad;
+    color: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 0 0 6px rgba(9, 57, 128, 1),
+      0 10px 28px rgba(4, 29, 67, 0.18);
     font-weight: 900;
   }
 
   .wizard-step-label strong {
     font-size: 15px;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.8);
   }
 
   .wizard-step-label.is-active,
@@ -555,10 +793,18 @@
     opacity: 1;
   }
 
-  .wizard-step-label.is-active span,
-  .wizard-step-label.is-complete span {
+  .wizard-step-label.is-active .wizard-step-dot,
+  .wizard-step-label.is-complete .wizard-step-dot {
     background: var(--accent);
     color: var(--primary-dark);
+    box-shadow:
+      0 0 0 6px rgba(9, 57, 128, 1),
+      0 14px 34px rgba(4, 29, 67, 0.22);
+  }
+
+  .wizard-step-label.is-active strong,
+  .wizard-step-label.is-complete strong {
+    color: white;
   }
 
   .wizard-form {
@@ -604,38 +850,50 @@
     line-height: 1.7;
   }
 
+  .field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .field {
+    display: grid;
+    gap: 8px;
+    color: var(--primary-dark);
+    font-weight: 850;
+  }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    min-height: 56px;
+    border: 1px solid rgba(6, 55, 126, 0.18);
+    border-radius: 16px;
+    padding: 0 16px;
+    outline: none;
+    font-weight: 650;
+  }
+
+  .field textarea {
+    min-height: 120px;
+    padding-top: 14px;
+    resize: vertical;
+  }
+
+  .field input:focus,
+  .field textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(6, 55, 126, 0.10);
+  }
+
   .address-box {
     display: grid;
     gap: 12px;
   }
 
-  #address-autocomplete-root gmp-place-autocomplete,
-  .google-address-element {
+  .address-input {
     width: 100%;
     min-height: 58px;
-    --gmp-mat-color-primary: var(--primary);
-    --gmp-mat-color-on-surface: var(--ink);
-    --gmp-mat-color-surface: #ffffff;
-    --gmp-mat-font-family: Urbanist, Open Sans, system-ui, sans-serif;
-  }
-
-  .fallback-address {
-    min-height: 58px;
-    width: 100%;
-    padding: 0 18px;
-    border-radius: 16px;
-    border: 1px solid rgba(6, 55, 126, 0.16);
-    outline: none;
-    font-weight: 700;
-  }
-
-  .fallback-address:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(6, 55, 126, 0.10);
-  }
-
-  .fallback-address.is-hidden {
-    display: none;
   }
 
   .address-status {
@@ -682,48 +940,13 @@
   .choice-grid button.is-active {
     border-color: var(--primary);
     background: linear-gradient(180deg, #ffffff, var(--primary-light));
+    box-shadow: 0 18px 40px rgba(6, 55, 126, 0.12);
   }
 
   .objective-grid button small {
     color: var(--muted);
     font-weight: 700;
     line-height: 1.35;
-  }
-
-  .field-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-  }
-
-  .field {
-    display: grid;
-    gap: 8px;
-    color: var(--primary-dark);
-    font-weight: 850;
-  }
-
-  .field input,
-  .field textarea {
-    width: 100%;
-    min-height: 52px;
-    border: 1px solid rgba(6, 55, 126, 0.18);
-    border-radius: 14px;
-    padding: 0 15px;
-    outline: none;
-    font-weight: 650;
-  }
-
-  .field textarea {
-    min-height: 120px;
-    padding-top: 14px;
-    resize: vertical;
-  }
-
-  .field input:focus,
-  .field textarea:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(6, 55, 126, 0.10);
   }
 
   .wizard-summary {

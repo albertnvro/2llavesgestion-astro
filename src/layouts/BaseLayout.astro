@@ -55,12 +55,18 @@ const ogImageUrl = ogImage.startsWith("http")
 
     <script>
       import { initAnimations } from "../scripts/animations";
+      import { initSmoothScroll } from "../scripts/smoothScroll";
+      import { initHeaderMenu } from "../scripts/headerMenu";
 
       document.addEventListener("DOMContentLoaded", () => {
+        initSmoothScroll();
+        initHeaderMenu();
         initAnimations();
       });
 
       document.addEventListener("astro:page-load", () => {
+        initSmoothScroll();
+        initHeaderMenu();
         initAnimations();
       });
     </script>

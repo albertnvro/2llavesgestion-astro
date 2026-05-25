@@ -1,0 +1,169 @@
+<?php
+/**
+ * Plugin Name: DosLlaves Leads
+ * Description: Endpoint REST para recibir leads de valoración desde la web Astro.
+ * Version: 1.1.0
+ */
+
+defined('ABSPATH') || exit;
+
+const DOSLLAVES_ADMIN_EMAIL = 'info@indexar.es';
+const DOSLLAVES_FROM_EMAIL  = 'info@indexar.es';
+const DOSLLAVES_FROM_NAME   = 'DosLlavesGestión';
+
+add_action('init', function () {
+    register_post_type('dosllaves_lead', [
+        'labels' => [
+            'name' => 'Leads DosLlaves',
+            'singular_name' => 'Lead DosLlaves',
+        ],
+        'public' => false,
+        'show_ui' => true,
+        'menu_icon' => 'dashicons-building',
+        'supports' => ['title', 'editor', 'custom-fields'],
+    ]);
+});
+
+add_action('rest_api_init', function () {
+    register_rest_route('dosllaves/v1', '/lead', [
+        'methods' => 'POST',
+        'callback' => 'dosllaves_receive_lead',
+        'permission_callback' => '__return_true',
+    ]);
+});
+
+function dosllaves_clean($value) {
+    return sanitize_text_field((string) $value);
+}
+
+function dosllaves_receive_lead(WP_REST_Request $request) {
+    $data = $request->get_json_params();
+
+    if (!is_array($data)) {
+        return new WP_REST_Response([
+            'ok' => false,
+            'message' => 'Solicitud inválida.',
+        ], 400);
+    }
+
+    // Honeypot anti-spam
+    if (!empty($data['website'])) {
+        return new WP_REST_Response(['ok' => true], 200);
+    }
+
+    // Rate limit básico por IP
+    $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+    $rate_key = 'dosllaves_lead_' . md5($ip);
+
+    if (get_transient($rate_key)) {
+        return new WP_REST_Response([
+            'ok' => false,
+            'message' => 'Demasiados envíos seguidos.',
+        ], 429);
+    }
+
+    set_transient($rate_key, 1, 60);
+
+    $name = dosllaves_clean($data['nombre'] ?? '');
+    $phone = dosllaves_clean($data['telefono'] ?? '');
+    $email = sanitize_email($data['email'] ?? '');
+
+    $address = dosllaves_clean($data['address'] ?? '');
+    $place_id = dosllaves_clean($data['place_id'] ?? '');
+    $lat = dosllaves_clean($data['lat'] ?? '');
+    $lng = dosllaves_clean($data['lng'] ?? '');
+    $situacion = dosllaves_clean($data['situacion'] ?? '');
+    $objetivo = dosllaves_clean($data['objetivo'] ?? '');
+    $message = sanitize_textarea_field($data['mensaje'] ?? '');
+    $privacy = dosllaves_clean($data['privacy'] ?? '');
+    $privacy_at = dosllaves_clean($data['privacy_accepted_at'] ?? '');
+
+    if (!$name || !$phone || !$email) {
+        return new WP_REST_Response([
+            'ok' => false,
+            'message' => 'Nombre, teléfono y email son obligatorios.',
+        ], 400);
+    }
+
+    if (!is_email($email)) {
+        return new WP_REST_Response([
+            'ok' => false,
+            'message' => 'El email no es válido.',
+        ], 400);
+    }
+
+    if (!$privacy) {
+        return new WP_REST_Response([
+            'ok' => false,
+            'message' => 'Debes aceptar la política de privacidad.',
+        ], 400);
+    }
+
+    $lead_lines = [
+        'Nombre: ' . $name,
+        'Teléfono: ' . $phone,
+        'Email: ' . $email,
+        'Dirección: ' . $address,
+        'Place ID: ' . $place_id,
+        'Lat/Lng: ' . $lat . ', ' . $lng,
+        'Situación: ' . $situacion,
+        'Objetivo: ' . $objetivo,
+        'Mensaje: ' . $message,
+        'Privacidad: ' . $privacy,
+        'Aceptada en: ' . $privacy_at,
+        'IP: ' . $ip,
+        'Fecha WP: ' . current_time('mysql'),
+    ];
+
+    $lead_text = implode("\n", $lead_lines);
+
+    $post_id = wp_insert_post([
+        'post_type' => 'dosllaves_lead',
+        'post_status' => 'publish',
+        'post_title' => 'Lead - ' . $name . ' - ' . current_time('mysql'),
+        'post_content' => $lead_text,
+    ]);
+
+    if ($post_id) {
+        foreach ($data as $key => $value) {
+            update_post_meta(
+                $post_id,
+                sanitize_key($key),
+                is_scalar($value) ? sanitize_text_field((string) $value) : wp_json_encode($value)
+            );
+        }
+    }
+
+    $headers = [
+        'Content-Type: text/plain; charset=UTF-8',
+        'From: ' . DOSLLAVES_FROM_NAME . ' <' . DOSLLAVES_FROM_EMAIL . '>',
+    ];
+
+    $admin_headers = $headers;
+    $admin_headers[] = 'Reply-To: ' . $name . ' <' . $email . '>';
+
+    $admin_subject = 'Nuevo lead de valoración - DosLlavesGestión';
+    $admin_body = "Nuevo lead recibido desde la web:\n\n" . $lead_text;
+
+    wp_mail(DOSLLAVES_ADMIN_EMAIL, $admin_subject, $admin_body, $admin_headers);
+
+    $client_subject = 'Hemos recibido tu solicitud - DosLlavesGestión';
+    $client_body = "Hola " . $name . ",\n\n"
+        . "Hemos recibido tu solicitud de valoración. Pronto nos pondremos en contacto contigo para revisar tu inmueble y orientarte sobre la mejor ruta.\n\n"
+        . "Resumen de tu solicitud:\n\n"
+        . "Dirección: " . $address . "\n"
+        . "Situación: " . $situacion . "\n"
+        . "Objetivo: " . $objetivo . "\n"
+        . "Teléfono: " . $phone . "\n"
+        . "Email: " . $email . "\n\n"
+        . "Gracias por contactar con DosLlavesGestión.\n\n"
+        . "Un saludo,\n"
+        . "Equipo DosLlavesGestión";
+
+    wp_mail($email, $client_subject, $client_body, $headers);
+
+    return new WP_REST_Response([
+        'ok' => true,
+        'lead_id' => $post_id,
+    ], 200);
+}

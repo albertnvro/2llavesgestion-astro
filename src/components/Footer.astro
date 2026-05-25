@@ -1,7 +1,11 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
 <footer class="footer">
   <div class="shell footer-inner">
     <div>
-      <a class="logo footer-logo" href="/" aria-label="DosLlavesGestión">
+      <a class="logo footer-logo" href={base} aria-label="DosLlavesGestión">
         <span>2L</span>
         <strong>DosLlavesGestión</strong>
       </a>
@@ -10,11 +14,11 @@
     </div>
 
     <div class="footer-links">
-      <a href="/#lead-wizard">Valoración</a>
-      <a href="/recursos-arrendadores/">Recursos gratuitos</a>
-      <a href="/#planes">Servicios</a>
-      <a href="/quienes-somos/">Quiénes somos</a>
-      <a href="/#contacto">Contacto</a>
+      <a href={`${base}#lead-wizard`}>Valoración</a>
+      <a href={`${base}servicios/gestion-integral-alquiler/`}>Gestión integral</a>
+      <a href={`${base}recursos-arrendadores/`}>Recursos gratuitos</a>
+      <a href={`${base}quienes-somos/`}>Quiénes somos</a>
+      <a href={`${base}#contacto`}>Contacto</a>
       <a
         href="https://www.instagram.com/oscarochando"
         target="_blank"
