@@ -1,30 +1,314 @@
-<section class="section pain-section">
-  <div class="shell section-heading reveal">
-    <p class="eyebrow light">¿Te suena?</p>
-    <h2>El problema no es alquilar. Es todo lo que viene después.</h2>
-    <p>
-      Mensajes, impagos, visitas, averías, dudas, contratos y seguimiento.
-      Ahí es donde una gestión profesional marca la diferencia.
-    </p>
+---
+import "../styles/problem-cinema.css";
+import {
+  Clock3,
+  ShieldAlert,
+  Wrench,
+  MessageSquareText,
+  CreditCard,
+  Home,
+  ArrowRight,
+  CheckCircle2,
+} from "@lucide/astro";
+
+const painCards = [
+  {
+    icon: Clock3,
+    label: "Tiempo",
+    title: "La vivienda empieza a ocupar tu agenda",
+    text: "Mensajes, avisos, dudas, visitas, pagos y pequeñas decisiones que interrumpen tu día.",
+  },
+  {
+    icon: ShieldAlert,
+    label: "Riesgo",
+    title: "Cada incidencia mal gestionada se hace más grande",
+    text: "Un problema pequeño puede convertirse en una mala experiencia para inquilino y propietario.",
+  },
+  {
+    icon: Wrench,
+    label: "Operativa",
+    title: "Técnicos, cobros y seguimiento sin un sistema claro",
+    text: "La rentabilidad no depende solo de alquilar, sino de operar bien el activo.",
+  },
+];
+
+const flowItems = [
+  {
+    icon: MessageSquareText,
+    title: "Mensaje del inquilino",
+    text: "Se recibe, filtra y prioriza.",
+  },
+  {
+    icon: CreditCard,
+    title: "Cobro en seguimiento",
+    text: "Control operativo y trazabilidad.",
+  },
+  {
+    icon: Wrench,
+    title: "Técnico coordinado",
+    text: "Incidencia resuelta con seguimiento.",
+  },
+];
+---
+
+<section class="problem-cinema" id="problema-real" data-problem-scene>
+  <div class="problem-background" aria-hidden="true">
+    <figure class="problem-image problem-image-home" data-problem-img>
+      <img
+        src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=78"
+        alt=""
+        loading="lazy"
+        referrerpolicy="no-referrer"
+      />
+    </figure>
+
+    <figure class="problem-image problem-image-docs" data-problem-img>
+      <img
+        src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=78"
+        alt=""
+        loading="lazy"
+        referrerpolicy="no-referrer"
+      />
+    </figure>
+
+    <figure class="problem-image problem-image-tools" data-problem-img>
+      <img
+        src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=900&q=78"
+        alt=""
+        loading="lazy"
+        referrerpolicy="no-referrer"
+      />
+    </figure>
+
+    <svg class="problem-flow-line" viewBox="0 0 1200 520" preserveAspectRatio="none">
+      <path
+        class="problem-flow-path"
+        d="M80 310 C 250 120, 430 460, 610 260 S 940 120, 1120 315"
+        fill="none"
+      />
+    </svg>
+
+    <span class="problem-glow problem-glow-a"></span>
+    <span class="problem-glow problem-glow-b"></span>
   </div>
 
-  <div class="shell pain-grid">
-    <article class="pain-card reveal">
-      <span>01</span>
-      <h3>El inquilino escribe a cualquier hora</h3>
-      <p>Centralizamos la comunicación para que no todo dependa de tu disponibilidad.</p>
-    </article>
+  <div class="shell problem-layout">
+    <div class="problem-copy" data-problem-copy>
+      <p class="problem-kicker">Lo que viene después</p>
 
-    <article class="pain-card reveal">
-      <span>02</span>
-      <h3>No sabes si el candidato es fiable</h3>
-      <p>Filtramos perfiles y documentación para reducir riesgos antes de firmar.</p>
-    </article>
+      <h2>
+        El problema no es alquilar.
+        <span>Es todo lo que viene después.</span>
+      </h2>
 
-    <article class="pain-card reveal">
-      <span>03</span>
-      <h3>Cada incidencia termina en tu teléfono</h3>
-      <p>Coordinamos averías, mantenimiento y seguimiento sin improvisación.</p>
-    </article>
+      <p>
+        Al principio parece sencillo: encontrar inquilino, firmar y cobrar.
+        Pero la gestión real empieza después: mensajes, pagos, incidencias,
+        mantenimiento y decisiones que nadie quiere estar resolviendo cada semana.
+      </p>
+
+      <div class="problem-actions">
+        <a href="/#contacto" class="problem-btn problem-btn-primary">
+          Valorar mi inmueble
+          <ArrowRight size={17} strokeWidth={2.1} />
+        </a>
+
+        <a href="/servicios/gestion-integral-alquiler/" class="problem-btn problem-btn-secondary">
+          Ver gestión integral
+        </a>
+      </div>
+    </div>
+
+    <aside class="problem-orbit-panel" data-problem-panel>
+      <div class="problem-panel-head">
+        <span>
+          <Home size={16} strokeWidth={2.1} />
+          Operativa real
+        </span>
+
+        <strong>Lo que antes te llegaba a ti, ahora sigue un proceso.</strong>
+      </div>
+
+      <div class="problem-flow-list">
+        {flowItems.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <article>
+              <div class="problem-flow-icon">
+                <Icon size={20} strokeWidth={2} />
+              </div>
+
+              <div>
+                <strong>{item.title}</strong>
+                <p>{item.text}</p>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <div class="problem-panel-result">
+        <CheckCircle2 size={19} strokeWidth={2.1} />
+        <span>Propietario informado, sin absorber la carga diaria.</span>
+      </div>
+    </aside>
+  </div>
+
+  <div class="shell problem-cards">
+    {painCards.map((card) => {
+      const Icon = card.icon;
+
+      return (
+        <article class="problem-card" data-problem-card>
+          <div class="problem-card-icon">
+            <Icon size={24} strokeWidth={1.9} />
+          </div>
+
+          <span>{card.label}</span>
+          <h3>{card.title}</h3>
+          <p>{card.text}</p>
+        </article>
+      );
+    })}
   </div>
 </section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  function initProblemScene() {
+    const sections = document.querySelectorAll("[data-problem-scene]");
+
+    if (!sections.length) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    sections.forEach((section) => {
+      if (section.dataset.problemReady === "true") return;
+      section.dataset.problemReady = "true";
+
+      const home = section.querySelector(".problem-image-home");
+      const docs = section.querySelector(".problem-image-docs");
+      const tools = section.querySelector(".problem-image-tools");
+      const path = section.querySelector(".problem-flow-path");
+      const panel = section.querySelector("[data-problem-panel]");
+      const cards = section.querySelectorAll("[data-problem-card]");
+
+      gsap.from(section.querySelector("[data-problem-copy]"), {
+        y: 42,
+        autoAlpha: 0,
+        duration: 0.9,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 76%",
+          once: true,
+        },
+      });
+
+      gsap.from(panel, {
+        y: 52,
+        rotate: -1.5,
+        autoAlpha: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 70%",
+          once: true,
+        },
+      });
+
+      gsap.from(cards, {
+        y: 36,
+        autoAlpha: 0,
+        duration: 0.72,
+        ease: "power3.out",
+        stagger: 0.08,
+        scrollTrigger: {
+          trigger: ".problem-cards",
+          start: "top 84%",
+          once: true,
+        },
+      });
+
+      gsap.to(home, {
+        y: -90,
+        x: -28,
+        rotate: -8,
+        scale: 1.05,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
+      gsap.to(docs, {
+        y: 76,
+        x: 36,
+        rotate: 7,
+        scale: 1.08,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
+      gsap.to(tools, {
+        y: -58,
+        x: 52,
+        rotate: 10,
+        scale: 1.04,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
+      if (path && path.getTotalLength) {
+        const length = path.getTotalLength();
+
+        gsap.set(path, {
+          strokeDasharray: length,
+          strokeDashoffset: length,
+        });
+
+        gsap.to(path, {
+          strokeDashoffset: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 75%",
+            end: "bottom 45%",
+            scrub: true,
+          },
+        });
+      }
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initProblemScene);
+  } else {
+    initProblemScene();
+  }
+
+  document.addEventListener("astro:page-load", initProblemScene);
+</script>

@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import "../styles/mobile-fixes.css";
 
 const {
   title = "DosLlavesGestión | Transformación y gestión integral de activos inmobiliarios",
@@ -61,11 +62,13 @@ const ogImageUrl = ogImage.startsWith("http")
       document.addEventListener("DOMContentLoaded", () => {
         initSmoothScroll();
         initHeaderMenu();
+        initHeaderMenu();
         initAnimations();
       });
 
       document.addEventListener("astro:page-load", () => {
         initSmoothScroll();
+        initHeaderMenu();
         initHeaderMenu();
         initAnimations();
       });

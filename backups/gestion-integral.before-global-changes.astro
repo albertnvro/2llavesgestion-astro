@@ -30,7 +30,7 @@ const modules = [
   },
   {
     title: "Cobros y pagos",
-    text: "Control de cobros, seguimiento de pagos, avisos y trazabilidad de la operativa.",
+    text: "Control de cobros, gestión de pagos, avisos y trazabilidad de la operativa.",
     icon: Wallet,
   },
   {
@@ -58,33 +58,39 @@ const modules = [
 const comparisonRows = [
   {
     factor: "Tiempo dedicado",
-    self: "Tú atiendes mensajes, avisos e incidencias.",
-    dosllaves: "Operativa delegada con seguimiento.",
+    self: "Depende de ti",
+    classic: "Parcial",
+    dosllaves: "Operativa delegada",
   },
   {
     factor: "Incidencias",
-    self: "Tú coordinas técnicos y soluciones.",
-    dosllaves: "Proceso claro hasta resolver.",
-  },
-  {
-    factor: "Cobros",
-    self: "Tú haces el seguimiento.",
-    dosllaves: "Seguimiento de pagos y trazabilidad.",
+    self: "Tú coordinas todo",
+    classic: "Gestión reactiva",
+    dosllaves: "Seguimiento estructurado",
   },
   {
     factor: "Mantenimiento",
-    self: "Buscas proveedores y supervisas.",
-    dosllaves: "Coordinación y control operativo.",
+    self: "Buscas técnicos y supervisas",
+    classic: "Cobertura limitada",
+    dosllaves: "Coordinación y control",
   },
   {
-    factor: "Rotación",
-    self: "Cada cambio vuelve a depender de ti.",
-    dosllaves: "Menos rotación y mejor continuidad del activo.",
+    factor: "Cobros",
+    self: "Tú haces el seguimiento",
+    classic: "Aviso básico",
+    dosllaves: "Control operativo continuo",
   },
   {
-    factor: "Control",
-    self: "Información dispersa y decisiones reactivas.",
-    dosllaves: "Propietario informado sin absorber los problemas.",
+    factor: "Visibilidad",
+    self: "Fragmentada",
+    classic: "Poca trazabilidad",
+    dosllaves: "Sistema claro",
+  },
+  {
+    factor: "Tranquilidad",
+    self: "Baja",
+    classic: "Media",
+    dosllaves: "Alta",
   },
 ];
 
@@ -107,7 +113,7 @@ const process = [
   {
     step: "04",
     title: "Control para el propietario",
-    text: "Mantienes visibilidad sin asumir la problemas del día a día del día a día.",
+    text: "Mantienes visibilidad sin asumir la fricción operativa del día a día.",
   },
 ];
 
@@ -115,7 +121,7 @@ const faqs = [
   {
     question: "¿Qué incluye la gestión integral del alquiler?",
     answer:
-      "Incluye atención a inquilinos, incidencias, mantenimiento, coordinación técnica, seguimiento, seguimiento de pagos, control de cobros, comunicación continua, reparaciones, contratos, renovaciones, salidas y nuevas entradas.",
+      "Incluye atención a inquilinos, incidencias, mantenimiento, coordinación técnica, seguimiento, gestión de pagos, control de cobros, comunicación continua, reparaciones, contratos, renovaciones, salidas y nuevas entradas.",
   },
   {
     question: "¿Puedo delegar una vivienda que ya está alquilada?",
@@ -203,11 +209,11 @@ const schema = {
           </p>
 
           <div class="gil-actions">
-            <a href="/#contacto" class="gil-btn gil-btn-primary">
+            <a href="/#lead-wizard" class="gil-btn gil-btn-primary">
               Solicitar valoración gratuita
             </a>
 
-            <a href="/#contacto" class="gil-btn gil-btn-secondary">
+            <a href="/contacto/" class="gil-btn gil-btn-secondary">
               Hablar con nosotros
             </a>
           </div>
@@ -254,7 +260,7 @@ const schema = {
         <article data-gil-reveal>
           <ShieldCheck size={20} />
           <div>
-            <strong>Menos problemas</strong>
+            <strong>Menos fricción</strong>
             <p>Todo pasa por un sistema ordenado, no por improvisación.</p>
           </div>
         </article>
@@ -280,7 +286,7 @@ const schema = {
             convierte ese desgaste en un sistema operativo más claro, previsible y profesional.
           </p>
 
-          <a href="/#contacto" class="gil-text-link">
+          <a href="/#lead-wizard" class="gil-text-link">
             Empezar valoración <ArrowRight size={16} />
           </a>
         </div>
@@ -294,7 +300,7 @@ const schema = {
 
           <article class="gil-value-panel" data-gil-reveal>
             <span>02</span>
-            <strong>Menos rotación</strong>
+            <strong>Más continuidad</strong>
             <p>El alquiler se gestiona con proceso, no con decisiones aisladas.</p>
           </article>
 
@@ -323,58 +329,33 @@ const schema = {
             <tr>
               <th>Aspecto</th>
               <th>Por tu cuenta</th>
-              <th class="gil-dosllaves-head">
-                <img src="/images/Logo.png" alt="DosLlavesGestión" />
-                <span>Con DosLlavesGestión</span>
-              </th>
+              <th>Gestión parcial</th>
+              <th>DosLlavesGestión</th>
             </tr>
           </thead>
-
           <tbody>
             {comparisonRows.map((row) => (
               <tr>
                 <td>{row.factor}</td>
-                <td>
-                  <span class="gil-table-x">×</span>
-                  {row.self}
-                </td>
-                <td>
-                  <span class="gil-table-check">✓</span>
-                  {row.dosllaves}
-                </td>
+                <td>{row.self}</td>
+                <td>{row.classic}</td>
+                <td>{row.dosllaves}</td>
               </tr>
             ))}
           </tbody>
         </table>
-
-        <div class="gil-mobile-comparison" aria-label="Comparativa móvil">
-          {comparisonRows.map((row) => (
-            <article>
-              <h3>{row.factor}</h3>
-
-              <div>
-                <span>Por tu cuenta</span>
-                <p>{row.self}</p>
-              </div>
-
-              <div class="is-dosllaves">
-                <span>Con DosLlavesGestión</span>
-                <p>{row.dosllaves}</p>
-              </div>
-            </article>
-          ))}
-        </div>
       </div>
 
       <div class="shell gil-inline-cta" data-gil-reveal>
         <div>
-          <strong>Si ahora lo haces todo tú, probablemente estás pagando con tiempo.</strong>
-          <p>La gestión integral convierte llamadas, cobros e incidencias en un proceso.</p>
+          <strong>¿Quieres saber si tiene sentido delegar tu alquiler?</strong>
+          <p>Te orientamos según tu inmueble, situación actual y objetivo.</p>
         </div>
 
-        <a href="/#contacto" class="gil-small-btn gil-small-btn-primary">
-          Quiero delegar mi alquiler
-        </a>
+        <div class="gil-inline-actions">
+          <a href="/#lead-wizard" class="gil-small-btn gil-small-btn-primary">Valorar inmueble</a>
+          <a href="/contacto/" class="gil-small-btn gil-small-btn-secondary">Contacto</a>
+        </div>
       </div>
     </section>
 
@@ -412,54 +393,10 @@ const schema = {
         </div>
 
         <div class="gil-inline-actions">
-          <a href="/#contacto" class="gil-small-btn gil-small-btn-accent">Solicitar valoración</a>
+          <a href="/#lead-wizard" class="gil-small-btn gil-small-btn-accent">Solicitar valoración</a>
         </div>
       </div>
     </section>
-
-    <section class="gil-section gil-reform-section">
-      <div class="shell gil-reform-grid">
-        <div class="gil-reform-media" data-gil-reveal>
-          <figure>
-            <img
-              src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80"
-              alt="Reforma de vivienda enfocada a rentabilidad de alquiler"
-              loading="lazy"
-            />
-          </figure>
-
-          <div class="gil-reform-badge">
-            <span>Equipo propio</span>
-            <strong>Reformas pensadas para alquilar mejor</strong>
-          </div>
-        </div>
-
-        <div class="gil-reform-copy" data-gil-reveal>
-          <p class="gil-kicker dark">Reformas con foco en rentabilidad</p>
-
-          <h2>Si tu vivienda necesita preparación, también podemos resolverlo.</h2>
-
-          <p>
-            Contamos con equipo propio de obras para preparar viviendas de alquiler
-            con un objetivo claro: conseguir un efecto wow, controlar costes, reducir
-            plazos y mejorar la rentabilidad del propietario sin depender únicamente
-            de empresas externas.
-          </p>
-
-          <ul>
-            <li>Mejoras pensadas para alquilar más rápido.</li>
-            <li>Acabados visuales que ayudan a destacar la vivienda.</li>
-            <li>Inversión más controlada y enfocada al retorno.</li>
-            <li>Preparación integral antes de publicar o gestionar el alquiler.</li>
-          </ul>
-
-          <a href="/#contacto" class="gil-text-link">
-            Quiero valorar reforma y gestión
-          </a>
-        </div>
-      </div>
-    </section>
-
 
     <section class="gil-section gil-process-section">
       <div class="shell gil-process-grid">
@@ -471,7 +408,7 @@ const schema = {
             criterio operativo y una comunicación mucho más limpia.
           </p>
 
-          <a href="/#contacto" class="gil-text-link">
+          <a href="/#lead-wizard" class="gil-text-link">
             Quiero delegar mi alquiler <ArrowRight size={16} />
           </a>
         </div>
@@ -506,7 +443,7 @@ const schema = {
           <p>Quieres rentabilidad sin que el alquiler invada tu agenda.</p>
         </article>
         <article data-gil-reveal>
-          <strong>Has tenido problemas</strong>
+          <strong>Has tenido fricción</strong>
           <p>Buscas más orden, más filtro y una gestión menos improvisada.</p>
         </article>
         <article data-gil-reveal>
@@ -544,11 +481,11 @@ const schema = {
         </p>
 
         <div class="gil-actions gil-actions-center">
-          <a href="/#contacto" class="gil-btn gil-btn-primary">
+          <a href="/#lead-wizard" class="gil-btn gil-btn-primary">
             Empezar valoración
           </a>
 
-          <a href="/#contacto" class="gil-btn gil-btn-secondary gil-btn-secondary-light">
+          <a href="/contacto/" class="gil-btn gil-btn-secondary gil-btn-secondary-light">
             Ir a contacto
           </a>
         </div>
@@ -557,7 +494,7 @@ const schema = {
 
     <div class="gil-sticky-cta">
       <span>Gestión integral del alquiler</span>
-      <a href="/#contacto">Valorar inmueble</a>
+      <a href="/#lead-wizard">Valorar inmueble</a>
     </div>
   </main>
 

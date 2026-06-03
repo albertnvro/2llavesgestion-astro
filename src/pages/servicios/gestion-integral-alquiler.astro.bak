@@ -1,0 +1,584 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import "../../styles/service-gestion-integral.css";
+
+const pageTitle = "Gestión integral del alquiler en Valencia y Castellón | DosLlavesGestión";
+const pageDescription =
+  "Gestión integral del alquiler para propietarios e inversores en Valencia y Castellón. Delegamos inquilinos, cobros, incidencias, mantenimiento, contratos y seguimiento operativo.";
+
+const modules = [
+  {
+    title: "Inquilinos",
+    text: "Atención, comunicación diaria, avisos y seguimiento sin que todo dependa de ti.",
+  },
+  {
+    title: "Cobros y pagos",
+    text: "Control de cobros, gestión de pagos, avisos y trazabilidad de la operativa.",
+  },
+  {
+    title: "Incidencias",
+    text: "Recepción, priorización, coordinación técnica y seguimiento hasta resolver.",
+  },
+  {
+    title: "Mantenimiento",
+    text: "Técnicos, reparaciones, revisiones, control de calidad y soporte continuo.",
+  },
+  {
+    title: "Contratos",
+    text: "Seguimiento contractual, renovaciones, documentación, salidas y nuevas entradas.",
+  },
+  {
+    title: "Propietario informado",
+    text: "Visibilidad sin tener que estar pendiente de cada llamada o mensaje.",
+  },
+];
+
+const comparisonRows = [
+  {
+    factor: "Tiempo dedicado",
+    self: "Depende de tu disponibilidad",
+    classic: "Parcial",
+    dosllaves: "Operativa delegada",
+  },
+  {
+    factor: "Incidencias",
+    self: "Tú coordinas todo",
+    classic: "Gestión reactiva",
+    dosllaves: "Proceso y seguimiento",
+  },
+  {
+    factor: "Mantenimiento",
+    self: "Buscas técnicos y comparas",
+    classic: "Sin visión de activo",
+    dosllaves: "Coordinación y control",
+  },
+  {
+    factor: "Cobros",
+    self: "Tú haces seguimiento",
+    classic: "Aviso básico",
+    dosllaves: "Control operativo",
+  },
+  {
+    factor: "Rentabilidad",
+    self: "Sin revisión continua",
+    classic: "Poco foco inversor",
+    dosllaves: "Visión de activo",
+  },
+  {
+    factor: "Tranquilidad",
+    self: "Baja",
+    classic: "Media",
+    dosllaves: "Alta",
+  },
+];
+
+const process = [
+  {
+    step: "01",
+    title: "Revisión inicial",
+    text: "Contrato, estado, pagos, incidencias, documentación y situación del inquilino.",
+  },
+  {
+    step: "02",
+    title: "Orden operativo",
+    text: "Definimos canales, responsables, prioridades y forma de seguimiento.",
+  },
+  {
+    step: "03",
+    title: "Gestión diaria",
+    text: "Atendemos inquilinos, cobros, incidencias, técnicos, mantenimiento y comunicación.",
+  },
+  {
+    step: "04",
+    title: "Seguimiento",
+    text: "El propietario mantiene control y visibilidad sin asumir la carga diaria.",
+  },
+];
+
+const faqs = [
+  {
+    question: "¿Qué incluye la gestión integral del alquiler?",
+    answer:
+      "Incluye atención a inquilinos, incidencias, mantenimiento, coordinación técnica, seguimiento, gestión de pagos, control de cobros, comunicación continua, reparaciones, contratos, renovaciones, salidas y nuevas entradas.",
+  },
+  {
+    question: "¿Puedo delegar una vivienda que ya está alquilada?",
+    answer:
+      "Sí. Podemos revisar la situación actual del inmueble, contrato, pagos, incidencias y comunicación para asumir la operativa diaria de forma ordenada.",
+  },
+  {
+    question: "¿También gestionáis reparaciones y técnicos?",
+    answer:
+      "Sí. Coordinamos técnicos, reparaciones, revisiones, incidencias urgentes y mantenimiento continuo, realizando seguimiento y control de calidad.",
+  },
+  {
+    question: "¿Esto sustituye a una inmobiliaria tradicional?",
+    answer:
+      "No es exactamente lo mismo. DosLlavesGestión trabaja como operador inmobiliario integral: no solo alquilamos, también operamos el activo y coordinamos la gestión diaria.",
+  },
+  {
+    question: "¿Trabajáis en Valencia y Castellón?",
+    answer:
+      "Sí. Actuamos principalmente en Valencia y Castellón, valorando cada inmueble según zona, demanda, estado y viabilidad operativa.",
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.dosllavesgestion.com/servicios/gestion-integral-alquiler/#service",
+      name: "Gestión integral del alquiler",
+      serviceType: "Gestión integral de alquileres",
+      description: pageDescription,
+      provider: {
+        "@type": "Organization",
+        name: "DosLlavesGestión",
+        url: "https://www.dosllavesgestion.com",
+      },
+      areaServed: [
+        { "@type": "AdministrativeArea", name: "Valencia" },
+        { "@type": "AdministrativeArea", name: "Castellón" },
+      ],
+      audience: {
+        "@type": "Audience",
+        audienceType: "Propietarios e inversores inmobiliarios",
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.dosllavesgestion.com/servicios/gestion-integral-alquiler/#breadcrumb",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Inicio",
+          item: "https://www.dosllavesgestion.com/",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Servicios",
+          item: "https://www.dosllavesgestion.com/#planes",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: "Gestión integral del alquiler",
+          item: "https://www.dosllavesgestion.com/servicios/gestion-integral-alquiler/",
+        },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.dosllavesgestion.com/servicios/gestion-integral-alquiler/#faq",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/servicios/gestion-integral-alquiler/"
+>
+  <Header />
+
+  <main class="gil-page">
+    <section class="gil-hero">
+      <div class="shell gil-hero-grid">
+        <div class="gil-hero-copy" data-gil-reveal>
+          <nav class="gil-breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Inicio</a>
+            <span>/</span>
+            <a href="/#planes">Servicios</a>
+            <span>/</span>
+            <strong>Gestión integral del alquiler</strong>
+          </nav>
+
+          <p class="gil-kicker">Valencia y Castellón · Propietarios e inversores</p>
+
+          <h1>Gestión integral del alquiler</h1>
+
+          <p class="gil-lead">
+            Delegas la operativa diaria de tu inmueble sin perder el control:
+            inquilinos, cobros, incidencias, mantenimiento, contratos y seguimiento
+            bajo un sistema claro.
+          </p>
+
+          <div class="gil-actions">
+            <a href="/#lead-wizard" class="gil-btn gil-btn-primary">
+              Solicitar valoración gratuita
+            </a>
+
+            <a
+              href="https://wa.me/34623512885?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20gesti%C3%B3n%20integral%20del%20alquiler."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="gil-btn gil-btn-secondary"
+            >
+              Hablar por WhatsApp
+            </a>
+          </div>
+
+          <div class="gil-proof">
+            <span>Sin operativa diaria</span>
+            <span>Seguimiento al propietario</span>
+            <span>Visión de activo</span>
+          </div>
+        </div>
+
+        <div class="gil-hero-visual" data-gil-reveal>
+          <figure class="gil-photo">
+            <img
+              src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1200&q=82"
+              alt="Vivienda preparada para gestión integral del alquiler"
+              loading="eager"
+            />
+          </figure>
+
+          <div class="gil-ops-card" aria-label="Ejemplo de flujo operativo">
+            <span>Flujo operativo</span>
+
+            <div class="gil-ops-line">
+              <i></i>
+              <strong>Incidencia recibida</strong>
+              <small>Se registra, prioriza y se coordina.</small>
+            </div>
+
+            <div class="gil-ops-line">
+              <i></i>
+              <strong>Técnico asignado</strong>
+              <small>Seguimiento hasta resolver.</small>
+            </div>
+
+            <div class="gil-ops-line">
+              <i></i>
+              <strong>Propietario informado</strong>
+              <small>Control sin llamadas constantes.</small>
+            </div>
+          </div>
+
+          <div class="gil-status-card">
+            <small>Objetivo</small>
+            <strong>Alquiler bajo control</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gil-strip">
+      <div class="shell gil-strip-grid">
+        <div data-gil-reveal>
+          <strong>Operativa diaria</strong>
+          <span>Dejas de gestionar cada mensaje, incidencia o reparación.</span>
+        </div>
+
+        <div data-gil-reveal>
+          <strong>Menos fricción</strong>
+          <span>Un único proceso para inquilinos, técnicos y seguimiento.</span>
+        </div>
+
+        <div data-gil-reveal>
+          <strong>Más control</strong>
+          <span>Sigues informado sin tener que estar encima de todo.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="gil-section">
+      <div class="shell gil-two">
+        <div data-gil-reveal>
+          <p class="gil-kicker dark">Qué resuelve</p>
+          <h2>El alquiler no falla solo por el inquilino. Falla cuando no hay sistema.</h2>
+        </div>
+
+        <div class="gil-text-block" data-gil-reveal>
+          <p>
+            La mayoría de propietarios no tiene un problema de vivienda; tiene un
+            problema de tiempo, coordinación y seguimiento. Cada reparación, pago,
+            duda o cambio acaba interrumpiendo su día. La gestión integral convierte
+            esa improvisación en un proceso.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="gil-section gil-compare-section">
+      <div class="shell gil-heading" data-gil-reveal>
+        <p class="gil-kicker dark">Comparativa rápida</p>
+        <h2>La diferencia se entiende de un vistazo.</h2>
+        <p>
+          La gestión integral no consiste en “ayudar cuando hay un problema”.
+          Consiste en asumir el sistema completo del alquiler.
+        </p>
+      </div>
+
+      <div class="shell gil-comparison-wrap" data-gil-reveal>
+        <table class="gil-comparison-table">
+          <thead>
+            <tr>
+              <th>Aspecto</th>
+              <th>Por tu cuenta</th>
+              <th>Administración clásica</th>
+              <th>DosLlavesGestión</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {comparisonRows.map((row) => (
+              <tr>
+                <td>{row.factor}</td>
+                <td>{row.self}</td>
+                <td>{row.classic}</td>
+                <td>{row.dosllaves}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+<section class="gil-cta-band gil-cta-after-compare" id="cta-comparativa">
+  <div class="shell gil-cta-band-inner">
+    <div>
+      <span>Valoración gratuita</span>
+      <strong>¿Quieres saber si merece la pena delegar tu alquiler?</strong>
+      <p>Analizamos tu vivienda, situación y objetivo para recomendarte la mejor ruta.</p>
+    </div>
+
+    <div class="gil-cta-actions">
+      <a href="/#lead-wizard" class="gil-cta-primary">Valorar mi inmueble</a>
+      <a href="https://wa.me/34623512885?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20gesti%C3%B3n%20integral%20del%20alquiler." target="_blank" rel="noopener noreferrer" class="gil-cta-secondary">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+
+    <section class="gil-section gil-light">
+      <div class="shell gil-heading" data-gil-reveal>
+        <p class="gil-kicker dark">Qué asumimos</p>
+        <h2>Todo lo que normalmente acaba ocupando tu día.</h2>
+        <p>
+          Un servicio pensado para propietarios que quieren ingresos recurrentes
+          sin cargar con la operativa.
+        </p>
+      </div>
+
+      <div class="shell gil-modules">
+        {modules.map((item) => (
+          <article class="gil-module" data-gil-reveal>
+            <span></span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+<section class="gil-cta-band gil-cta-dark gil-cta-after-modules" id="cta-operativa">
+  <div class="shell gil-cta-band-inner">
+    <div>
+      <span>Operativa delegada</span>
+      <strong>Deja de atender el alquiler como si fuera otro trabajo.</strong>
+      <p>Nos ocupamos de inquilinos, cobros, incidencias, mantenimiento y seguimiento.</p>
+    </div>
+
+    <div class="gil-cta-actions">
+      <a href="/#lead-wizard" class="gil-cta-primary">Solicitar valoración</a>
+    </div>
+  </div>
+</section>
+
+
+    <section class="gil-section gil-process-section">
+      <div class="shell gil-process-grid">
+        <div class="gil-process-copy" data-gil-reveal>
+          <p class="gil-kicker dark">Proceso</p>
+          <h2>Un método claro para que el alquiler avance sin depender de ti.</h2>
+          <p>
+            Primero ordenamos la situación. Después asumimos el día a día con
+            seguimiento y criterio operativo.
+          </p>
+        </div>
+
+        <div class="gil-process" data-gil-reveal>
+          {process.map((item) => (
+            <article>
+              <span>{item.step}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="gil-section gil-personas">
+      <div class="shell gil-heading" data-gil-reveal>
+        <p class="gil-kicker dark">Para quién es</p>
+        <h2>Especialmente útil si quieres alquilar sin convertirte en gestor.</h2>
+      </div>
+
+      <div class="shell gil-persona-grid">
+        <article data-gil-reveal>
+          <strong>Vives fuera</strong>
+          <p>No puedes atender cada incidencia, visita, reparación o cambio operativo.</p>
+        </article>
+
+        <article data-gil-reveal>
+          <strong>No tienes tiempo</strong>
+          <p>Quieres rentabilidad sin que el alquiler invada tu agenda.</p>
+        </article>
+
+        <article data-gil-reveal>
+          <strong>Has tenido malas experiencias</strong>
+          <p>Buscas más orden, más filtro y una gestión menos improvisada.</p>
+        </article>
+
+        <article data-gil-reveal>
+          <strong>Piensas como inversor</strong>
+          <p>Quieres operar el inmueble como un activo, no solo “tenerlo alquilado”.</p>
+        </article>
+      </div>
+    </section>
+
+<section class="gil-cta-band gil-cta-after-personas" id="cta-propietarios">
+  <div class="shell gil-cta-band-inner">
+    <div>
+      <span>Para propietarios</span>
+      <strong>Si te ves en uno de estos casos, conviene revisar tu inmueble.</strong>
+      <p>Una valoración inicial te ayuda a decidir si tiene sentido delegar la gestión.</p>
+    </div>
+
+    <div class="gil-cta-actions">
+      <a href="/#lead-wizard" class="gil-cta-primary">Empezar valoración</a>
+    </div>
+  </div>
+</section>
+
+
+    <section class="gil-section gil-proof-section">
+      <div class="shell gil-proof-grid">
+        <div data-gil-reveal>
+          <p class="gil-kicker">Diferencial DosLlaves</p>
+          <h2>No gestionamos solo problemas. Gestionamos el activo.</h2>
+          <p>
+            El alquiler no se mira de forma aislada: estado de la vivienda,
+            mantenimiento, ocupación, rotación, ingresos, inquilino y valor futuro.
+          </p>
+        </div>
+
+        <div class="gil-proof-list" data-gil-reveal>
+          <span>Servicio 360º</span>
+          <span>Enfoque inversor</span>
+          <span>Gestión integral real</span>
+          <span>Mantenimiento coordinado</span>
+          <span>Control operativo</span>
+          <span>Valencia y Castellón</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="gil-section gil-faq" id="faq">
+      <div class="shell gil-faq-grid">
+        <div data-gil-reveal>
+          <p class="gil-kicker dark">FAQ</p>
+          <h2>Dudas frecuentes antes de delegar.</h2>
+        </div>
+
+        <div class="gil-accordion" data-gil-accordion data-gil-reveal>
+          {faqs.map((faq, index) => (
+            <details open={index === 0}>
+              <summary>{faq.question}</summary>
+              <p>{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="gil-final">
+      <div class="shell gil-final-card" data-gil-reveal>
+        <p class="gil-kicker">Valoración gratuita</p>
+        <h2>¿Quieres saber si tiene sentido delegar tu alquiler?</h2>
+        <p>
+          Empieza por la dirección del inmueble. Revisamos tu caso y te decimos
+          qué ruta encaja mejor.
+        </p>
+        <a href="/#lead-wizard" class="gil-btn gil-btn-primary">
+          Empezar valoración
+        </a>
+      </div>
+    </section>
+
+    <div class="gil-conversion-bar" data-gil-sticky>
+      <span>Gestión integral del alquiler</span>
+      <a href="/#lead-wizard">Valorar inmueble</a>
+    </div>
+  <div class="gil-sticky-cta">
+  <span>Gestión integral del alquiler</span>
+  <a href="/#lead-wizard">Valorar inmueble</a>
+</div>
+  </main>
+
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+
+  <script>
+    const revealItems = document.querySelectorAll("[data-gil-reveal]");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.16 }
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+
+    document.querySelectorAll("[data-gil-accordion]").forEach((accordion) => {
+      const items = accordion.querySelectorAll("details");
+
+      items.forEach((item) => {
+        item.addEventListener("toggle", () => {
+          if (!item.open) return;
+
+          items.forEach((otherItem) => {
+            if (otherItem !== item) {
+              otherItem.removeAttribute("open");
+            }
+          });
+        });
+      });
+    });
+
+    const sticky = document.querySelector("[data-gil-sticky]");
+
+    function handleSticky() {
+      if (!sticky) return;
+      sticky.classList.toggle("is-visible", window.scrollY > 720);
+    }
+
+    window.addEventListener("scroll", handleSticky, { passive: true });
+    handleSticky();
+  </script>
+</BaseLayout>

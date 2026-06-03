@@ -49,15 +49,15 @@
         estrategia, reforma, preparación, inquilinos, cobros, incidencias y mantenimiento.
       </p>
 
-      <form class="hero-search" id="hero-form">
-        <input
-          type="text"
-          name="zona"
-          placeholder="¿Dónde está tu vivienda?"
-          aria-label="Zona de la vivienda"
-        />
-        <button type="submit">Valorar gratis</button>
-      </form>
+      <div class="hero-actions">
+        <a class="hero-cta hero-cta-primary" href="/#contacto">
+          Valorar mi inmueble
+        </a>
+
+        <a class="hero-cta hero-cta-secondary" href="/#contacto">
+          Hablar con nosotros
+        </a>
+      </div>
 
       <div class="hero-proof">
         <span>✓ Gestión 360º</span>
@@ -102,23 +102,3 @@
   </svg>
 </section>
 
-<script>
-  const heroForm = document.querySelector("#hero-form");
-
-  heroForm?.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    const data = new FormData(heroForm);
-    const zona = data.get("zona") || "";
-
-    window.location.href = "#contacto";
-
-    setTimeout(() => {
-      const zoneInput = document.querySelector('#lead-form [name="zona"]');
-
-      if (zoneInput instanceof HTMLInputElement && zona) {
-        zoneInput.value = String(zona);
-      }
-    }, 250);
-  });
-</script>

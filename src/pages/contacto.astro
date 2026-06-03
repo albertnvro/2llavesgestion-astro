@@ -1,0 +1,397 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/contact-page.css";
+
+const pageTitle = "Contacto | DosLlavesGestión";
+const pageDescription =
+  "Contacta con DosLlavesGestión para valorar tu inmueble en Valencia o Castellón. Gestión integral, rentabilidad, alquiler y transformación de activos inmobiliarios.";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: pageTitle,
+  description: pageDescription,
+  url: "https://www.dosllavesgestion.com/contacto/",
+  mainEntity: {
+    "@type": "Organization",
+    name: "DosLlavesGestión",
+    url: "https://www.dosllavesgestion.com",
+    telephone: "+34623512885",
+    email: "info@dosllavesgestion.com",
+    areaServed: [
+      {
+        "@type": "AdministrativeArea",
+        name: "Valencia"
+      },
+      {
+        "@type": "AdministrativeArea",
+        name: "Castellón"
+      }
+    ],
+    sameAs: [
+      "https://www.instagram.com/oscarochando"
+    ]
+  }
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/contacto/"
+>
+  <Header />
+
+  <main class="contact-clean-page">
+    <section class="contact-clean-hero">
+      <div class="contact-clean-bg" aria-hidden="true">
+        <span class="contact-orb contact-orb-a"></span>
+        <span class="contact-orb contact-orb-b"></span>
+      </div>
+
+      <div class="shell contact-clean-hero-inner">
+        <p class="contact-kicker">Contacto</p>
+
+        <h1>Hablemos de tu inmueble.</h1>
+
+        <p>
+          Cuéntanos dónde está, en qué situación se encuentra y qué quieres conseguir.
+          Te orientaremos sobre la mejor ruta: gestión integral, alquiler tradicional,
+          habitaciones, reforma o estrategia de rentabilidad.
+        </p>
+
+        <div class="contact-hero-actions">
+          <a href="#formulario-contacto" class="contact-btn contact-btn-primary">
+            Rellenar formulario
+          </a>
+
+          <a
+            href="https://wa.me/34623512885?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20DosLlavesGesti%C3%B3n."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-btn contact-btn-secondary"
+          >
+            Escribir por WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-clean-intro">
+      <div class="shell contact-intro-grid">
+        <article class="contact-intro-card">
+          <span>01</span>
+          <h2>Valoramos tu situación</h2>
+          <p>
+            Revisamos si necesitas estabilidad, rentabilidad, transformación del activo
+            o una gestión integral delegada.
+          </p>
+        </article>
+
+        <article class="contact-intro-card">
+          <span>02</span>
+          <h2>Te orientamos con criterio</h2>
+          <p>
+            No todas las viviendas necesitan la misma estrategia. La zona, el estado
+            y tu objetivo cambian la recomendación.
+          </p>
+        </article>
+
+        <article class="contact-intro-card">
+          <span>03</span>
+          <h2>Decides sin compromiso</h2>
+          <p>
+            Te explicamos la ruta que puede encajar y tú decides si quieres avanzar.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact-main-section" id="formulario-contacto">
+      <div class="shell contact-main-layout">
+        <div class="contact-main-copy">
+          <p class="contact-label">Valoración gratuita</p>
+
+          <h2>Cuéntanos qué necesitas.</h2>
+
+          <p>
+            Este formulario nos ayuda a entender rápidamente tu caso para responderte
+            con más precisión. Si prefieres hablar directamente, también puedes hacerlo
+            por WhatsApp.
+          </p>
+
+          <div class="contact-methods">
+            <a href="tel:+34623512885">
+              <span>Teléfono</span>
+              <strong>623 512 885</strong>
+            </a>
+
+            <a href="mailto:info@dosllavesgestion.com">
+              <span>Email</span>
+              <strong>info@dosllavesgestion.com</strong>
+            </a>
+
+            <a
+              href="https://www.instagram.com/oscarochando"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Instagram</span>
+              <strong>@oscarochando</strong>
+            </a>
+          </div>
+
+          <div class="contact-service-box">
+            <strong>Trabajamos principalmente en Valencia y Castellón.</strong>
+            <p>
+              Valoramos cada inmueble según zona, demanda, estado, objetivo del
+              propietario y viabilidad operativa.
+            </p>
+          </div>
+        </div>
+
+        <form class="contact-clean-form" id="contact-page-form">
+          <input type="text" name="website" class="contact-hp" tabindex="-1" autocomplete="off" />
+
+          <input type="hidden" name="source" value="Página de contacto" />
+          <input type="hidden" name="privacy_accepted_at" id="contact-privacy-at" />
+
+          <fieldset class="contact-options">
+            <legend>¿Qué necesitas?</legend>
+
+            <label>
+              <input
+                type="radio"
+                name="objetivo"
+                value="Quiero alquilar mi vivienda"
+                checked
+              />
+              <span>
+                <strong>Quiero alquilar mi vivienda</strong>
+                <small>Necesito valorar modalidad, precio y gestión.</small>
+              </span>
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="objetivo"
+                value="Ya está alquilada y quiero delegar"
+              />
+              <span>
+                <strong>Ya está alquilada y quiero delegar</strong>
+                <small>Quiero quitarme cobros, incidencias y comunicación.</small>
+              </span>
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="objetivo"
+                value="Quiero transformar o preparar mi vivienda"
+              />
+              <span>
+                <strong>Quiero transformar o preparar mi vivienda</strong>
+                <small>Me interesa reforma, amueblado o mejora de rentabilidad.</small>
+              </span>
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="objetivo"
+                value="Soy inversor y busco rentabilidad"
+              />
+              <span>
+                <strong>Soy inversor y busco rentabilidad</strong>
+                <small>Quiero analizar el inmueble como activo.</small>
+              </span>
+            </label>
+          </fieldset>
+
+          <div class="contact-fields">
+            <label>
+              <span>Nombre</span>
+              <input name="nombre" type="text" placeholder="Tu nombre" required />
+            </label>
+
+            <label>
+              <span>Teléfono</span>
+              <input name="telefono" type="tel" placeholder="Tu teléfono" required />
+            </label>
+
+            <label>
+              <span>Email</span>
+              <input name="email" type="email" placeholder="tu@email.com" required />
+            </label>
+
+            <label>
+              <span>Zona del inmueble</span>
+              <input
+                name="address"
+                type="text"
+                placeholder="Valencia, Castellón, Mislata..."
+                required
+              />
+            </label>
+          </div>
+
+          <label class="contact-message">
+            <span>Mensaje</span>
+            <textarea
+              name="mensaje"
+              placeholder="Cuéntanos brevemente tu caso."
+            ></textarea>
+          </label>
+
+          <label class="contact-privacy">
+            <input
+              name="privacy"
+              type="checkbox"
+              value="Aceptada"
+              required
+            />
+
+            <span>
+              Acepto la
+              <a href="/politica-de-privacidad/" target="_blank" rel="noopener noreferrer">
+                política de privacidad
+              </a>
+              y autorizo el tratamiento de mis datos para responder a mi solicitud.
+            </span>
+          </label>
+
+          <div class="contact-submit">
+            <button type="submit">
+              Enviar solicitud
+            </button>
+
+            <a
+              href="https://wa.me/34623512885?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20DosLlavesGesti%C3%B3n."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              WhatsApp
+            </a>
+          </div>
+
+          <p class="contact-form-status" id="contact-form-status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="contact-final-strip">
+      <div class="shell contact-final-inner">
+        <div>
+          <span>Respuesta personalizada</span>
+          <strong>Te orientamos según tu inmueble, no con una respuesta genérica.</strong>
+        </div>
+
+        <a href="#formulario-contacto">
+          Solicitar valoración
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+
+  <script>
+    const contactForm = document.querySelector("#contact-page-form");
+    const contactStatus = document.querySelector("#contact-form-status");
+
+    function setContactStatus(message, type = "") {
+      if (!contactStatus) return;
+
+      contactStatus.textContent = message;
+      contactStatus.classList.remove("is-ok", "is-error");
+
+      if (type) {
+        contactStatus.classList.add(type);
+      }
+    }
+
+    contactForm?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const privacyAcceptedAt = document.querySelector("#contact-privacy-at");
+
+      if (privacyAcceptedAt) {
+        privacyAcceptedAt.value = new Date().toISOString();
+      }
+
+      if (!contactForm.checkValidity()) {
+        contactForm.reportValidity();
+        return;
+      }
+
+      const data = new FormData(contactForm);
+
+      if (data.get("website")) return;
+
+      const payload = Object.fromEntries(data.entries());
+
+      const runningInPreview =
+        location.hostname.includes("localhost") ||
+        location.hostname.includes("github.dev") ||
+        location.hostname.includes("app.github.dev");
+
+      const endpoint = runningInPreview ? "" : "/wp-json/dosllaves/v1/lead";
+
+      let sent = false;
+
+      if (endpoint) {
+        try {
+          setContactStatus("Enviando solicitud...");
+
+          const response = await fetch(endpoint, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          sent = response.ok;
+        } catch (error) {
+          sent = false;
+        }
+      }
+
+      if (sent) {
+        setContactStatus(
+          "Solicitud enviada. Hemos recibido tus datos y pronto nos pondremos en contacto contigo.",
+          "is-ok"
+        );
+
+        contactForm.reset();
+        return;
+      }
+
+      const message = [
+        "Hola, quiero información sobre DosLlavesGestión.",
+        "",
+        `Objetivo: ${payload.objetivo || ""}`,
+        `Nombre: ${payload.nombre || ""}`,
+        `Teléfono: ${payload.telefono || ""}`,
+        `Email: ${payload.email || ""}`,
+        `Zona: ${payload.address || ""}`,
+        `Mensaje: ${payload.mensaje || ""}`,
+      ].join("\\n");
+
+      window.open(
+        `https://wa.me/34623512885?text=${encodeURIComponent(message)}`,
+        "_blank"
+      );
+
+      setContactStatus(
+        "Hemos abierto WhatsApp con tu solicitud preparada.",
+        "is-ok"
+      );
+    });
+  </script>
+</BaseLayout>
