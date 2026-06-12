@@ -1,0 +1,492 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import "../../styles/service-analisis-rentabilidad.css";
+
+const pageTitle = "Análisis de rentabilidad inmobiliaria | DosLlavesGestión";
+const pageDescription =
+  "Analizamos la rentabilidad bruta y neta de una vivienda antes de comprarla, reformarla o alquilarla. Servicio para inversores y propietarios en Valencia y Castellón.";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.dosllavesgestion.com/servicios/analisis-rentabilidad/#service",
+      name: "Análisis de rentabilidad inmobiliaria",
+      serviceType: "Análisis de rentabilidad de alquiler",
+      description: pageDescription,
+      provider: {
+        "@type": "Organization",
+        name: "DosLlavesGestión",
+        url: "https://www.dosllavesgestion.com"
+      },
+      areaServed: [
+        { "@type": "AdministrativeArea", name: "Valencia" },
+        { "@type": "AdministrativeArea", name: "Castellón" }
+      ],
+      audience: {
+        "@type": "Audience",
+        audienceType: "Inversores inmobiliarios y propietarios",
+      }
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://www.dosllavesgestion.com/servicios/analisis-rentabilidad/#calculator",
+      name: "Calculadora de rentabilidad de alquiler",
+      applicationCategory: "FinanceApplication",
+      operatingSystem: "Web",
+      description:
+        "Calculadora orientativa para estimar la rentabilidad bruta y neta de una vivienda en alquiler."
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/servicios/analisis-rentabilidad/"
+>
+  <Header />
+
+  <main class="ari-page">
+    <section class="ari-hero">
+      <div class="shell ari-hero-grid">
+        <div class="ari-hero-copy">
+          <nav class="ari-breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Inicio</a>
+            <span>/</span>
+            <a href="/#planes">Servicios</a>
+            <span>/</span>
+            <strong>Análisis de rentabilidad</strong>
+          </nav>
+
+          <p class="ari-kicker landing-chip">Servicio para inversores y propietarios</p>
+
+          <h1>Análisis de rentabilidad inmobiliaria</h1>
+
+          <p>
+            Antes de comprar, reformar o alquilar, conviene saber si los números
+            tienen sentido. Calculamos la rentabilidad bruta y neta de la vivienda
+            y te orientamos sobre cómo mejorarla.
+          </p>
+
+          <div class="ari-actions">
+            <a href="#calculadora-rentabilidad" class="ari-btn ari-btn-primary">
+              Calcular rentabilidad
+            </a>
+
+            <a href="/#contacto" class="ari-btn ari-btn-secondary">
+              Pedir valoración profesional
+            </a>
+          </div>
+
+          <div class="ari-proof">
+            <span>Compra</span>
+            <span>Reforma</span>
+            <span>Alquiler</span>
+            <span>Rentabilidad</span>
+          </div>
+        </div>
+
+        <div class="ari-hero-visual">
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1300&q=82"
+              alt="Análisis financiero de una inversión inmobiliaria"
+              loading="eager"
+            />
+          </figure>
+
+          <div class="ari-hero-card">
+            <span>Análisis orientado a inversión</span>
+            <strong>Comprar por X, alquilar por X y saber si realmente compensa.</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ari-section ari-intro">
+      <div class="shell ari-intro-card">
+        <div class="ari-intro-head">
+          <p class="ari-kicker dark landing-chip">Por qué importa</p>
+
+          <h2>
+            No basta con que una vivienda se pueda alquilar.
+            Debe tener números que sostengan la operación.
+          </h2>
+        </div>
+
+        <div class="ari-intro-body">
+          <p>
+            Una vivienda puede parecer una buena oportunidad, pero cuando sumas compra,
+            gastos, reforma, vacancia, mantenimiento y gestión, la rentabilidad real
+            cambia mucho. Por eso analizamos la operación antes de tomar decisiones.
+          </p>
+
+          <ul class="ari-intro-points">
+            <li>Compra, gastos y adecuación real del inmueble.</li>
+            <li>Ingreso mensual estimado y margen operativo.</li>
+            <li>Vacancia, mantenimiento y costes recurrentes.</li>
+            <li>Opciones para mejorar la rentabilidad de la vivienda.</li>
+          </ul>
+
+          <a href="#calculadora-rentabilidad" class="ari-text-link">
+            Probar la calculadora
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="ari-section ari-calculator-section" id="calculadora-rentabilidad">
+      <div class="shell ari-heading">
+        <p class="ari-kicker dark landing-chip">Calculadora</p>
+
+        <h2>Calculadora de rentabilidad de alquiler</h2>
+
+        <p>
+          Introduce los datos estimados de compra y alquiler. El resultado es orientativo,
+          pero te ayuda a entender si la operación puede tener sentido.
+        </p>
+      </div>
+
+      <div class="shell ari-calculator-layout">
+        <form class="ari-calculator" id="ari-calculator">
+          <div class="ari-calculator-head">
+            <span>Calculadora para inversores inmobiliarios</span>
+            <strong>Calcula si una vivienda tiene sentido antes de comprar, reformar o alquilar.</strong>
+          </div>
+
+          <div class="ari-fields">
+            <label class="ari-field">
+              <span class="ari-field-label">
+                Precio de compra
+                <button class="ari-info" type="button" aria-label="Información sobre precio de compra">i</button>
+                <span class="ari-tooltip" role="tooltip">
+                  Importe previsto de compra de la vivienda, sin incluir impuestos, reforma ni otros gastos.
+                </span>
+              </span>
+
+              <input id="purchase-price" type="number" min="0" step="1000" value="150000" />
+            </label>
+
+            <label class="ari-field">
+              <span class="ari-field-label">
+                ITP (%)
+                <button class="ari-info" type="button" aria-label="Información sobre ITP">i</button>
+                <span class="ari-tooltip" role="tooltip">
+                  Impuesto de Transmisiones Patrimoniales. El porcentaje puede variar según comunidad autónoma y situación del comprador. Ejemplos habituales pueden ser 8% o 10%, pero debes revisar tu caso concreto.
+                </span>
+              </span>
+
+              <input id="itp-percent" type="number" min="0" max="20" step="0.1" value="10" />
+            </label>
+
+            <label class="ari-field">
+              <span class="ari-field-label">
+                Gastos de compra
+                <button class="ari-info" type="button" aria-label="Información sobre gastos de compra">i</button>
+                <span class="ari-tooltip" role="tooltip">
+                  Gastos estimados de la operación sin incluir el ITP: notaría, inmobiliaria, registro, tasación, gestoría u otros costes asociados a la compra.
+                </span>
+              </span>
+
+              <input id="purchase-costs" type="number" min="0" step="500" value="3000" />
+            </label>
+
+            <label class="ari-field">
+              <span class="ari-field-label">
+                Reforma / adecuación
+                <button class="ari-info" type="button" aria-label="Información sobre reforma">i</button>
+                <span class="ari-tooltip" role="tooltip">
+                  Inversión prevista para reformar, preparar, amueblar o mejorar la vivienda antes de alquilarla.
+                </span>
+              </span>
+
+              <input id="reform-cost" type="number" min="0" step="500" value="12000" />
+            </label>
+
+            <label class="ari-field">
+              <span class="ari-field-label">
+                Alquiler mensual estimado
+                <button class="ari-info" type="button" aria-label="Información sobre alquiler mensual">i</button>
+                <span class="ari-tooltip" role="tooltip">
+                  Renta mensual que crees que puede generar la vivienda una vez alquilada.
+                </span>
+              </span>
+
+              <input id="monthly-rent" type="number" inputmode="decimal" min="0" step="any" value="950" />
+            </label>
+
+            <label class="ari-field ari-field-readonly">
+              <span class="ari-field-label">
+                Alquiler anual bruto
+                <button class="ari-info" type="button" aria-label="Información sobre alquiler anual bruto">i</button>
+                <span class="ari-tooltip" role="tooltip">
+                  Cálculo automático: alquiler mensual estimado multiplicado por 12 meses.
+                </span>
+              </span>
+
+              <input id="annual-rent" type="text" value="0 €" readonly />
+            </label>
+
+            <label class="ari-field ari-field-readonly">
+              <span class="ari-field-label">
+                Periodo vacante estimado
+                <button class="ari-info" type="button" aria-label="Información sobre periodo vacante">i</button>
+                <span class="ari-tooltip" role="tooltip">
+                  Cálculo automático: estimamos un 5% del alquiler anual bruto como posible periodo de vacancia, carencia o tiempo sin ingreso.
+                </span>
+              </span>
+
+              <input id="vacancy-amount" type="text" value="0 €" readonly />
+            </label>
+
+            <label class="ari-field">
+              <span class="ari-field-label">
+                Gastos anuales estimados
+                <button class="ari-info" type="button" aria-label="Información sobre gastos anuales">i</button>
+                <span class="ari-tooltip" role="tooltip">
+                  Gastos recurrentes anuales estimados: IBI, comunidad, seguro de hogar, mantenimiento, pequeñas reparaciones u otros costes asociados a la vivienda.
+                </span>
+              </span>
+
+              <input id="annual-expenses" type="number" min="0" step="100" value="1800" />
+            </label>
+          </div>
+
+          <button type="submit">Calcular rentabilidad</button>
+
+          <p class="ari-note">
+            Resultado orientativo antes de fiscalidad personal, financiación y circunstancias
+            concretas del inmueble.
+          </p>
+        </form>
+
+        <aside class="ari-result" aria-live="polite">
+          <div class="ari-result-head">
+            <span>Resultado estimado</span>
+            <strong>Rentabilidad de la vivienda</strong>
+          </div>
+
+          <div class="ari-metrics">
+            <article class="ari-metric-main">
+              <span>Rentabilidad neta de la vivienda</span>
+              <strong id="net-yield">0%</strong>
+            </article>
+
+            <article>
+              <span>Rentabilidad bruta de la vivienda</span>
+              <strong id="gross-yield">0%</strong>
+            </article>
+          </div>
+
+          <div class="ari-summary">
+            <p>
+              ITP estimado:
+              <strong id="itp-amount">0 €</strong>
+            </p>
+
+            <p>
+              Periodo vacante estimado:
+              <strong id="vacancy-result">0 €</strong>
+            </p>
+
+            <p>
+              Inversión total estimada:
+              <strong id="total-investment">0 €</strong>
+            </p>
+
+            <p>
+              Ingreso neto anual estimado:
+              <strong id="net-income">0 €</strong>
+            </p>
+          </div>
+
+          <div class="ari-result-cta">
+            <strong>¿Quieres mejorar esta rentabilidad?</strong>
+            <p>
+              Podemos estudiar reforma, alquiler por habitaciones, gestión integral
+              y estrategia de explotación.
+            </p>
+
+            <a href="/#contacto">
+              Solicitar análisis profesional
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="ari-section ari-how">
+      <div class="shell ari-heading">
+        <p class="ari-kicker dark landing-chip">Qué analizamos</p>
+
+        <h2>Miramos la vivienda como activo, no solo como piso alquilable.</h2>
+      </div>
+
+      <div class="shell ari-cards">
+        <article>
+          <span>01</span>
+          <h3>Precio de entrada</h3>
+          <p>Compra, gastos iniciales, reforma y adecuación necesaria para alquilar.</p>
+        </article>
+
+        <article>
+          <span>02</span>
+          <h3>Ingresos esperados</h3>
+          <p>Alquiler mensual estimado, posible mejora tras reforma y modelo de explotación.</p>
+        </article>
+
+        <article>
+          <span>03</span>
+          <h3>Gastos y vacancia</h3>
+          <p>Costes anuales, mantenimiento, meses vacíos y margen real de la operación.</p>
+        </article>
+
+        <article>
+          <span>04</span>
+          <h3>Modelo de mejora</h3>
+          <p>Gestión integral, reforma, alquiler por habitaciones o estrategia alternativa.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="ari-section ari-reform">
+      <div class="shell ari-reform-grid">
+        <div>
+          <p class="ari-kicker dark landing-chip">Equipo propio de reformas</p>
+
+          <h2>La rentabilidad no solo se calcula. También se puede trabajar.</h2>
+
+          <p>
+            Si la vivienda necesita preparación, nuestro equipo propio de obras puede
+            ayudarte a crear ese efecto wow que mejora la percepción del inmueble,
+            controlando costes y enfocando la inversión a rentabilidad.
+          </p>
+
+          <a href="/#contacto" class="ari-text-link">
+            Valorar reforma y rentabilidad
+          </a>
+        </div>
+
+        <figure>
+          <img
+            src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=82"
+            alt="Reforma de vivienda enfocada a alquiler rentable"
+            loading="lazy"
+          />
+        </figure>
+      </div>
+    </section>
+
+    <section class="ari-final">
+      <div class="shell ari-final-card">
+        <p class="ari-kicker landing-chip">Siguiente paso</p>
+
+        <h2>¿Quieres analizar una operación real?</h2>
+
+        <p>
+          Dinos qué vivienda estás valorando, precio estimado y objetivo. Revisamos
+          si la operación tiene sentido y qué modelo puede mejorar la rentabilidad.
+        </p>
+
+        <a href="/#contacto" class="ari-btn ari-btn-primary">
+          Pedir análisis de rentabilidad
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+
+  <script>
+    const form = document.querySelector("#ari-calculator");
+
+    const purchasePrice = document.querySelector("#purchase-price");
+    const itpPercent = document.querySelector("#itp-percent");
+    const purchaseCosts = document.querySelector("#purchase-costs");
+    const reformCost = document.querySelector("#reform-cost");
+    const monthlyRent = document.querySelector("#monthly-rent");
+    const annualRent = document.querySelector("#annual-rent");
+    const vacancyAmount = document.querySelector("#vacancy-amount");
+    const annualExpenses = document.querySelector("#annual-expenses");
+
+    const netYield = document.querySelector("#net-yield");
+    const grossYield = document.querySelector("#gross-yield");
+    const itpAmount = document.querySelector("#itp-amount");
+    const vacancyResult = document.querySelector("#vacancy-result");
+    const totalInvestment = document.querySelector("#total-investment");
+    const netIncome = document.querySelector("#net-income");
+
+    function numberValue(input) {
+      if (!(input instanceof HTMLInputElement)) return 0;
+      return Number(input.value || 0);
+    }
+
+    function formatCurrency(value) {
+      return new Intl.NumberFormat("es-ES", {
+        style: "currency",
+        currency: "EUR",
+        maximumFractionDigits: 0,
+      }).format(value);
+    }
+
+    function formatPercent(value) {
+      if (!Number.isFinite(value)) return "0%";
+      return `${value.toFixed(2).replace(".", ",")}%`;
+    }
+
+    function calculate() {
+      const price = numberValue(purchasePrice);
+      const itp = numberValue(itpPercent);
+      const costs = numberValue(purchaseCosts);
+      const reform = numberValue(reformCost);
+      const rent = numberValue(monthlyRent);
+      const expenses = numberValue(annualExpenses);
+
+      const annualGrossRent = rent * 12;
+      const estimatedVacancy = annualGrossRent * 0.05;
+      const effectiveAnnualRent = annualGrossRent - estimatedVacancy;
+
+      const estimatedItp = price * (itp / 100);
+      const investment = price + estimatedItp + costs + reform;
+      const annualNetIncome = effectiveAnnualRent - expenses;
+
+      const gross = price > 0 ? (effectiveAnnualRent / price) * 100 : 0;
+      const net = investment > 0 ? (annualNetIncome / investment) * 100 : 0;
+
+      annualRent.value = formatCurrency(annualGrossRent);
+      vacancyAmount.value = formatCurrency(estimatedVacancy);
+
+      netYield.textContent = formatPercent(net);
+      grossYield.textContent = formatPercent(gross);
+      itpAmount.textContent = formatCurrency(estimatedItp);
+      vacancyResult.textContent = formatCurrency(estimatedVacancy);
+      totalInvestment.textContent = formatCurrency(investment);
+      netIncome.textContent = formatCurrency(annualNetIncome);
+    }
+
+    form?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      calculate();
+    });
+
+    [
+      purchasePrice,
+      itpPercent,
+      purchaseCosts,
+      reformCost,
+      monthlyRent,
+      annualExpenses,
+    ].forEach((input) => {
+      input?.addEventListener("input", calculate);
+    });
+
+    calculate();
+  </script>
+</BaseLayout>

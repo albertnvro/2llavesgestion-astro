@@ -7,7 +7,7 @@
 
       <p>
         Cuéntanos en qué punto está la vivienda y qué quieres conseguir.
-        Te orientamos sobre la ruta más adecuada: estabilidad, rentabilidad,
+        Te orientamos sobre el modelo más adecuado: estabilidad, rentabilidad,
         transformación o gestión integral.
       </p>
 
@@ -24,8 +24,6 @@
           <span>Diagnóstico rápido</span>
           <strong>¿Qué necesita ahora tu inmueble?</strong>
         </div>
-
-        <a href="/#contacto">Prefiero valoración guiada</a>
       </div>
 
       <form class="home-contact-form" id="home-contact-form">
@@ -108,7 +106,7 @@
 
           <label>
             <span>Teléfono</span>
-            <input name="telefono" type="tel" placeholder="Tu teléfono" required />
+            <input name="telefono" type="tel" placeholder="Tu teléfono" required inputmode="numeric" pattern="[0-9]{9,15}" maxlength="15" autocomplete="tel" />
           </label>
 
           <label>
@@ -208,12 +206,7 @@
 
     const payload = Object.fromEntries(data.entries());
 
-    const runningInPreview =
-      location.hostname.includes("localhost") ||
-      location.hostname.includes("github.dev") ||
-      location.hostname.includes("app.github.dev");
-
-    const endpoint = runningInPreview ? "" : "/wp-json/dosllaves/v1/lead";
+    const endpoint = "/wpback/wp-json/dosllaves/v1/lead";
 
     let sent = false;
 
@@ -244,28 +237,8 @@
       homeForm.reset();
       return;
     }
-
-    const message = [
-      "Hola, quiero una valoración para mi inmueble.",
-      "",
-      `Objetivo: ${payload.objetivo || ""}`,
-      `Nombre: ${payload.nombre || ""}`,
-      `Teléfono: ${payload.telefono || ""}`,
-      `Email: ${payload.email || ""}`,
-      `Zona: ${payload.address || ""}`,
-      `Mensaje: ${payload.mensaje || ""}`,
-    ].join("\n");
-
-    window.open(
-      `https://wa.me/34623512885?text=${encodeURIComponent(message)}`,
-      "_blank"
-    );
-
-    setHomeStatus(
-      "Hemos abierto WhatsApp con tu solicitud preparada. También puedes enviarla desde ahí.",
-      "is-ok"
-    );
-  });
+    setHomeStatus("No se ha podido enviar la solicitud. Revisa los datos o inténtalo de nuevo. Si lo prefieres, puedes usar el botón de WhatsApp.", "is-error");
+});
 </script>
 
 <style>

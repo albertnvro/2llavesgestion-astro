@@ -65,7 +65,8 @@ function dosllaves_receive_lead(WP_REST_Request $request) {
     set_transient($rate_key, 1, 60);
 
     $name = dosllaves_clean($data['nombre'] ?? '');
-    $phone = dosllaves_clean($data['telefono'] ?? '');
+    $phone = dosllaves_clean($data['telefono'] ?? $data['phone'] ?? '');
+    $phone = preg_replace('/\D+/', '', $phone);
     $email = sanitize_email($data['email'] ?? '');
 
     $address = dosllaves_clean($data['address'] ?? '');
@@ -82,6 +83,33 @@ function dosllaves_receive_lead(WP_REST_Request $request) {
         return new WP_REST_Response([
             'ok' => false,
             'message' => 'Nombre, teléfono y email son obligatorios.',
+        ], 400);
+    }
+
+    if (!preg_match('/^\d{9,15}$/', $phone)) {
+        return new WP_REST_Response([
+            'ok' => false,
+            'message' => 'El teléfono no es válido.',
+        ], 400);
+    }
+
+    $started_at = isset($data['form_started_at']) ? (int) $data['form_started_at'] : 0;
+    if ($started_at > 0) {
+        $now_ms = (int) round(microtime(true) * 1000);
+        $elapsed = $now_ms - $started_at;
+
+        if ($elapsed < 3000) {
+            return new WP_REST_Response([
+                'ok' => false,
+                'message' => 'Solicitud no válida.',
+            ], 400);
+        }
+    }
+
+    if (preg_match_all('/https?:\/\/|www\./i', $message, $matches) && count($matches[0]) > 2) {
+        return new WP_REST_Response([
+            'ok' => false,
+            'message' => 'El mensaje contiene demasiados enlaces.',
         ], 400);
     }
 
@@ -149,7 +177,7 @@ function dosllaves_receive_lead(WP_REST_Request $request) {
 
     $client_subject = 'Hemos recibido tu solicitud - DosLlavesGestión';
     $client_body = "Hola " . $name . ",\n\n"
-        . "Hemos recibido tu solicitud de valoración. Pronto nos pondremos en contacto contigo para revisar tu inmueble y orientarte sobre la mejor ruta.\n\n"
+        . "Hemos recibido tu solicitud de valoración. Pronto nos pondremos en contacto contigo para revisar tu inmueble y orientarte sobre la mejor modelo.\n\n"
         . "Resumen de tu solicitud:\n\n"
         . "Dirección: " . $address . "\n"
         . "Situación: " . $situacion . "\n"
@@ -167,3 +195,60 @@ function dosllaves_receive_lead(WP_REST_Request $request) {
         'lead_id' => $post_id,
     ], 200);
 }
+
+
+/* =========================================================
+ * Admin: mostrar datos del lead en una caja clara
+ * ========================================================= */
+add_action('add_meta_boxes', function () {
+    add_meta_box(
+        'dosllaves_lead_details',
+        'Datos del lead',
+        'dosllaves_render_lead_details_box',
+        'dosllaves_lead',
+        'normal',
+        'high'
+    );
+});
+
+function dosllaves_render_lead_details_box($post): void {
+    $fields = [
+        'nombre' => 'Nombre',
+        'telefono' => 'Teléfono',
+        'email' => 'Email',
+        'address' => 'Zona / Dirección',
+        'situacion' => 'Situación',
+        'objetivo' => 'Objetivo',
+        'mensaje' => 'Mensaje',
+        'privacy' => 'Privacidad',
+        'privacy_accepted_at' => 'Aceptada en',
+    ];
+
+    echo '<table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e5e7eb;">';
+    foreach ($fields as $key => $label) {
+        $value = get_post_meta($post->ID, $key, true);
+        echo '<tr>';
+        echo '<th style="width:220px;text-align:left;padding:12px;border-bottom:1px solid #e5e7eb;background:#f8fafc;color:#344054;">' . esc_html($label) . '</th>';
+        echo '<td style="padding:12px;border-bottom:1px solid #e5e7eb;color:#101828;">' . nl2br(esc_html($value ?: '-')) . '</td>';
+        echo '</tr>';
+    }
+    echo '</table>';
+}
+
+add_filter('manage_dosllaves_lead_posts_columns', function ($columns) {
+    return [
+        'cb' => $columns['cb'],
+        'title' => 'Lead',
+        'nombre' => 'Nombre',
+        'telefono' => 'Teléfono',
+        'email' => 'Email',
+        'objetivo' => 'Objetivo',
+        'date' => 'Fecha',
+    ];
+});
+
+add_action('manage_dosllaves_lead_posts_custom_column', function ($column, $post_id) {
+    if (in_array($column, ['nombre', 'telefono', 'email', 'objetivo'], true)) {
+        echo esc_html(get_post_meta($post_id, $column, true) ?: '-');
+    }
+}, 10, 2);

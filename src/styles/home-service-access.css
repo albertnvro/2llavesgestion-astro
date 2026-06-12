@@ -1,0 +1,275 @@
+/* =========================================================
+   Home — accesos a servicios debajo del hero
+   ========================================================= */
+
+.home-access,
+.home-access * {
+  box-sizing: border-box;
+}
+
+.home-access {
+  position: relative;
+  padding: clamp(64px, 7vw, 104px) 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 86% 12%, rgba(92, 242, 194, 0.10), transparent 30%),
+    linear-gradient(180deg, #ffffff 0%, #f5f7fb 100%);
+}
+
+.home-access::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(6,55,126,.035) 1px, transparent 1px),
+    linear-gradient(rgba(6,55,126,.035) 1px, transparent 1px);
+  background-size: 78px 78px;
+  mask-image: linear-gradient(180deg, transparent 0%, black 18%, black 74%, transparent 100%);
+  pointer-events: none;
+}
+
+.home-access-shell {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: clamp(30px, 4vw, 48px);
+}
+
+.home-access-head {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  max-width: 900px;
+  text-align: center;
+}
+
+.home-access-head .landing-chip {
+  min-height: 34px;
+  width: max-content;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: #06377e;
+  background: #eaf3ff;
+  border: 1px solid rgba(6,55,126,.12);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.home-access-head h2 {
+  max-width: 850px;
+  margin: 0;
+  color: #07111f;
+  font-size: clamp(34px, 4.6vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -0.058em;
+  text-wrap: balance;
+}
+
+.home-access-head p {
+  max-width: 720px;
+  margin: 0;
+  color: #66758b;
+  font-size: 17px;
+  line-height: 1.72;
+}
+
+.home-access-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.home-access-card {
+  position: relative;
+  min-height: 300px;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 14px;
+  padding: 24px;
+  border-radius: 24px;
+  color: #07111f;
+  text-decoration: none;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(92,242,194,.08), transparent 30%),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid rgba(7,17,31,.10);
+  box-shadow: 0 16px 48px rgba(7,17,31,.06);
+  transition:
+    transform .22s ease,
+    box-shadow .22s ease,
+    border-color .22s ease,
+    background .22s ease;
+}
+
+.home-access-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(6,55,126,.20);
+  box-shadow: 0 28px 80px rgba(7,17,31,.10);
+}
+
+.home-access-card.is-featured {
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 86% 14%, rgba(92,242,194,.14), transparent 30%),
+    linear-gradient(135deg, #06377e 0%, #0a438f 52%, #07111f 100%);
+}
+
+.home-access-card.is-accent {
+  background:
+    radial-gradient(circle at 86% 14%, rgba(92,242,194,.18), transparent 30%),
+    linear-gradient(180deg, #ffffff 0%, #eef5ff 100%);
+  border-color: rgba(6,55,126,.16);
+}
+
+.home-access-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.home-access-card-top > span {
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 999px;
+  color: #06377e;
+  background: #eaf3ff;
+  border: 1px solid rgba(6,55,126,.10);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.home-access-card.is-featured .home-access-card-top > span {
+  color: #07111f;
+  background: #5cf2c2;
+  border-color: transparent;
+}
+
+.home-access-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 17px;
+  color: #06377e;
+  background:
+    radial-gradient(circle at 72% 18%, rgba(255,255,255,.92), transparent 34%),
+    linear-gradient(135deg, #edf5ff, #d8e9ff);
+  border: 1px solid rgba(6,55,126,.10);
+}
+
+.home-access-card.is-featured .home-access-icon {
+  color: #5cf2c2;
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.14);
+}
+
+.home-access-card > strong {
+  display: block;
+  color: inherit;
+  font-size: clamp(22px, 2.2vw, 32px);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+}
+
+.home-access-card > p {
+  margin: 0;
+  color: #66758b;
+  line-height: 1.68;
+}
+
+.home-access-card.is-featured > p {
+  color: rgba(255,255,255,.76);
+}
+
+.home-access-card > em {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #06377e;
+  font-style: normal;
+  font-weight: 900;
+}
+
+.home-access-card.is-featured > em {
+  color: #5cf2c2;
+}
+
+@media (max-width: 980px) {
+  .home-access-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-access-card {
+    min-height: 270px;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-access {
+    padding: 64px 0;
+  }
+
+  .home-access-head {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .home-access-head h2 {
+    font-size: 38px;
+    line-height: 1.03;
+  }
+
+  .home-access-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-access-card {
+    min-height: auto;
+    padding: 22px;
+    border-radius: 22px;
+  }
+}
+
+/* =========================================================
+   FIX — Home access centrado real
+   ========================================================= */
+
+.home-access-shell {
+  justify-items: center !important;
+}
+
+.home-access-head {
+  width: min(920px, 100%) !important;
+  margin-inline: auto !important;
+  justify-self: center !important;
+  justify-items: center !important;
+  text-align: center !important;
+}
+
+.home-access-head h2,
+.home-access-head p {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+.home-access-head .landing-chip {
+  margin-inline: auto !important;
+}
+
+@media (max-width: 640px) {
+  .home-access-head {
+    justify-items: center !important;
+    text-align: center !important;
+  }
+
+  .home-access-head h2,
+  .home-access-head p {
+    text-align: center !important;
+  }
+}

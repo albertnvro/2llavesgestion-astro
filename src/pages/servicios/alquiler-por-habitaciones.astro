@@ -1,0 +1,740 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import "../../styles/service-alquiler-habitaciones.css";
+
+import {
+  ArrowRight,
+  BadgeEuro,
+  BarChart3,
+  BedDouble,
+  CalendarCheck,
+  Camera,
+  CheckCircle2,
+  ClipboardList,
+  Clock3,
+  DoorOpen,
+  Euro,
+  Eye,
+  FileText,
+  Headphones,
+  Home,
+  KeyRound,
+  Megaphone,
+  Search,
+  ShieldCheck,
+  Sparkles,
+  TrendingUp,
+  UserCheck,
+  UsersRound,
+  Wrench,
+} from "@lucide/astro";
+
+const pageTitle = "Gestión de alquiler por habitaciones en Valencia y Castellón | DosLlavesGestión";
+const pageDescription =
+  "Gestión integral de alquiler por habitaciones para propietarios e inversores. Maximizamos ingresos, ocupación, selección de inquilinos, contratos, incidencias, mantenimiento y seguimiento.";
+
+const benefits = [
+  {
+    icon: TrendingUp,
+    title: "Mayor rentabilidad",
+    text: "Optimizamos el potencial de cada habitación según demanda, estado y zona.",
+  },
+  {
+    icon: Clock3,
+    title: "Menos tiempo dedicado",
+    text: "Nos ocupamos de consultas, visitas, contratos, pagos e incidencias.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Más control",
+    text: "Tienes información clara sin asumir la gestión diaria del inmueble.",
+  },
+  {
+    icon: KeyRound,
+    title: "Un único equipo",
+    text: "Centralizamos comercialización, inquilinos, mantenimiento y seguimiento.",
+  },
+];
+
+const serviceItems = [
+  {
+    icon: Search,
+    title: "Estudio del inmueble",
+    text: "Analizamos distribución, habitaciones, zonas comunes, demanda y precios por habitación.",
+  },
+  {
+    icon: Camera,
+    title: "Publicación y captación",
+    text: "Preparamos anuncios, fotografías, portales y estrategia para atraer perfiles adecuados.",
+  },
+  {
+    icon: UserCheck,
+    title: "Selección de inquilinos",
+    text: "Filtramos perfiles, solvencia, compatibilidad y necesidades de convivencia.",
+  },
+  {
+    icon: FileText,
+    title: "Contratos y entradas",
+    text: "Coordinamos contratos individuales, fianzas, altas, bajas, renovaciones y entradas.",
+  },
+  {
+    icon: Euro,
+    title: "Seguimiento de pagos",
+    text: "Control de rentas, avisos, trazabilidad y comunicación clara con el propietario.",
+  },
+  {
+    icon: Wrench,
+    title: "Incidencias y mantenimiento",
+    text: "Atención diaria, coordinación de reparaciones, proveedores y seguimiento operativo.",
+  },
+];
+
+const seoItems = [
+  {
+    icon: Home,
+    title: "Distribución adecuada",
+    text: "No todos los pisos funcionan por habitaciones. Revisamos privacidad, zonas comunes, baños y comodidad.",
+  },
+  {
+    icon: UsersRound,
+    title: "Demanda real en la zona",
+    text: "Analizamos si la zona encaja con estudiantes, trabajadores, desplazados o alquiler de media estancia.",
+  },
+  {
+    icon: Sparkles,
+    title: "Preparación visual",
+    text: "Una habitación bien preparada mejora percepción, reduce periodos vacíos y ayuda a defender precio.",
+  },
+  {
+    icon: ClipboardList,
+    title: "Gestión operativa",
+    text: "Más habitaciones implican más entradas, salidas, incidencias y comunicación. Sin sistema, se vuelve carga.",
+  },
+];
+
+const process = [
+  {
+    icon: Search,
+    step: "01",
+    title: "Análisis",
+    text: "Estudiamos vivienda, distribución, demanda y estrategia de precios.",
+  },
+  {
+    icon: Megaphone,
+    step: "02",
+    title: "Comercialización",
+    text: "Publicamos, promocionamos y captamos perfiles adecuados.",
+  },
+  {
+    icon: UserCheck,
+    step: "03",
+    title: "Selección",
+    text: "Filtramos perfiles, solvencia y compatibilidad entre inquilinos.",
+  },
+  {
+    icon: FileText,
+    step: "04",
+    title: "Contratos",
+    text: "Formalizamos documentación, fianzas, entradas, salidas y renovaciones.",
+  },
+  {
+    icon: Headphones,
+    step: "05",
+    title: "Gestión diaria",
+    text: "Atendemos pagos, incidencias, mantenimiento y comunicación.",
+  },
+  {
+    icon: BarChart3,
+    step: "06",
+    title: "Seguimiento",
+    text: "Informamos al propietario con claridad sobre ocupación e ingresos.",
+  },
+];
+
+const faqs = [
+  {
+    question: "¿Qué incluye la gestión de alquiler por habitaciones?",
+    answer:
+      "Incluye estudio del inmueble, estrategia de precios, publicación, selección de inquilinos por habitación, contratos individuales, seguimiento de pagos, incidencias, mantenimiento, entradas, salidas y comunicación con el propietario.",
+  },
+  {
+    question: "¿Es más rentable alquilar por habitaciones?",
+    answer:
+      "Puede serlo, pero depende de la zona, distribución, demanda, estado de la vivienda y perfil de inquilinos. Por eso analizamos primero si el modelo tiene sentido en cada caso.",
+  },
+  {
+    question: "¿También preparáis la vivienda para alquilar por habitaciones?",
+    answer:
+      "Sí. Podemos valorar reforma, amueblado, distribución, equipamiento y mejoras visuales para que la vivienda destaque y compita mejor en el mercado.",
+  },
+  {
+    question: "¿Cómo funcionan los honorarios?",
+    answer:
+      "Trabajamos desde el 15% + IVA sobre las rentas percibidas. El cobro es a mes vencido y el plan final puede variar según volumen, vivienda y características del servicio.",
+  },
+  {
+    question: "¿Para qué propietarios tiene sentido este servicio?",
+    answer:
+      "Para propietarios que quieren maximizar ingresos, inversores que buscan rentabilidad, propietarios que viven fuera o personas que no quieren gestionar consultas, contratos, incidencias, rotación e inquilinos.",
+  },
+  {
+    question: "¿Trabajáis en Valencia y Castellón?",
+    answer:
+      "Sí. Actuamos principalmente en Valencia y Castellón, valorando cada inmueble según zona, demanda y viabilidad operativa.",
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.dosllavesgestion.com/servicios/alquiler-por-habitaciones/#service",
+      name: "Gestión de alquiler por habitaciones",
+      serviceType: "Gestión integral de alquiler por habitaciones",
+      description: pageDescription,
+      provider: {
+        "@type": "Organization",
+        name: "DosLlavesGestión",
+        url: "https://www.dosllavesgestion.com",
+      },
+      areaServed: [
+        { "@type": "AdministrativeArea", name: "Valencia" },
+        { "@type": "AdministrativeArea", name: "Castellón" },
+      ],
+      audience: {
+        "@type": "Audience",
+        audienceType: "Propietarios e inversores inmobiliarios",
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.dosllavesgestion.com/servicios/alquiler-por-habitaciones/#breadcrumb",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Inicio",
+          item: "https://www.dosllavesgestion.com/",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Servicios",
+          item: "https://www.dosllavesgestion.com/#planes",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: "Alquiler por habitaciones",
+          item: "https://www.dosllavesgestion.com/servicios/alquiler-por-habitaciones/",
+        },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.dosllavesgestion.com/servicios/alquiler-por-habitaciones/#faq",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/servicios/alquiler-por-habitaciones/"
+>
+  <Header />
+
+  <main class="rooms-page">
+    <section class="rooms-hero">
+      <div class="shell rooms-hero-grid">
+        <div class="rooms-hero-copy" data-rooms-reveal>
+          <nav class="rooms-breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Inicio</a>
+            <span>/</span>
+            <a href="/#planes">Servicios</a>
+            <span>/</span>
+            <strong>Alquiler por habitaciones</strong>
+          </nav>
+
+          <p class="landing-chip rooms-chip">Valencia y Castellón · Propietarios e inversores</p>
+
+          <h1>Gestión integral de alquiler por habitaciones</h1>
+
+          <p>
+            Convertimos una vivienda en una operación más rentable y mejor gestionada:
+            estudio, preparación, comercialización, selección de inquilinos, contratos,
+            seguimiento de pagos, incidencias y ocupación continua.
+          </p>
+
+          <div class="rooms-actions">
+            <a href="/#contacto" class="rooms-btn rooms-btn-primary">
+              Solicitar valoración
+              <ArrowRight size={17} strokeWidth={2.1} />
+            </a>
+
+            <a href="#honorarios" class="rooms-btn rooms-btn-secondary">
+              Ver honorarios
+            </a>
+          </div>
+
+          <div class="rooms-proof">
+            <span><CheckCircle2 size={14} /> Mayor rentabilidad</span>
+            <span><CheckCircle2 size={14} /> Ocupación continua</span>
+            <span><CheckCircle2 size={14} /> Gestión profesional</span>
+          </div>
+        </div>
+
+        <div class="rooms-hero-visual" data-rooms-reveal>
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=82"
+              alt="Habitación preparada para alquiler por habitaciones"
+              loading="eager"
+              width="1200"
+              height="900"
+            />
+          </figure>
+
+          <div class="rooms-hero-card">
+            <span>
+              <BedDouble size={16} strokeWidth={2} />
+              Nos ocupamos de todo
+            </span>
+            <strong>Tú disfrutas de los ingresos. Nosotros gestionamos el proceso.</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rooms-benefits-section">
+      <div class="shell rooms-benefits-grid">
+        {benefits.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <article data-rooms-reveal>
+              <div class="rooms-icon">
+                <Icon size={23} strokeWidth={1.9} />
+              </div>
+
+              <h2>{item.title}</h2>
+              <p>{item.text}</p>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+
+    <section class="rooms-section rooms-service">
+      <div class="shell rooms-service-layout">
+        <div class="rooms-service-copy" data-rooms-reveal>
+          <p class="landing-chip is-soft">Nos ocupamos de todo</p>
+
+          <h2>Alquilar por habitaciones puede ser más rentable, pero exige una gestión real.</h2>
+
+          <p>
+            Este modelo no consiste solo en dividir una vivienda en habitaciones.
+            Requiere estudiar la demanda, preparar bien el inmueble, filtrar perfiles,
+            mantener ocupación, resolver incidencias y cuidar la convivencia.
+          </p>
+
+          <a href="/#contacto" class="rooms-text-link">
+            Quiero valorar mi vivienda
+          </a>
+        </div>
+
+        <div class="rooms-service-grid">
+          {serviceItems.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <article data-rooms-reveal>
+                <div class="rooms-icon">
+                  <Icon size={22} strokeWidth={1.9} />
+                </div>
+
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <section class="rooms-section rooms-split rooms-reform">
+      <div class="shell rooms-split-grid">
+        <div class="rooms-media-card" data-rooms-reveal>
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=82"
+              alt="Habitación reformada y preparada para alquilar"
+              loading="lazy"
+              width="1200"
+              height="900"
+            />
+          </figure>
+
+          <div class="rooms-media-badge">
+            <span>Efecto WOW</span>
+            <strong>Habitaciones que destacan y se alquilan mejor.</strong>
+          </div>
+        </div>
+
+        <div class="rooms-content-card" data-rooms-reveal>
+          <p class="landing-chip is-soft">Equipo propio de reformas</p>
+
+          <h2>Preparamos la vivienda para que compita mejor habitación por habitación.</h2>
+
+          <p>
+            Contamos con equipo propio de obras para crear un efecto wow en viviendas
+            destinadas al alquiler. El objetivo es aumentar atractivo, controlar costes
+            y rentabilizar al máximo la vivienda al menor coste posible.
+          </p>
+
+          <ul>
+            <li>Reforma y adecuación enfocada al alquiler.</li>
+            <li>Distribución, mobiliario y acabados pensados para cada habitación.</li>
+            <li>Preparación visual para mejorar conversión y ocupación.</li>
+            <li>Menos dependencia de empresas externas y mayor control operativo.</li>
+          </ul>
+
+          <a href="/#contacto" class="rooms-text-link">
+            Valorar reforma y gestión
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="rooms-section rooms-seo">
+      <div class="shell rooms-heading" data-rooms-reveal>
+        <p class="landing-chip is-soft">Cuándo tiene sentido</p>
+
+        <h2>No todos los pisos deben alquilarse por habitaciones.</h2>
+
+        <p>
+          Antes de recomendar este modelo analizamos si puede mejorar la rentabilidad
+          sin generar más problemas de gestión. La clave está en distribución, zona,
+          preparación y operativa.
+        </p>
+      </div>
+
+      <div class="shell rooms-seo-grid">
+        {seoItems.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <article data-rooms-reveal>
+              <div class="rooms-icon">
+                <Icon size={22} strokeWidth={1.9} />
+              </div>
+
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+
+    <section class="rooms-section rooms-organic-seo rooms-organic-centered">
+      <div class="shell rooms-organic-centered-head" data-rooms-reveal>
+        <p class="landing-chip is-soft">Análisis antes de alquilar por habitaciones</p>
+
+        <h2>Antes de alquilar por habitaciones, comprobamos si la vivienda realmente lo permite.</h2>
+
+        <p>
+          La gestión de alquiler por habitaciones en Valencia y Castellón puede mejorar la
+          rentabilidad, pero no todos los pisos encajan. Analizamos distribución, demanda,
+          estado de la vivienda y carga operativa antes de recomendar este modelo.
+        </p>
+
+        <a href="/#contacto" class="rooms-text-link">
+          Analizar mi vivienda
+        </a>
+      </div>
+
+      <div class="shell rooms-organic-centered-grid">
+        <article data-rooms-reveal>
+          <div class="rooms-organic-icon">
+            <Home size={22} strokeWidth={1.9} />
+          </div>
+
+          
+          <h3>Distribución adecuada</h3>
+          <p>
+            Revisamos habitaciones, zonas comunes, baños, privacidad y comodidad
+            para saber si el inmueble puede funcionar por habitaciones.
+          </p>
+        </article>
+
+        <article data-rooms-reveal>
+          <div class="rooms-organic-icon">
+            <UsersRound size={22} strokeWidth={1.9} />
+          </div>
+
+          
+          <h3>Demanda real en la zona</h3>
+          <p>
+            Estudiamos si existe demanda de estudiantes, trabajadores, desplazados
+            o perfiles de media estancia en la ubicación del inmueble.
+          </p>
+        </article>
+
+        <article data-rooms-reveal>
+          <div class="rooms-organic-icon">
+            <Sparkles size={22} strokeWidth={1.9} />
+          </div>
+
+          
+          <h3>Preparación visual</h3>
+          <p>
+            Una habitación bien preparada mejora percepción, reduce periodos vacíos
+            y ayuda a defender mejor el precio.
+          </p>
+        </article>
+
+        <article data-rooms-reveal>
+          <div class="rooms-organic-icon">
+            <ClipboardList size={22} strokeWidth={1.9} />
+          </div>
+
+          
+          <h3>Gestión operativa</h3>
+          <p>
+            Más habitaciones implican más entradas, salidas, incidencias y comunicación.
+            Sin sistema, la rentabilidad se convierte en carga.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="rooms-section rooms-fees rooms-fees-premium" id="honorarios">
+      <div class="shell rooms-heading rooms-fees-heading" data-rooms-reveal>
+        <p class="landing-chip is-soft">Honorarios</p>
+
+        <h2>Un modelo de honorarios claro y alineado con los ingresos.</h2>
+
+        <p>
+          Trabajamos desde el 15% + IVA sobre las rentas percibidas. El plan final puede
+          variar según volumen, vivienda, ocupación y alcance del servicio contratado.
+        </p>
+      </div>
+
+      <div class="shell rooms-fees-premium-grid">
+        <article class="rooms-pricing-card" data-rooms-reveal>
+          <span class="landing-chip is-on-dark">Modelo de cobro</span>
+
+          <div class="rooms-price-main">
+            <small>Desde</small>
+            <strong>15% + IVA</strong>
+          </div>
+
+          <p>
+            Sobre las rentas percibidas. Cobramos a mes vencido y solo sobre los ingresos
+            realmente generados por la vivienda.
+          </p>
+
+          <ul class="rooms-price-list">
+            <li><CalendarCheck size={18} /> Cobro a mes vencido</li>
+            <li><CheckCircle2 size={18} /> Sin cuotas fijas</li>
+            <li><BadgeEuro size={18} /> Solo sobre rentas percibidas</li>
+          </ul>
+        </article>
+
+        <article class="rooms-example-card rooms-example-card-premium" data-rooms-reveal>
+          <div class="rooms-example-head">
+            <span>Ejemplo orientativo</span>
+            <strong>Si el propietario percibe 1.800 €/mes</strong>
+          </div>
+
+          <div class="rooms-example-calculation">
+            <div>
+              <small>Rentas percibidas</small>
+              <strong>1.800 €</strong>
+            </div>
+
+            <span class="rooms-calc-symbol">×</span>
+
+            <div>
+              <small>Honorarios</small>
+              <strong>15%</strong>
+            </div>
+
+            <span class="rooms-calc-symbol">+</span>
+
+            <div>
+              <small>IVA</small>
+              <strong>56,70 €</strong>
+            </div>
+
+            <span class="rooms-calc-symbol">=</span>
+
+            <div class="is-total">
+              <small>Total honorarios</small>
+              <strong>326,70 €</strong>
+            </div>
+          </div>
+
+          <div class="rooms-example-note">
+            <strong>Honorarios base: 270 € + IVA</strong>
+            <p>
+              Ejemplo calculado con el 15% de comisión. Disponemos de planes personalizados
+              según volumen, características de la vivienda y alcance de gestión.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="rooms-section rooms-process">
+      <div class="shell rooms-heading" data-rooms-reveal>
+        <p class="landing-chip is-soft">Proceso de gestión</p>
+
+        <h2>Un sistema claro para mantener ocupación, control y tranquilidad.</h2>
+      </div>
+
+      <div class="shell rooms-process-track rooms-process-numbers-only">
+        {process.map((item) => (
+          <article data-rooms-reveal>
+            <span class="rooms-process-step">{item.step}</span>
+
+            <h3>{item.title}</h3>
+
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="rooms-section rooms-dark-center">
+      <div class="shell rooms-dark-center-layout">
+        <div class="rooms-dark-center-copy" data-rooms-reveal>
+          <p class="landing-chip is-on-dark">Por qué DosLlaves</p>
+
+          <h2>Más rentabilidad no debe significar más trabajo para ti.</h2>
+
+          <p>
+            El alquiler por habitaciones puede aumentar los ingresos, pero también exige
+            más orden: ocupación, selección de perfiles, entradas, salidas, incidencias,
+            mantenimiento y comunicación. Nosotros convertimos esa operativa en un sistema.
+          </p>
+
+          <a href="/#contacto" class="rooms-dark-center-link">
+            Solicitar valoración
+          </a>
+        </div>
+
+        <div class="rooms-dark-center-grid" data-rooms-reveal>
+          <article>
+            <div><TrendingUp size={20} strokeWidth={2} /></div>
+            <strong>Máxima rentabilidad</strong>
+            <p>Optimizamos precios, ocupación y estrategia por habitación.</p>
+          </article>
+
+          <article>
+            <div><Clock3 size={20} strokeWidth={2} /></div>
+            <strong>Menos periodos vacíos</strong>
+            <p>Trabajamos la comercialización para mantener continuidad.</p>
+          </article>
+
+          <article>
+            <div><UserCheck size={20} strokeWidth={2} /></div>
+            <strong>Inquilinos filtrados</strong>
+            <p>Seleccionamos perfiles compatibles y con mayor solvencia.</p>
+          </article>
+
+          <article>
+            <div><Eye size={20} strokeWidth={2} /></div>
+            <strong>Control y transparencia</strong>
+            <p>El propietario sabe qué ocurre sin gestionar cada detalle.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="rooms-section rooms-faq">
+      <div class="shell rooms-faq-grid">
+        <div data-rooms-reveal>
+          <p class="landing-chip is-soft">FAQ</p>
+          <h2>Dudas frecuentes sobre alquiler por habitaciones.</h2>
+        </div>
+
+        <div class="rooms-accordion" data-rooms-accordion data-rooms-reveal>
+          {faqs.map((faq, index) => (
+            <details open={index === 0}>
+              <summary>{faq.question}</summary>
+              <p>{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="rooms-final">
+      <div class="shell rooms-final-card" data-rooms-reveal>
+        <p class="landing-chip is-on-dark">Siguiente paso</p>
+
+        <h2>¿Quieres saber si tu vivienda encaja para alquiler por habitaciones?</h2>
+
+        <p>
+          Analizamos distribución, zona, estado de la vivienda, rentabilidad potencial
+          y gestión necesaria para que tomes una decisión con criterio.
+        </p>
+
+        <a href="/#contacto" class="rooms-btn rooms-btn-primary">
+          Solicitar valoración
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+
+  <script>
+    const revealItems = document.querySelectorAll("[data-rooms-reveal]");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+
+    document.querySelectorAll("[data-rooms-accordion]").forEach((accordion) => {
+      const items = accordion.querySelectorAll("details");
+
+      items.forEach((item) => {
+        item.addEventListener("toggle", () => {
+          if (!item.open) return;
+
+          items.forEach((otherItem) => {
+            if (otherItem !== item) {
+              otherItem.removeAttribute("open");
+            }
+          });
+        });
+      });
+    });
+  </script>
+</BaseLayout>

@@ -1,0 +1,51 @@
+import fs from "node:fs";
+import path from "node:path";
+
+const distDir = path.resolve("dist");
+const base = "/2llavesgestion";
+
+const extensions = new Set([".html", ".css", ".js"]);
+
+function walk(dir) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const fullPath = path.join(dir, entry.name);
+
+    if (entry.isDirectory()) {
+      walk(fullPath);
+      continue;
+    }
+
+    if (!extensions.has(path.extname(entry.name))) continue;
+
+    let content = fs.readFileSync(fullPath, "utf8");
+
+    content = content
+      // HTML href/src/action absolutos
+      .replaceAll('href="/', `href="${base}/`)
+      .replaceAll('src="/', `src="${base}/`)
+      .replaceAll('action="/', `action="${base}/`)
+
+      // CSS urls absolutos
+      .replaceAll('url("/', `url("${base}/`)
+      .replaceAll("url('/", `url('${base}/`)
+
+      // Evitar duplicados si ya venían con base
+      .replaceAll(`${base}${base}/`, `${base}/`);
+
+    // El endpoint WordPress debe quedarse en /2llavesgestion/wpback/...
+    content = content.replaceAll(
+      `${base}/2llavesgestion/wpback/`,
+      `${base}/wpback/`
+    );
+
+    fs.writeFileSync(fullPath, content);
+  }
+}
+
+if (!fs.existsSync(distDir)) {
+  throw new Error("No existe dist/. Ejecuta npm run build primero.");
+}
+
+walk(distDir);
+
+console.log(`Rutas reescritas para ${base}/`);

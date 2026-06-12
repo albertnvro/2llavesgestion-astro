@@ -1,47 +1,207 @@
 ---
+import "../styles/footer-premium.css";
+
 const base = import.meta.env.BASE_URL;
+const year = new Date().getFullYear();
+
+const whatsappUrl =
+  "https://wa.me/34623512885?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20DosLlavesGesti%C3%B3n.";
+
+const normalizeHref = (href: string) => {
+  if (href.startsWith("http")) return href;
+  if (href.startsWith("#")) return `${base}${href}`;
+  return `${base}${href}`;
+};
+
+const services = [
+  {
+    label: "Gestión integral del alquiler",
+    href: "servicios/gestion-integral-alquiler/",
+    description: "Operativa diaria, cobros, incidencias y mantenimiento.",
+  },
+  {
+    label: "Análisis de rentabilidad",
+    href: "servicios/analisis-rentabilidad/",
+    description: "Calculadora y análisis para propietarios e inversores.",
+  },
+  {
+    label: "Alquiler por habitaciones",
+    href: "servicios/alquiler-por-habitaciones/",
+    description: "Mayor ocupación, selección y gestión por habitación.",
+  },
+  {
+    label: "Reformas orientadas a ROI",
+    href: "servicios/reformas-orientadas-roi/",
+    description: "Equipo propio para preparar inmuebles para alquiler.",
+  },
+  {
+    label: "Comercialización e inquilinos",
+    href: "servicios/comercializacion-inquilinos/",
+    description: "Publicación, filtro, visitas y selección documentada.",
+  },
+];
+
+const resources = [
+  {
+    label: "Recursos gratuitos",
+    href: "recursos-arrendadores/",
+  },
+  {
+    label: "Calculadora de rentabilidad",
+    href: "servicios/analisis-rentabilidad/#calculadora-rentabilidad",
+  },
+  {
+    label: "Valoración del inmueble",
+    href: "#contacto",
+  },
+];
+
+const company = [
+  {
+    label: "Quiénes somos",
+    href: "quienes-somos/",
+  },
+  {
+    label: "Contacto",
+    href: "#contacto",
+  },
+  {
+    label: "Política de privacidad",
+    href: "politica-de-privacidad/",
+  },
+  {
+    label: "Aviso legal",
+    href: "aviso-legal/",
+  },
+];
 ---
 
-<footer class="footer">
-  <div class="shell footer-inner">
-    <div>
-      <a class="logo footer-logo" href={base} aria-label="DosLlavesGestión">
-        <span>2L</span>
-        <strong>DosLlavesGestión</strong>
-      </a>
+<footer class="dl-footer-v2" id="footer">
+  <div class="shell dl-footer-v2-cta">
+    <div class="dl-footer-v2-cta-copy">
+      <span>Valoración gratuita</span>
 
-      <p>Transformación, optimización y gestión integral de activos inmobiliarios.</p>
+      <h2>¿Quieres saber qué modelo encaja con tu inmueble?</h2>
+
+      <p>
+        Revisamos tu vivienda, objetivo y situación actual para orientarte:
+        gestión integral, alquiler por habitaciones, reforma, comercialización o rentabilidad.
+      </p>
     </div>
 
-    <div class="footer-links">
-      <a href={`${base}#contacto`}>Valoración</a>
-      <a href={`${base}servicios/gestion-integral-alquiler/`}>Gestión integral</a>
-      <a href={`${base}recursos-arrendadores/`}>Recursos gratuitos</a>
-      <a href={`${base}calculadora-rentabilidad-alquiler/`}>Calculadora de rentabilidad</a>
-      <a href={`${base}quienes-somos/`}>Quiénes somos</a>
-      <a href={`${base}#contacto`}>Contacto</a>
+    <div class="dl-footer-v2-cta-actions">
+      <a class="dl-footer-v2-btn is-primary" href={`${base}#contacto`}>
+        Empezar valoración
+      </a>
+
       <a
-        href="https://www.instagram.com/oscarochando"
+        class="dl-footer-v2-btn is-secondary"
+        href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
       >
-        Instagram
+        WhatsApp
       </a>
     </div>
   </div>
 
-  <div class="shell footer-bottom">
-    <p class="footer-copy">
-      © 2026 DosLlavesGestión. Todos los derechos reservados.
-    </p>
+  <div class="shell dl-footer-v2-main">
+    <section class="dl-footer-v2-brand-card" aria-label="DosLlavesGestión">
+      <a class="dl-footer-v2-logo" href={base} aria-label="DosLlavesGestión">
+        <img
+          src={`${base}images/Logo.png`}
+          alt="DosLlavesGestión"
+          width="220"
+          height="64"
+          loading="lazy"
+        />
+      </a>
 
-    <p class="footer-credit">
+      <p>
+        Transformación, rentabilidad y gestión integral de inmuebles para propietarios
+        e inversores en Valencia y Castellón.
+      </p>
+
+      <div class="dl-footer-v2-badges" aria-label="Áreas y enfoque">
+        <span>Valencia</span>
+        <span>Castellón</span>
+        <span>Propietarios</span>
+        <span>Inversores</span>
+      </div>
+    </section>
+
+    <nav class="dl-footer-v2-panel dl-footer-v2-services" aria-label="Servicios">
+      <div class="dl-footer-v2-panel-head">
+        <span>Servicios</span>
+        <strong>Soluciones para rentabilizar y gestionar tu inmueble.</strong>
+      </div>
+
+      <div class="dl-footer-v2-service-list">
+        {services.map((item) => (
+          <a href={normalizeHref(item.href)}>
+            <strong>{item.label}</strong>
+            <small>{item.description}</small>
+          </a>
+        ))}
+      </div>
+    </nav>
+
+    <section class="dl-footer-v2-side">
+      <nav class="dl-footer-v2-panel" aria-label="Recursos y empresa">
+        <div class="dl-footer-v2-mini-grid">
+          <div class="dl-footer-v2-mini-column">
+            <h2>Recursos</h2>
+
+            {resources.map((item) => (
+              <a href={normalizeHref(item.href)}>
+                {item.label}
+              </a>
+            ))}
+          </div>
+
+          <div class="dl-footer-v2-mini-column">
+            <h2>Empresa</h2>
+
+            {company.map((item) => (
+              <a href={normalizeHref(item.href)}>
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </nav>
+
+      <address class="dl-footer-v2-contact" aria-label="Contacto">
+        <h2>Contacto</h2>
+
+        <a href="tel:+34623512885">
+          <span>Teléfono</span>
+          <strong>623 512 885</strong>
+        </a>
+
+        <a href="mailto:info@dosllavesgestion.com">
+          <span>Email</span>
+          <strong>info@dosllavesgestion.com</strong>
+        </a>
+
+        <a
+          href="https://www.instagram.com/oscarochando"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span>Instagram</span>
+          <strong>@oscarochando</strong>
+        </a>
+      </address>
+    </section>
+  </div>
+
+  <div class="shell dl-footer-v2-bottom">
+    <p>© {year} DosLlavesGestión. Todos los derechos reservados.</p>
+
+    <p>
       Web desarrollada por
-      <a
-        href="https://indexar.es"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href="https://indexar.es" target="_blank" rel="noopener noreferrer">
         Indexar
       </a>
     </p>

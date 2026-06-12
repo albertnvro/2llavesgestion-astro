@@ -1,0 +1,974 @@
+.tenant-page,
+.tenant-page * {
+  box-sizing: border-box;
+}
+
+.tenant-page {
+  color: #07111f;
+  background: #ffffff;
+}
+
+.tenant-page .landing-chip {
+  min-height: 38px;
+  width: max-content;
+  max-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 15px;
+  border-radius: 999px;
+  color: #ffffff;
+  background: #06377e;
+  border: 1px solid rgba(255,255,255,.10);
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.tenant-page .landing-chip.is-soft {
+  min-height: 34px;
+  padding: 0 12px;
+  color: #06377e;
+  background: #eaf3ff;
+  border: 1px solid rgba(6,55,126,.12);
+}
+
+.tenant-page .landing-chip.is-on-dark {
+  color: #07111f;
+  background: #5cf2c2;
+  border-color: transparent;
+}
+
+/* HERO */
+
+.tenant-hero {
+  position: relative;
+  padding: 190px 0 110px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 84% 14%, rgba(92, 242, 194, 0.12), transparent 30%),
+    linear-gradient(180deg, #ffffff 0%, #f5f7fb 100%);
+}
+
+.tenant-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(6,55,126,.04) 1px, transparent 1px),
+    linear-gradient(rgba(6,55,126,.04) 1px, transparent 1px);
+  background-size: 78px 78px;
+  mask-image: linear-gradient(180deg, black, transparent 72%);
+  pointer-events: none;
+}
+
+.tenant-hero-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.05fr);
+  gap: clamp(44px, 7vw, 92px);
+  align-items: center;
+}
+
+.tenant-hero-copy {
+  display: grid;
+  gap: 20px;
+}
+
+.tenant-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: #7b8596;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.tenant-breadcrumb a {
+  color: #06377e;
+  text-decoration: none;
+}
+
+.tenant-hero h1 {
+  max-width: 820px;
+  margin: 0;
+  color: #07111f;
+  font-size: clamp(48px, 6vw, 82px);
+  line-height: 0.96;
+  letter-spacing: -0.065em;
+}
+
+.tenant-hero-copy > p {
+  max-width: 700px;
+  margin: 0;
+  color: #66758b;
+  font-size: 18px;
+  line-height: 1.72;
+}
+
+.tenant-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tenant-btn {
+  min-height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 20px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 850;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tenant-btn:hover {
+  transform: translateY(-2px);
+}
+
+.tenant-btn-primary {
+  color: #ffffff;
+  background: #07111f;
+  box-shadow: 0 18px 44px rgba(7, 17, 31, 0.16);
+}
+
+.tenant-btn-secondary {
+  color: #06377e;
+  background: #eef5ff;
+  border: 1px solid rgba(6, 55, 126, 0.12);
+}
+
+.tenant-proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tenant-proof span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  color: #445168;
+  background: #ffffff;
+  border: 1px solid rgba(7, 17, 31, 0.10);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.tenant-proof svg {
+  color: #06377e;
+}
+
+.tenant-hero-visual {
+  position: relative;
+  min-height: 580px;
+}
+
+.tenant-hero-visual figure {
+  position: absolute;
+  inset: 0 0 54px 44px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 30px;
+  background: #dbe3ee;
+  box-shadow: 0 34px 90px rgba(7, 17, 31, 0.14);
+}
+
+.tenant-hero-visual figure::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, transparent 48%, rgba(7,17,31,.42)),
+    radial-gradient(circle at 78% 14%, rgba(255,255,255,.22), transparent 34%);
+}
+
+.tenant-hero-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tenant-hero-card {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: min(390px, 84%);
+  display: grid;
+  gap: 7px;
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(7, 17, 31, 0.10);
+  box-shadow: 0 24px 70px rgba(7, 17, 31, 0.15);
+  backdrop-filter: blur(16px);
+}
+
+.tenant-hero-card span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #06377e;
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.tenant-hero-card strong {
+  color: #07111f;
+  font-size: 18px;
+  line-height: 1.22;
+}
+
+/* COMMON */
+
+.tenant-section {
+  padding: clamp(78px, 8vw, 124px) 0;
+}
+
+.tenant-centered-head {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  max-width: 900px;
+  text-align: center;
+}
+
+.tenant-centered-head h2,
+.tenant-service-copy h2,
+.tenant-content-card h2,
+.tenant-seo-copy h2,
+.tenant-faq h2,
+.tenant-final h2 {
+  margin: 0;
+  color: #07111f;
+  font-size: clamp(34px, 4.4vw, 60px);
+  line-height: 1.04;
+  letter-spacing: -0.055em;
+}
+
+.tenant-centered-head p,
+.tenant-service-copy p,
+.tenant-content-card p,
+.tenant-seo-copy p,
+.tenant-final p {
+  margin: 0;
+  color: #66758b;
+  font-size: 17px;
+  line-height: 1.72;
+}
+
+.tenant-text-link {
+  width: max-content;
+  display: inline-flex;
+  color: #06377e;
+  text-decoration: none;
+  font-weight: 850;
+}
+
+.tenant-text-link::after {
+  content: " →";
+}
+
+.tenant-icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  color: #06377e;
+  background:
+    radial-gradient(circle at 72% 18%, rgba(255,255,255,.92), transparent 34%),
+    linear-gradient(135deg, #edf5ff, #d8e9ff);
+  border: 1px solid rgba(6,55,126,.10);
+}
+
+/* BENEFITS */
+
+.tenant-benefits-section {
+  padding: 0 0 56px;
+  background: linear-gradient(180deg, #f5f7fb 0%, #ffffff 100%);
+}
+
+.tenant-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.tenant-benefits-grid article,
+.tenant-service-grid article,
+.tenant-factors-grid article,
+.tenant-process-grid article {
+  display: grid;
+  gap: 13px;
+  padding: 22px;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 88% 10%, rgba(92,242,194,.07), transparent 28%),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid rgba(7, 17, 31, 0.10);
+  box-shadow: 0 14px 38px rgba(7, 17, 31, 0.05);
+}
+
+.tenant-benefits-grid h2,
+.tenant-service-grid h3,
+.tenant-factors-grid h3,
+.tenant-process-grid h3 {
+  margin: 0;
+  color: #07111f;
+  font-size: 21px;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+.tenant-benefits-grid p,
+.tenant-service-grid p,
+.tenant-factors-grid p,
+.tenant-process-grid p {
+  margin: 0;
+  color: #66758b;
+  line-height: 1.65;
+}
+
+/* SERVICE */
+
+.tenant-service {
+  background: #ffffff;
+}
+
+.tenant-service-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(500px, 1.18fr);
+  gap: clamp(40px, 7vw, 88px);
+  align-items: start;
+}
+
+.tenant-service-copy {
+  position: sticky;
+  top: 140px;
+  display: grid;
+  gap: 18px;
+}
+
+.tenant-service-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+/* SPLIT */
+
+.tenant-split {
+  background:
+    radial-gradient(circle at 84% 14%, rgba(92, 242, 194, 0.10), transparent 30%),
+    linear-gradient(180deg, #ffffff 0%, #f5f7fb 100%);
+}
+
+.tenant-split-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(36px, 6vw, 74px);
+  align-items: stretch;
+}
+
+.tenant-media-card {
+  position: relative;
+}
+
+.tenant-media-card figure {
+  height: 100%;
+  min-height: 560px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 28px;
+  background: #dbe3ee;
+  box-shadow: 0 30px 90px rgba(7, 17, 31, 0.14);
+}
+
+.tenant-media-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tenant-media-badge {
+  position: absolute;
+  right: -18px;
+  bottom: 34px;
+  width: min(330px, 82%);
+  display: grid;
+  gap: 6px;
+  padding: 20px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(7, 17, 31, 0.10);
+  box-shadow: 0 24px 70px rgba(7, 17, 31, 0.16);
+  backdrop-filter: blur(16px);
+}
+
+.tenant-media-badge span {
+  width: max-content;
+  padding: 7px 10px;
+  border-radius: 999px;
+  color: #06377e;
+  background: #eaf3ff;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.tenant-media-badge strong {
+  color: #07111f;
+  font-size: 19px;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.tenant-content-card {
+  display: grid;
+  align-content: center;
+  gap: 18px;
+  padding: clamp(32px, 4vw, 54px);
+  border-radius: 28px;
+  background: #ffffff;
+  border: 1px solid rgba(7,17,31,.10);
+  box-shadow: 0 24px 80px rgba(7,17,31,.08);
+}
+
+.tenant-content-card ul {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.tenant-content-card li {
+  position: relative;
+  padding-left: 28px;
+  color: #07111f;
+  line-height: 1.55;
+  font-weight: 650;
+}
+
+.tenant-content-card li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #06377e;
+  font-weight: 900;
+}
+
+/* FACTORS */
+
+.tenant-factors {
+  background: #ffffff;
+}
+
+.tenant-factors-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 42px;
+}
+
+/* COMPARISON */
+
+.tenant-comparison {
+  background:
+    radial-gradient(circle at 86% 10%, rgba(92, 242, 194, 0.08), transparent 30%),
+    linear-gradient(180deg, #ffffff 0%, #f5f7fb 100%);
+}
+
+.tenant-compare-visual {
+  max-width: 1080px;
+  margin-top: 42px;
+  overflow: hidden;
+  border-radius: 28px;
+  background: #ffffff;
+  border: 1px solid rgba(7, 17, 31, 0.10);
+  box-shadow: 0 28px 90px rgba(7, 17, 31, 0.10);
+}
+
+.tenant-compare-header {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+}
+
+.tenant-compare-title {
+  min-height: 82px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 22px 24px;
+}
+
+.tenant-compare-title.is-generic {
+  color: #07111f;
+  background: #f8fafc;
+  border-right: 1px solid rgba(7, 17, 31, 0.08);
+}
+
+.tenant-compare-title.is-dosllaves {
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 86% 14%, rgba(92, 242, 194, 0.14), transparent 30%),
+    linear-gradient(135deg, #06377e 0%, #0a438f 52%, #07111f 100%);
+}
+
+.tenant-compare-title strong {
+  display: block;
+  font-size: clamp(18px, 1.6vw, 24px);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.tenant-compare-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.tenant-compare-brand img {
+  display: block;
+  width: auto;
+  height: 30px;
+  max-width: 112px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.98;
+  flex: 0 0 auto;
+}
+
+.tenant-compare-brand strong {
+  color: #ffffff;
+}
+
+.tenant-compare-body {
+  display: grid;
+}
+
+.tenant-compare-row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  border-top: 1px solid rgba(7, 17, 31, 0.08);
+}
+
+.tenant-compare-cell {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 13px;
+  align-items: start;
+  min-height: 92px;
+  padding: 22px 24px;
+}
+
+.tenant-compare-cell.is-generic {
+  background: #ffffff;
+  border-right: 1px solid rgba(7, 17, 31, 0.08);
+}
+
+.tenant-compare-cell.is-roi {
+  background:
+    radial-gradient(circle at 96% 12%, rgba(92, 242, 194, 0.08), transparent 24%),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.tenant-compare-cell p {
+  margin: 0;
+  color: #66758b;
+  line-height: 1.62;
+}
+
+.tenant-compare-cell.is-roi p {
+  color: #07111f;
+  font-weight: 650;
+}
+
+.tenant-compare-x,
+.tenant-compare-check {
+  width: 30px;
+  height: 30px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 999px;
+  font-size: 17px;
+  line-height: 1;
+  font-weight: 900;
+  flex: 0 0 auto;
+}
+
+.tenant-compare-x {
+  color: #b42318;
+  background: #fff1f0;
+  border: 1px solid rgba(180, 35, 24, 0.14);
+}
+
+.tenant-compare-check {
+  color: #07111f;
+  background: #5cf2c2;
+  border: 1px solid rgba(92, 242, 194, 0.32);
+}
+
+/* PROCESS */
+
+.tenant-process {
+  background: #ffffff;
+}
+
+.tenant-process-grid {
+  max-width: 1060px;
+  margin-inline: auto;
+  margin-top: 42px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.tenant-process-grid article {
+  min-height: 218px;
+}
+
+.tenant-process-grid span {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  color: #ffffff;
+  background: #06377e;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+/* SEO */
+
+.tenant-seo {
+  background:
+    radial-gradient(circle at 88% 10%, rgba(92, 242, 194, 0.10), transparent 30%),
+    linear-gradient(180deg, #ffffff 0%, #f5f7fb 100%);
+}
+
+.tenant-seo-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(480px, 1.08fr);
+  gap: clamp(40px, 7vw, 88px);
+  align-items: start;
+}
+
+.tenant-seo-copy {
+  display: grid;
+  gap: 16px;
+}
+
+.tenant-seo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.tenant-seo-grid article {
+  display: grid;
+  gap: 10px;
+  padding: 22px;
+  border-radius: 22px;
+  background: #ffffff;
+  border: 1px solid rgba(7, 17, 31, 0.10);
+  box-shadow: 0 14px 38px rgba(7, 17, 31, 0.05);
+}
+
+.tenant-seo-grid span {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  color: white;
+  background: #06377e;
+  font-weight: 850;
+}
+
+.tenant-seo-grid strong {
+  color: #07111f;
+  font-size: 19px;
+  line-height: 1.15;
+}
+
+.tenant-seo-grid p {
+  margin: 0;
+  color: #66758b;
+  line-height: 1.62;
+}
+
+/* FAQ */
+
+.tenant-faq {
+  background: #ffffff;
+}
+
+.tenant-faq-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(420px, 1.12fr);
+  gap: clamp(42px, 7vw, 90px);
+  align-items: start;
+}
+
+.tenant-accordion {
+  display: grid;
+  gap: 12px;
+}
+
+.tenant-accordion details {
+  overflow: hidden;
+  border-radius: 18px;
+  background: #f5f7fb;
+  border: 1px solid rgba(7,17,31,.10);
+}
+
+.tenant-accordion summary {
+  position: relative;
+  padding: 20px 52px 20px 20px;
+  cursor: pointer;
+  color: #07111f;
+  font-weight: 750;
+  list-style: none;
+}
+
+.tenant-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.tenant-accordion summary::after {
+  content: "+";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  color: #06377e;
+  font-size: 24px;
+  font-weight: 800;
+  transform: translateY(-50%);
+}
+
+.tenant-accordion details[open] summary::after {
+  content: "–";
+}
+
+.tenant-accordion p {
+  margin: 0;
+  padding: 0 20px 20px;
+  color: #66758b;
+  line-height: 1.7;
+}
+
+/* FINAL */
+
+.tenant-final {
+  padding: clamp(78px, 7vw, 118px) 0;
+  background:
+    radial-gradient(circle at 84% 14%, rgba(92,242,194,.10), transparent 30%),
+    linear-gradient(180deg, #ffffff 0%, #eef5ff 100%);
+}
+
+.tenant-final-card {
+  min-height: 500px;
+  display: grid;
+  place-items: center;
+  justify-items: center;
+  gap: 18px;
+  max-width: 980px;
+  padding: clamp(36px, 5vw, 62px);
+  border-radius: 30px;
+  text-align: center;
+  color: white;
+  background:
+    linear-gradient(135deg, rgba(7,17,31,.74), rgba(7,17,31,.82)),
+    url("/images/gestion-alquiler.webp") center/cover;
+  box-shadow: 0 34px 100px rgba(7,17,31,.20);
+}
+
+.tenant-final h2,
+.tenant-final p {
+  color: white;
+}
+
+.tenant-final p {
+  max-width: 700px;
+  color: rgba(255,255,255,.82);
+}
+
+/* ANIMATION */
+
+[data-tenant-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+[data-tenant-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+  .tenant-hero-grid,
+  .tenant-service-layout,
+  .tenant-split-grid,
+  .tenant-seo-layout,
+  .tenant-faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tenant-service-copy {
+    position: relative;
+    top: auto;
+  }
+
+  .tenant-benefits-grid,
+  .tenant-factors-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tenant-media-card figure {
+    height: 420px;
+    min-height: 420px;
+  }
+
+  .tenant-media-badge {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 820px) {
+  .tenant-compare-header,
+  .tenant-compare-row {
+    grid-template-columns: 1fr;
+  }
+
+  .tenant-compare-title.is-generic,
+  .tenant-compare-cell.is-generic {
+    border-right: 0;
+  }
+
+  .tenant-process-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tenant-seo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .tenant-hero {
+    padding-top: 140px;
+  }
+
+  .tenant-hero h1 {
+    font-size: 42px;
+  }
+
+  .tenant-actions,
+  .tenant-btn {
+    width: 100%;
+  }
+
+  .tenant-actions {
+    flex-direction: column;
+  }
+
+  .tenant-benefits-grid,
+  .tenant-service-grid,
+  .tenant-factors-grid,
+  .tenant-process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tenant-hero-visual {
+    min-height: auto;
+    display: grid;
+    gap: 12px;
+  }
+
+  .tenant-hero-visual figure,
+  .tenant-hero-card {
+    position: relative;
+    inset: auto;
+    width: 100%;
+  }
+
+  .tenant-hero-visual figure {
+    height: 340px;
+  }
+
+  .tenant-content-card {
+    padding: 22px;
+    border-radius: 22px;
+  }
+
+  .tenant-final-card {
+    min-height: 420px;
+    border-radius: 22px;
+  }
+
+  .tenant-page .landing-chip {
+    white-space: normal;
+    line-height: 1.25;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+}
+
+/* =========================================================
+   Hero Comercialización — imagen real Óscar
+   ========================================================= */
+
+.tenant-hero-visual img {
+  object-position: center center;
+}
+
+@media (min-width: 900px) {
+  .tenant-hero-visual img[src*="oscar-ochando-2llavesgestion-2"] {
+    object-position: center 34%;
+  }
+}
+
+@media (max-width: 640px) {
+  .tenant-hero-visual img[src*="oscar-ochando-2llavesgestion-2"] {
+    object-position: center top;
+  }
+}
+
+/* =========================================================
+   Imagen inferior real — comercializacioninquilinos.webp
+   ========================================================= */
+
+.tenant-media-card img[src*="comercializacioninquilinos"] {
+  object-position: center center;
+}
+
+@media (min-width: 900px) {
+  .tenant-media-card img[src*="comercializacioninquilinos"] {
+    object-position: center 42%;
+  }
+}
+
+@media (max-width: 640px) {
+  .tenant-media-card img[src*="comercializacioninquilinos"] {
+    object-position: center center;
+  }
+}

@@ -4,14 +4,14 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/legal-pages.css";
 
-const pageTitle = "Política de privacidad | DosLlavesGestión";
-const pageDescription = "Política de privacidad de DosLlavesGestión.";
+const pageTitle = "Aviso legal | DosLlavesGestión";
+const pageDescription = "Aviso legal de DosLlavesGestión.";
 ---
 
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  canonicalPath="/politica-de-privacidad/"
+  canonicalPath="/aviso-legal/"
 >
   <Header />
 
@@ -21,14 +21,14 @@ const pageDescription = "Política de privacidad de DosLlavesGestión.";
         <article class="legal-card">
           <p class="legal-kicker">Información legal</p>
 
-          <h1>Política de privacidad</h1>
+          <h1>Aviso legal</h1>
 
           <p class="legal-intro">
-            Consulta la información relativa al tratamiento de datos personales,
-            finalidades, legitimación, conservación, destinatarios y derechos de los usuarios.
+            Consulta la información identificativa del titular de la web,
+            condiciones de uso, responsabilidades, propiedad intelectual y normativa aplicable.
           </p>
 
-          <div class="legal-content" data-legal-content="privacy_policy">
+          <div class="legal-content" data-legal-content="legal_notice">
             <div class="legal-placeholder">
               <strong>Contenido pendiente de completar.</strong>
               <span>Contenido legal pendiente de completar.</span>
@@ -43,7 +43,7 @@ const pageDescription = "Política de privacidad de DosLlavesGestión.";
 
   <script>
     async function loadLegalContent() {
-      const target = document.querySelector('[data-legal-content="privacy_policy"]');
+      const target = document.querySelector('[data-legal-content="legal_notice"]');
 
       if (!target) return;
 
@@ -56,8 +56,8 @@ const pageDescription = "Política de privacidad de DosLlavesGestión.";
 
         const data = await response.json();
 
-        if (data.privacy_policy) {
-          target.innerHTML = data.privacy_policy;
+        if (data.legal_notice) {
+          target.innerHTML = data.legal_notice;
         }
       } catch (error) {
         console.warn(error);

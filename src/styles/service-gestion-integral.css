@@ -1734,3 +1734,54 @@
     margin-top: 12px;
   }
 }
+
+/* =========================================================
+   Tabla comparativa: marca DosLlaves en una sola línea
+   ========================================================= */
+
+.gil-dosllaves-head {
+  vertical-align: middle !important;
+}
+
+.gil-dosllaves-table-brand {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 9px !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+}
+
+.gil-dosllaves-table-brand img {
+  display: block !important;
+  width: auto !important;
+  height: 24px !important;
+  max-width: 86px !important;
+  object-fit: contain !important;
+  margin: 0 !important;
+  filter: brightness(0) invert(1);
+  opacity: 0.96;
+}
+
+.gil-dosllaves-table-brand span {
+  display: inline-block !important;
+  color: #ffffff !important;
+  font-weight: 850 !important;
+  line-height: 1.1 !important;
+}
+
+/* Fallback por si quedara el HTML anterior en alguna versión */
+.gil-dosllaves-head > img:not(.no-inline-logo) {
+  display: inline-block !important;
+  width: auto !important;
+  height: 24px !important;
+  max-width: 86px !important;
+  margin: 0 9px 0 0 !important;
+  vertical-align: middle !important;
+  filter: brightness(0) invert(1);
+}
+
+.gil-dosllaves-head > span:not(.gil-dosllaves-table-brand) {
+  display: inline-block !important;
+  vertical-align: middle !important;
+}

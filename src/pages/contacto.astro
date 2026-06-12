@@ -58,7 +58,7 @@ const schema = {
 
         <p>
           Cuéntanos dónde está, en qué situación se encuentra y qué quieres conseguir.
-          Te orientaremos sobre la mejor ruta: gestión integral, alquiler tradicional,
+          Te orientaremos sobre el mejor modelo: gestión integral, alquiler tradicional,
           habitaciones, reforma o estrategia de rentabilidad.
         </p>
 
@@ -103,7 +103,7 @@ const schema = {
           <span>03</span>
           <h2>Decides sin compromiso</h2>
           <p>
-            Te explicamos la ruta que puede encajar y tú decides si quieres avanzar.
+            Te explicamos el modelo que puede encajar y tú decides si quieres avanzar.
           </p>
         </article>
       </div>
@@ -219,7 +219,7 @@ const schema = {
 
             <label>
               <span>Teléfono</span>
-              <input name="telefono" type="tel" placeholder="Tu teléfono" required />
+              <input name="telefono" type="tel" placeholder="Tu teléfono" required inputmode="numeric" pattern="[0-9]{9,15}" maxlength="15" autocomplete="tel" />
             </label>
 
             <label>
@@ -335,12 +335,7 @@ const schema = {
 
       const payload = Object.fromEntries(data.entries());
 
-      const runningInPreview =
-        location.hostname.includes("localhost") ||
-        location.hostname.includes("github.dev") ||
-        location.hostname.includes("app.github.dev");
-
-      const endpoint = runningInPreview ? "" : "/wp-json/dosllaves/v1/lead";
+      const endpoint = "/wpback/wp-json/dosllaves/v1/lead";
 
       let sent = false;
 
@@ -371,27 +366,7 @@ const schema = {
         contactForm.reset();
         return;
       }
-
-      const message = [
-        "Hola, quiero información sobre DosLlavesGestión.",
-        "",
-        `Objetivo: ${payload.objetivo || ""}`,
-        `Nombre: ${payload.nombre || ""}`,
-        `Teléfono: ${payload.telefono || ""}`,
-        `Email: ${payload.email || ""}`,
-        `Zona: ${payload.address || ""}`,
-        `Mensaje: ${payload.mensaje || ""}`,
-      ].join("\\n");
-
-      window.open(
-        `https://wa.me/34623512885?text=${encodeURIComponent(message)}`,
-        "_blank"
-      );
-
-      setContactStatus(
-        "Hemos abierto WhatsApp con tu solicitud preparada.",
-        "is-ok"
-      );
-    });
+    setContactStatus("No se ha podido enviar la solicitud. Revisa los datos o inténtalo de nuevo. Si lo prefieres, puedes usar el botón de WhatsApp.", "is-error");
+});
   </script>
 </BaseLayout>

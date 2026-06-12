@@ -23,26 +23,26 @@ const services = [
   },
   {
     title: "Análisis de rentabilidad",
-    text: "Detectamos el mejor modelo de explotación.",
-    href: "#lead-wizard",
+    text: "Calculadora y estrategia para propietarios e inversores.",
+    href: "servicios/analisis-rentabilidad/",
     icon: TrendingUp,
   },
   {
-    title: "Reformas orientadas a ROI",
-    text: "Transformación del activo con visión inversora.",
-    href: "#lead-wizard",
-    icon: Hammer,
-  },
-  {
     title: "Alquiler por habitaciones",
-    text: "Optimización de ingresos y ocupación.",
-    href: "#lead-wizard",
+    text: "Mayor ocupación, selección y gestión por habitación.",
+    href: "servicios/alquiler-por-habitaciones/",
     icon: BedDouble,
   },
   {
+    title: "Reformas orientadas a ROI",
+    text: "Equipo propio para preparar inmuebles para alquilar.",
+    href: "servicios/reformas-orientadas-roi/",
+    icon: Hammer,
+  },
+  {
     title: "Comercialización e inquilinos",
-    text: "Anuncios, filtros, visitas y selección.",
-    href: "#lead-wizard",
+    text: "Publicación, filtros, visitas y selección documentada.",
+    href: "servicios/comercializacion-inquilinos/",
     icon: UserCheck,
   },
 ];
@@ -98,8 +98,6 @@ const services = [
 
           <div class="dl-service-menu" aria-label="Servicios de DosLlavesGestión">
             <div class="dl-service-menu-head">
-              <span>Servicios 360º</span>
-              <strong>Elige una ruta</strong>
             </div>
 
             <div class="dl-service-list">
@@ -166,34 +164,52 @@ const services = [
         </summary>
 
         <div class="dl-mobile-panel">
-          <a href={`${routeBase}servicios/gestion-integral-alquiler/`}>
-            Gestión integral del alquiler
-          </a>
+          <div class="dl-mobile-panel-section">
+            <span class="dl-mobile-panel-label">Servicios</span>
 
-          <a href={`${routeBase}#contacto`}>
-            Valoración guiada
-          </a>
+            {services.map((service) => (
+              <a class="is-service" href={`${routeBase}${service.href}`}>
+                {service.title}
+              </a>
+            ))}
+          </div>
 
-          <a href={`${routeBase}recursos-arrendadores/`}>
-            Recursos gratuitos
-          </a>
+          <div class="dl-mobile-panel-section">
+            <span class="dl-mobile-panel-label">Herramientas</span>
 
-          <a href={`${routeBase}quienes-somos/`}>
-            Quiénes somos
-          </a>
+            <a href={`${routeBase}servicios/analisis-rentabilidad/#calculadora-rentabilidad`}>
+              Calculadora de rentabilidad
+            </a>
 
-          <a href={`${routeBase}#contacto`}>
-            Contacto
-          </a>
+            <a href={`${routeBase}recursos-arrendadores/`}>
+              Recursos gratuitos
+            </a>
 
-          <a
-            href="https://wa.me/34623512885?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20DosLlavesGesti%C3%B3n."
-            target="_blank"
-            rel="noreferrer"
-            class="dl-mobile-highlight"
-          >
-            WhatsApp
-          </a>
+            <a href={`${routeBase}#contacto`}>
+              Valoración del inmueble
+            </a>
+          </div>
+
+          <div class="dl-mobile-panel-section">
+            <span class="dl-mobile-panel-label">Empresa</span>
+
+            <a href={`${routeBase}quienes-somos/`}>
+              Quiénes somos
+            </a>
+
+            <a href={`${routeBase}#contacto`}>
+              Contacto
+            </a>
+
+            <a
+              href="https://wa.me/34623512885?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20DosLlavesGesti%C3%B3n."
+              target="_blank"
+              rel="noreferrer"
+              class="dl-mobile-highlight"
+            >
+              WhatsApp
+            </a>
+          </div>
         </div>
       </details>
     </div>

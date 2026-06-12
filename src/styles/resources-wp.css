@@ -1,0 +1,550 @@
+/* =========================================================
+   Recursos — diseño premium global
+   ========================================================= */
+
+.resources-page-v2,
+.resources-page-v2 * {
+  box-sizing: border-box;
+}
+
+.resources-page-v2 {
+  color: #07111f;
+  background: #ffffff;
+}
+
+.resources-hero-v2 {
+  position: relative;
+  padding: 190px 0 96px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 84% 14%, rgba(92, 242, 194, 0.12), transparent 30%),
+    linear-gradient(180deg, #ffffff 0%, #f5f7fb 100%);
+}
+
+.resources-hero-v2::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(6, 55, 126, 0.04) 1px, transparent 1px),
+    linear-gradient(rgba(6, 55, 126, 0.04) 1px, transparent 1px);
+  background-size: 78px 78px;
+  mask-image: linear-gradient(180deg, black, transparent 72%);
+  pointer-events: none;
+}
+
+.resources-hero-v2-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  max-width: 960px;
+  text-align: center;
+}
+
+.resources-kicker-v2 {
+  width: max-content;
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  margin: 0;
+  border-radius: 999px;
+  color: #ffffff;
+  background: #06377e;
+  border: 1px solid rgba(6, 55, 126, 0.12);
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 850;
+}
+
+.resources-kicker-v2.is-soft {
+  color: #06377e;
+  background: #eaf3ff;
+}
+
+.resources-hero-v2 h1 {
+  max-width: 880px;
+  margin: 0;
+  color: #07111f;
+  font-size: clamp(44px, 5.8vw, 78px);
+  line-height: 0.96;
+  letter-spacing: -0.065em;
+}
+
+.resources-hero-v2 p {
+  max-width: 760px;
+  margin: 0;
+  color: #66758b;
+  font-size: 18px;
+  line-height: 1.72;
+}
+
+.resources-hero-v2-proof {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.resources-hero-v2-proof span {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 11px;
+  border-radius: 999px;
+  color: #445168;
+  background: #ffffff;
+  border: 1px solid rgba(7, 17, 31, 0.10);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+/* Library */
+
+.resources-library-v2 {
+  padding: clamp(76px, 8vw, 120px) 0;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(92, 242, 194, 0.08), transparent 28%),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.resources-library-head-v2 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 28px;
+  align-items: end;
+  margin-bottom: 26px;
+}
+
+.resources-library-head-v2 > div:first-child {
+  display: grid;
+  gap: 12px;
+}
+
+.resources-library-head-v2 h2 {
+  max-width: 760px;
+  margin: 0;
+  color: #07111f;
+  font-size: clamp(32px, 4vw, 56px);
+  line-height: 1.04;
+  letter-spacing: -0.055em;
+}
+
+.resources-library-head-v2 p {
+  max-width: 720px;
+  margin: 0;
+  color: #66758b;
+  font-size: 17px;
+  line-height: 1.72;
+}
+
+.resources-library-actions-v2 {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.resources-library-actions-v2 span {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 14px;
+  border-radius: 999px;
+  color: #06377e;
+  background: #ffffff;
+  border: 1px solid rgba(6, 55, 126, 0.12);
+  box-shadow: 0 12px 28px rgba(7, 17, 31, 0.05);
+  font-weight: 850;
+}
+
+.resources-toolbar-v2 {
+  margin-bottom: 24px;
+}
+
+.resources-filters-v2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.resources-filters-v2 button {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 13px;
+  border-radius: 999px;
+  color: #06377e;
+  background: #ffffff;
+  border: 1px solid rgba(6, 55, 126, 0.14);
+  cursor: pointer;
+  font-weight: 850;
+  transition:
+    transform 0.18s ease,
+    color 0.18s ease,
+    background 0.18s ease;
+}
+
+.resources-filters-v2 button:hover,
+.resources-filters-v2 button.is-active {
+  color: #ffffff;
+  background: #06377e;
+  transform: translateY(-1px);
+}
+
+.resources-status-v2 {
+  color: #66758b;
+  font-size: 17px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.resources-grid-v2 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.resource-card-v2 {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 14px;
+  min-width: 0;
+  min-height: 330px;
+  padding: 26px;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 88% 10%, rgba(92, 242, 194, 0.08), transparent 30%),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid rgba(7, 17, 31, 0.10);
+  box-shadow: 0 16px 48px rgba(7, 17, 31, 0.06);
+  overflow: hidden;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.resource-card-v2:hover {
+  transform: translateY(-4px);
+  border-color: rgba(6, 55, 126, 0.18);
+  box-shadow: 0 28px 80px rgba(7, 17, 31, 0.10);
+}
+
+.resource-card-top-v2 {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.resource-card-top-v2 span {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 0 10px;
+  border-radius: 999px;
+  color: #06377e;
+  background: #eaf3ff;
+  border: 1px solid rgba(6, 55, 126, 0.12);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.resource-card-v2 h2 {
+  margin: 0;
+  color: #07111f;
+  font-size: clamp(24px, 2.4vw, 34px);
+  line-height: 1.06;
+  letter-spacing: -0.05em;
+  overflow-wrap: anywhere;
+}
+
+.resource-card-v2 p {
+  margin: 0;
+  color: #66758b;
+  line-height: 1.68;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.resource-card-actions-v2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  align-self: end;
+}
+
+.resource-card-actions-v2 button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+  border-radius: 999px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.resource-card-actions-v2 button:first-child {
+  color: #ffffff;
+  background: #07111f;
+}
+
+.resource-card-actions-v2 button:last-child {
+  color: #07111f;
+  background: #5cf2c2;
+}
+
+/* Modal */
+
+.resource-modal-v2 {
+  width: min(920px, calc(100vw - 32px));
+  padding: 0;
+  border: 0;
+  border-radius: 28px;
+  background: transparent;
+}
+
+.resource-modal-v2::backdrop {
+  background: rgba(7, 17, 31, 0.58);
+  backdrop-filter: blur(6px);
+}
+
+.resource-modal-card-v2 {
+  position: relative;
+  display: grid;
+  gap: 20px;
+  padding: clamp(24px, 4vw, 42px);
+  border-radius: 28px;
+  background: #ffffff;
+  border: 1px solid rgba(7, 17, 31, 0.10);
+  box-shadow: 0 34px 120px rgba(7, 17, 31, 0.28);
+}
+
+.resource-modal-close-v2 {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  color: #07111f;
+  background: #f1f5f9;
+  cursor: pointer;
+  font-size: 26px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.resource-modal-head-v2 {
+  display: grid;
+  gap: 10px;
+  padding-right: 48px;
+}
+
+.resource-modal-head-v2 span {
+  width: max-content;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 999px;
+  color: #06377e;
+  background: #eaf3ff;
+  border: 1px solid rgba(6, 55, 126, 0.12);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.resource-modal-head-v2 h2 {
+  margin: 0;
+  color: #07111f;
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 1.04;
+  letter-spacing: -0.055em;
+}
+
+.resource-modal-head-v2 p {
+  margin: 0;
+  color: #66758b;
+  line-height: 1.7;
+}
+
+.resource-modal-content-v2 {
+  max-height: min(46vh, 420px);
+  overflow: auto;
+  padding: 18px;
+  border-radius: 18px;
+  background: #f8fafc;
+  border: 1px solid rgba(7, 17, 31, 0.08);
+}
+
+.resource-modal-content-v2 pre {
+  margin: 0;
+  color: #07111f;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Liberation Mono",
+    "Courier New",
+    monospace;
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.resource-modal-actions-v2 {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.resource-modal-actions-v2 button {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 17px;
+  border: 0;
+  border-radius: 999px;
+  color: #ffffff;
+  background: #07111f;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+/* Responsive */
+
+@media (max-width: 1080px) {
+  .resources-grid-v2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .resources-library-head-v2 {
+    grid-template-columns: 1fr;
+  }
+
+  .resources-library-actions-v2 {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .resources-hero-v2 {
+    padding-top: 140px;
+    padding-bottom: 70px;
+  }
+
+  .resources-hero-v2-inner {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .resources-hero-v2 h1 {
+    font-size: 42px;
+  }
+
+  .resources-hero-v2-proof {
+    justify-content: flex-start;
+  }
+
+  .resources-grid-v2 {
+    grid-template-columns: 1fr;
+  }
+
+  .resource-card-v2 {
+    min-height: auto;
+    padding: 22px;
+    border-radius: 22px;
+  }
+
+  .resource-card-actions-v2,
+  .resource-card-actions-v2 button {
+    width: 100%;
+  }
+
+  .resource-modal-card-v2 {
+    border-radius: 22px;
+  }
+
+  .resource-modal-actions-v2,
+  .resource-modal-actions-v2 button {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   Recursos — usar mismo sistema de chips que las landings
+   ========================================================= */
+
+.resources-page-v2 .landing-chip {
+  min-height: 38px;
+  width: max-content;
+  max-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 15px;
+  border-radius: 999px;
+  color: #ffffff;
+  background: #06377e;
+  border: 1px solid rgba(255,255,255,.10);
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.resources-page-v2 .landing-chip.is-soft {
+  min-height: 34px;
+  padding: 0 12px;
+  color: #06377e;
+  background: #eaf3ff;
+  border: 1px solid rgba(6,55,126,.12);
+}
+
+@media (max-width: 640px) {
+  .resources-page-v2 .landing-chip {
+    white-space: normal;
+    line-height: 1.25;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+}
+
+/* =========================================================
+   Recursos — sin bloque introductorio interno
+   ========================================================= */
+
+.resources-library-v2 {
+  padding-top: clamp(52px, 6vw, 86px) !important;
+}
+
+.resources-toolbar-v2 {
+  margin-top: 0 !important;
+  margin-bottom: clamp(24px, 3vw, 36px) !important;
+}
+
+.resources-filters-v2 {
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .resources-filters-v2 {
+    justify-content: flex-start;
+  }
+}

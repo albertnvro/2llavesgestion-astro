@@ -1,0 +1,28 @@
+.landing-chip,
+.rooms-chip,
+.home-access-card,
+.home-access-card *,
+.dl-header a,
+.dl-mobile-panel a,
+.dl-footer-v2 a,
+.rooms-btn,
+.tenant-btn,
+.roi-btn,
+.about-btn,
+.gil-btn,
+.ari-btn,
+.contact-btn,
+.resource-card-v2 a,
+.resource-card-v2 button,
+.resources-filters-v2 button {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+}
+
+.landing-chip u,
+.rooms-chip u,
+.home-access-card u,
+.dl-header u,
+.dl-mobile-panel u {
+  text-decoration: none !important;
+}

@@ -2,211 +2,44 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import "../styles/calculadora-rentabilidad.css";
 
 const pageTitle = "Calculadora de rentabilidad de alquiler | DosLlavesGestión";
 const pageDescription =
-  "Calcula la rentabilidad bruta y neta de una vivienda en alquiler. Herramienta para inversores que quieren comprar, reformar y alquilar mejor.";
-
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  name: "Calculadora de rentabilidad de alquiler",
-  applicationCategory: "FinanceApplication",
-  operatingSystem: "Web",
-  description: pageDescription,
-  url: "https://www.dosllavesgestion.com/calculadora-rentabilidad-alquiler/",
-  provider: {
-    "@type": "Organization",
-    name: "DosLlavesGestión",
-    url: "https://www.dosllavesgestion.com"
-  }
-};
+  "La calculadora de rentabilidad ahora forma parte del servicio de análisis de rentabilidad inmobiliaria.";
 ---
 
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  canonicalPath="/calculadora-rentabilidad-alquiler/"
+  canonicalPath="/servicios/analisis-rentabilidad/"
 >
   <Header />
 
-  <main class="rentcalc-page">
-    <section class="rentcalc-hero">
-      <div class="shell rentcalc-hero-inner">
-        <p class="rentcalc-kicker">Para inversores inmobiliarios</p>
+  <main>
+    <section style="padding: 190px 0 90px; background: linear-gradient(180deg, #ffffff, #eef5ff);">
+      <div class="shell" style="max-width: 820px; display: grid; gap: 18px; text-align: center;">
+        <p class="eyebrow light">Página trasladada</p>
 
-        <h1>Calculadora de rentabilidad de alquiler</h1>
+        <h1>La calculadora está ahora dentro del servicio de análisis de rentabilidad.</h1>
 
-        <p>
-          Calcula de forma rápida la rentabilidad bruta y neta de una vivienda
-          antes de comprarla, reformarla o ponerla en alquiler.
+        <p style="color: #66758b; font-size: 18px; line-height: 1.7;">
+          Hemos integrado la calculadora dentro de una página más completa para inversores
+          y propietarios que quieren analizar la rentabilidad de una vivienda.
         </p>
 
-        <a href="#calculadora" class="rentcalc-hero-btn">
-          Calcular rentabilidad
+        <a
+          href="/servicios/analisis-rentabilidad/"
+          style="min-height: 52px; display: inline-flex; align-items: center; justify-content: center; width: max-content; margin-inline: auto; padding: 0 20px; border-radius: 999px; color: white; background: #07111f; text-decoration: none; font-weight: 850;"
+        >
+          Ir al servicio
         </a>
-      </div>
-    </section>
-
-    <section class="rentcalc-section" id="calculadora">
-      <div class="shell rentcalc-layout">
-        <form class="rentcalc-form" id="rentcalc-form">
-          <div class="rentcalc-form-head">
-            <span>Datos de inversión</span>
-            <strong>Introduce los datos estimados de la operación.</strong>
-          </div>
-
-          <div class="rentcalc-fields">
-            <label>
-              <span>Precio de compra</span>
-              <input id="purchase-price" type="number" min="0" step="1000" value="150000" />
-            </label>
-
-            <label>
-              <span>Gastos de compra</span>
-              <input id="purchase-costs" type="number" min="0" step="500" value="15000" />
-            </label>
-
-            <label>
-              <span>Reforma / adecuación</span>
-              <input id="reform-cost" type="number" min="0" step="500" value="12000" />
-            </label>
-
-            <label>
-              <span>Alquiler mensual estimado</span>
-              <input id="monthly-rent" type="number" min="0" step="50" value="950" />
-            </label>
-
-            <label>
-              <span>Gastos anuales estimados</span>
-              <input id="annual-expenses" type="number" min="0" step="100" value="1800" />
-            </label>
-
-            <label>
-              <span>Vacancia anual estimada</span>
-              <input id="vacancy" type="number" min="0" max="12" step="1" value="1" />
-            </label>
-          </div>
-
-          <button type="submit">Calcular rentabilidad</button>
-
-          <p class="rentcalc-note">
-            Resultado orientativo antes de fiscalidad personal, financiación y circunstancias concretas del inmueble.
-          </p>
-        </form>
-
-        <aside class="rentcalc-result" id="rentcalc-result" aria-live="polite">
-          <div class="rentcalc-result-head">
-            <span>Resultado estimado</span>
-            <strong>Rentabilidad de la vivienda</strong>
-          </div>
-
-          <div class="rentcalc-metrics">
-            <article>
-              <span>Rentabilidad neta</span>
-              <strong id="net-yield">0%</strong>
-            </article>
-
-            <article>
-              <span>Rentabilidad bruta</span>
-              <strong id="gross-yield">0%</strong>
-            </article>
-          </div>
-
-          <div class="rentcalc-summary">
-            <p>
-              Inversión total estimada:
-              <strong id="total-investment">0 €</strong>
-            </p>
-
-            <p>
-              Ingreso neto anual estimado:
-              <strong id="net-income">0 €</strong>
-            </p>
-          </div>
-
-          <div class="rentcalc-cta">
-            <strong>¿Quieres mejorar esta rentabilidad?</strong>
-            <p>
-              Podemos analizar reforma, alquiler por habitaciones, gestión integral
-              y estrategia de explotación.
-            </p>
-
-            <a href="/#contacto">Solicitar valoración</a>
-          </div>
-        </aside>
       </div>
     </section>
   </main>
 
   <Footer />
 
-  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
-
   <script>
-    const form = document.querySelector("#rentcalc-form");
-
-    const purchasePrice = document.querySelector("#purchase-price");
-    const purchaseCosts = document.querySelector("#purchase-costs");
-    const reformCost = document.querySelector("#reform-cost");
-    const monthlyRent = document.querySelector("#monthly-rent");
-    const annualExpenses = document.querySelector("#annual-expenses");
-    const vacancy = document.querySelector("#vacancy");
-
-    const netYield = document.querySelector("#net-yield");
-    const grossYield = document.querySelector("#gross-yield");
-    const totalInvestment = document.querySelector("#total-investment");
-    const netIncome = document.querySelector("#net-income");
-
-    function numberValue(input) {
-      return Number(input?.value || 0);
-    }
-
-    function formatCurrency(value) {
-      return new Intl.NumberFormat("es-ES", {
-        style: "currency",
-        currency: "EUR",
-        maximumFractionDigits: 0,
-      }).format(value);
-    }
-
-    function formatPercent(value) {
-      if (!Number.isFinite(value)) return "0%";
-
-      return `${value.toFixed(2).replace(".", ",")}%`;
-    }
-
-    function calculate() {
-      const price = numberValue(purchasePrice);
-      const costs = numberValue(purchaseCosts);
-      const reform = numberValue(reformCost);
-      const rent = numberValue(monthlyRent);
-      const expenses = numberValue(annualExpenses);
-      const vacancyMonths = numberValue(vacancy);
-
-      const annualGrossRent = rent * Math.max(0, 12 - vacancyMonths);
-      const investment = price + costs + reform;
-      const annualNetIncome = annualGrossRent - expenses;
-
-      const gross = price > 0 ? (annualGrossRent / price) * 100 : 0;
-      const net = investment > 0 ? (annualNetIncome / investment) * 100 : 0;
-
-      grossYield.textContent = formatPercent(gross);
-      netYield.textContent = formatPercent(net);
-      totalInvestment.textContent = formatCurrency(investment);
-      netIncome.textContent = formatCurrency(annualNetIncome);
-    }
-
-    form?.addEventListener("submit", (event) => {
-      event.preventDefault();
-      calculate();
-    });
-
-    [purchasePrice, purchaseCosts, reformCost, monthlyRent, annualExpenses, vacancy].forEach((input) => {
-      input?.addEventListener("input", calculate);
-    });
-
-    calculate();
+    window.location.replace("/servicios/analisis-rentabilidad/");
   </script>
 </BaseLayout>

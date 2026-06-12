@@ -2,29 +2,13 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { landlordResources } from "../data/resources";
+import "../styles/resources-wp.css";
 
 const pageTitle = "Recursos gratuitos para arrendadores | DosLlavesGestión";
 const pageDescription =
-  "Biblioteca gratuita para arrendadores: cláusulas orientativas, checklists, plantillas de inventario y recursos para alquilar con más seguridad y orden.";
+  "Recursos gratuitos para propietarios y arrendadores: cláusulas, checklists, plantillas y guías útiles para alquilar mejor.";
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  name: pageTitle,
-  description: pageDescription,
-  url: "https://www.dosllavesgestion.com/recursos-arrendadores/",
-  mainEntity: {
-    "@type": "ItemList",
-    itemListElement: landlordResources.map((resource, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: resource.title,
-      description: resource.description,
-      url: `https://www.dosllavesgestion.com/recursos-arrendadores/#${resource.id}`,
-    })),
-  },
-};
+const resourcesEndpoint = "/wpback/wp-json/dosllaves/v1/resources";
 ---
 
 <BaseLayout
@@ -34,122 +18,317 @@ const schema = {
 >
   <Header />
 
-  <main>
-    <section class="resources-hero">
-      <div class="shell resources-hero-inner">
-        <p class="eyebrow">Recursos gratuitos para arrendadores</p>
+  <main class="resources-page-v2">
+    <section class="resources-hero-v2">
+      <div class="shell resources-hero-v2-inner">
+        <p class="landing-chip">Recursos gratuitos</p>
 
-        <h1>
-          Cláusulas, plantillas y checklists para alquilar con más orden.
-        </h1>
+        <h1>Recursos gratuitos para arrendadores.</h1>
 
         <p>
-          Una biblioteca práctica para propietarios e inversores que quieren reducir
-          improvisación, documentar mejor y gestionar su alquiler con más criterio.
+          Cláusulas, checklists, plantillas y guías prácticas para propietarios que quieren
+          alquilar con más claridad, menos improvisación y mejor criterio.
         </p>
+
+        <div class="resources-hero-v2-proof">
+          <span>Cláusulas</span>
+          <span>Checklists</span>
+          <span>Plantillas</span>
+          <span>Guías</span>
+        </div>
       </div>
     </section>
 
-    <section class="resources-page-section">
-      <div class="shell resources-grid">
-        {landlordResources.map((resource, index) => (
-          <button
-            class:list={["resource-card", { "is-active": index === 0 }]}
-            type="button"
-            data-resource={resource.id}
-          >
-            <span>{resource.category}</span>
-            <h2>{resource.title}</h2>
-            <p>{resource.description}</p>
-            <small>{resource.seoKeyword}</small>
+    <section class="resources-library-v2">
+      <div class="shell resources-toolbar-v2">
+        <div class="resources-filters-v2" data-resource-filters></div>
+      </div>
+
+      <div class="shell">
+        <div class="resources-status-v2" data-resources-status>
+          Cargando recursos...
+        </div>
+
+        <div class="resources-grid-v2" data-resources-grid></div>
+      </div>
+    </section>
+
+    <dialog class="resource-modal-v2" data-resource-modal>
+      <article class="resource-modal-card-v2">
+        <button
+          type="button"
+          class="resource-modal-close-v2"
+          data-resource-modal-close
+          aria-label="Cerrar recurso"
+        >
+          ×
+        </button>
+
+        <div class="resource-modal-head-v2">
+          <span data-resource-modal-type>Recurso</span>
+          <h2 data-resource-modal-title>Recurso</h2>
+          <p data-resource-modal-description></p>
+        </div>
+
+        <div class="resource-modal-content-v2">
+          <pre data-resource-modal-content></pre>
+        </div>
+
+        <div class="resource-modal-actions-v2">
+          <button type="button" data-resource-modal-copy>
+            Copiar recurso
           </button>
-        ))}
-      </div>
-
-      <div class="shell resource-viewer" aria-live="polite">
-        {landlordResources.map((resource, index) => (
-          <article
-            id={resource.id}
-            class:list={["resource-panel", { "is-active": index === 0 }]}
-            data-resource-panel={resource.id}
-          >
-            <div class="resource-panel-header">
-              <span>{resource.category}</span>
-              <h2>{resource.contentTitle}</h2>
-              <p>
-                Texto orientativo para copiar, adaptar y revisar antes de utilizar
-                en un contrato o procedimiento de alquiler.
-              </p>
-            </div>
-
-            <div class="resource-copy-source">
-              {resource.content.map((paragraph) => (
-                <p>{paragraph}</p>
-              ))}
-            </div>
-
-            <div class="resource-disclaimer">
-              <strong>Aviso importante:</strong>
-              <span>
-                Este recurso es informativo y orientativo. No sustituye el asesoramiento
-                legal, fiscal o profesional adaptado a tu caso concreto.
-              </span>
-            </div>
-
-            <button class="resource-copy-button" type="button">
-              Copiar recurso
-            </button>
-          </article>
-        ))}
-      </div>
-    </section>
+        </div>
+      </article>
+    </dialog>
   </main>
 
   <Footer />
 
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <script define:vars={{ resourcesEndpoint }}>
+    const grid = document.querySelector("[data-resources-grid]");
+    const status = document.querySelector("[data-resources-status]");
+    const count = document.querySelector("[data-resources-count]");
+    const filters = document.querySelector("[data-resource-filters]");
 
-  <script>
-    const cards = document.querySelectorAll(".resource-card");
-    const panels = document.querySelectorAll(".resource-panel");
+    const modal = document.querySelector("[data-resource-modal]");
+    const modalClose = document.querySelector("[data-resource-modal-close]");
+    const modalType = document.querySelector("[data-resource-modal-type]");
+    const modalTitle = document.querySelector("[data-resource-modal-title]");
+    const modalDescription = document.querySelector("[data-resource-modal-description]");
+    const modalContent = document.querySelector("[data-resource-modal-content]");
+    const modalCopy = document.querySelector("[data-resource-modal-copy]");
 
-    cards.forEach((card) => {
-      card.addEventListener("click", () => {
-        const resourceId = card.getAttribute("data-resource");
+    let resourcesData = [];
+    let activeType = "Todos";
+    let activeModalIndex = null;
 
-        cards.forEach((item) => item.classList.toggle("is-active", item === card));
+    function escapeHtml(value) {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
 
-        panels.forEach((panel) => {
-          panel.classList.toggle(
-            "is-active",
-            panel.getAttribute("data-resource-panel") === resourceId
-          );
-        });
+    function getResourceText(resource) {
+      return String(resource?.copy_content || "").trim();
+    }
 
-        const viewer = document.querySelector(".resource-viewer");
+    function getTypes(resources) {
+      const types = resources
+        .map((item) => String(item.type || "Recurso").trim())
+        .filter(Boolean);
 
-        viewer?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
+      return ["Todos", ...Array.from(new Set(types))];
+    }
+
+    function getFilteredResources() {
+      if (activeType === "Todos") return resourcesData;
+
+      return resourcesData.filter((item) => {
+        return String(item.type || "Recurso").trim() === activeType;
       });
-    });
+    }
 
-    const copyButtons = document.querySelectorAll(".resource-copy-button");
+    function renderFilters(resources) {
+      const types = getTypes(resources);
 
-    copyButtons.forEach((button) => {
-      button.addEventListener("click", async () => {
-        const panel = button.closest(".resource-panel");
-        const source = panel?.querySelector(".resource-copy-source");
-        const text = source?.textContent?.replace(/\s+/g, " ").trim() || "";
+      filters.innerHTML = types.map((type) => {
+        const activeClass = type === activeType ? "is-active" : "";
 
+        return `
+          <button class="${activeClass}" type="button" data-filter-type="${escapeHtml(type)}">
+            ${escapeHtml(type)}
+          </button>
+        `;
+      }).join("");
+    }
+
+    function renderResources() {
+      const resources = getFilteredResources();
+
+      if (!Array.isArray(resourcesData) || resourcesData.length === 0) {
+        status.textContent = "Todavía no hay recursos publicados.";
+        if (count) count.textContent = "0 recursos";
+        grid.innerHTML = "";
+        return;
+      }
+
+      if (resources.length === 0) {
+        status.textContent = "No hay recursos en esta categoría.";
+        grid.innerHTML = "";
+        return;
+      }
+
+      status.textContent = "";
+      if (count) count.textContent = `${resourcesData.length} recurso${resourcesData.length === 1 ? "" : "s"}`;
+
+      grid.innerHTML = resources.map((item) => {
+        const originalIndex = resourcesData.indexOf(item);
+        const title = item.title || "Recurso sin título";
+        const description =
+          item.description ||
+          "Recurso gratuito para propietarios y arrendadores.";
+
+        return `
+          <article class="resource-card-v2">
+            <div class="resource-card-top-v2">
+              <span>${escapeHtml(item.type || "Recurso")}</span>
+            </div>
+
+            <h2>${escapeHtml(title)}</h2>
+
+            <p>${escapeHtml(description)}</p>
+
+            <div class="resource-card-actions-v2">
+              <button type="button" data-open-resource="${originalIndex}">
+                Ver recurso
+              </button>
+
+              <button type="button" data-copy-resource="${originalIndex}">
+                Copiar
+              </button>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function renderAll() {
+      renderFilters(resourcesData);
+      renderResources();
+    }
+
+    async function copyResource(index, button) {
+      const resource = resourcesData[index];
+      const text = getResourceText(resource);
+
+      if (!text) {
+        if (button) {
+          button.textContent = "Sin contenido";
+          setTimeout(() => {
+            button.textContent = "Copiar";
+          }, 1600);
+        }
+        return;
+      }
+
+      try {
         await navigator.clipboard.writeText(text);
 
-        button.textContent = "Recurso copiado";
-        setTimeout(() => {
-          button.textContent = "Copiar recurso";
-        }, 1800);
-      });
+        if (button) {
+          const previous = button.textContent;
+          button.textContent = "Copiado";
+          setTimeout(() => {
+            button.textContent = previous || "Copiar";
+          }, 1600);
+        }
+
+        if (button === modalCopy) {
+          modalCopy.textContent = "Copiado";
+          setTimeout(() => {
+            modalCopy.textContent = "Copiar recurso";
+          }, 1600);
+        }
+      } catch (error) {
+        if (button) {
+          button.textContent = "No se pudo copiar";
+          setTimeout(() => {
+            button.textContent = "Copiar";
+          }, 1600);
+        }
+      }
+    }
+
+    function openResource(index) {
+      const resource = resourcesData[index];
+
+      if (!resource) return;
+
+      activeModalIndex = index;
+
+      modalType.textContent = resource.type || "Recurso";
+      modalTitle.textContent = resource.title || "Recurso";
+      modalDescription.textContent =
+        resource.description || "Recurso gratuito para propietarios y arrendadores.";
+      modalContent.textContent =
+        getResourceText(resource) || "Este recurso todavía no tiene contenido copiable.";
+
+      modal.showModal();
+    }
+
+    async function loadResources() {
+      try {
+        const response = await fetch(resourcesEndpoint, {
+          headers: {
+            Accept: "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("No se han podido cargar los recursos.");
+        }
+
+        const data = await response.json();
+
+        resourcesData = Array.isArray(data) ? data : [];
+
+        renderAll();
+      } catch (error) {
+        status.textContent =
+          "No se han podido cargar los recursos en este momento. Inténtalo de nuevo más tarde.";
+        if (count) count.textContent = "Recursos no disponibles";
+      }
+    }
+
+    document.addEventListener("click", async (event) => {
+      const filterButton = event.target.closest("[data-filter-type]");
+
+      if (filterButton) {
+        activeType = filterButton.getAttribute("data-filter-type") || "Todos";
+        renderAll();
+        return;
+      }
+
+      const openButton = event.target.closest("[data-open-resource]");
+
+      if (openButton) {
+        openResource(Number(openButton.getAttribute("data-open-resource")));
+        return;
+      }
+
+      const copyButton = event.target.closest("[data-copy-resource]");
+
+      if (copyButton) {
+        await copyResource(Number(copyButton.getAttribute("data-copy-resource")), copyButton);
+      }
     });
+
+    modalClose?.addEventListener("click", () => {
+      modal.close();
+    });
+
+    modal?.addEventListener("click", (event) => {
+      const rect = modal.querySelector(".resource-modal-card-v2").getBoundingClientRect();
+
+      const clickedOutside =
+        event.clientX < rect.left ||
+        event.clientX > rect.right ||
+        event.clientY < rect.top ||
+        event.clientY > rect.bottom;
+
+      if (clickedOutside) {
+        modal.close();
+      }
+    });
+
+    modalCopy?.addEventListener("click", async () => {
+      if (activeModalIndex === null) return;
+      await copyResource(activeModalIndex, modalCopy);
+    });
+
+    loadResources();
   </script>
 </BaseLayout>

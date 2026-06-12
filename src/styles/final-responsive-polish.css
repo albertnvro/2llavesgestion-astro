@@ -1,0 +1,166 @@
+/* =========================================================
+   Final responsive polish
+   ========================================================= */
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  min-width: 0;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+}
+
+input,
+textarea,
+select,
+button {
+  font-size: 16px;
+}
+
+@media (max-width: 900px) {
+  .shell {
+    width: min(var(--shell, 1180px), calc(100vw - 24px)) !important;
+  }
+
+  .hero-grid,
+  .gil-hero-grid,
+  .ari-hero-grid,
+  .rooms-hero-grid,
+  .roi-hero-grid,
+  .tenant-hero-grid,
+  .contact-main-layout,
+  .contact-intro-grid,
+  .about-hero-layout,
+  .qs-hero-showcase,
+  .home-access-grid,
+  .resources-grid-v2,
+  .dl-footer-v2-main,
+  .dl-footer-v2-side {
+    grid-template-columns: 1fr !important;
+  }
+
+  .home-access-grid,
+  .resources-grid-v2,
+  .tenant-benefits-grid,
+  .tenant-service-grid,
+  .tenant-factors-grid,
+  .tenant-process-grid,
+  .roi-benefits-grid,
+  .roi-improvement-grid,
+  .roi-process-grid,
+  .rooms-benefits-grid,
+  .rooms-service-grid,
+  .rooms-seo-grid,
+  .rooms-process-grid,
+  .gil-modules,
+  .gil-fit-grid,
+  .gil-trust-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .tenant-compare-visual,
+  .roi-compare-visual,
+  .gil-comparison-wrap,
+  .resources-toolbar-v2 {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .rooms-hero-visual,
+  .tenant-hero-visual,
+  .roi-hero-visual,
+  .ari-hero-visual,
+  .gil-hero-visual {
+    min-height: auto !important;
+    display: grid !important;
+    gap: 12px !important;
+  }
+
+  .rooms-hero-visual figure,
+  .tenant-hero-visual figure,
+  .roi-hero-visual figure,
+  .ari-hero-visual figure,
+  .gil-photo,
+  .rooms-hero-card,
+  .tenant-hero-card,
+  .roi-hero-card,
+  .ari-hero-card,
+  .gil-floating-card {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+  }
+
+  .rooms-hero-visual figure,
+  .tenant-hero-visual figure,
+  .roi-hero-visual figure,
+  .ari-hero-visual figure,
+  .gil-photo {
+    height: 340px !important;
+    min-height: 340px !important;
+    border-radius: 22px !important;
+  }
+
+  .rooms-actions,
+  .tenant-actions,
+  .roi-actions,
+  .ari-actions,
+  .gil-actions,
+  .contact-hero-actions,
+  .home-contact-proof {
+    width: 100% !important;
+  }
+
+  .rooms-btn,
+  .tenant-btn,
+  .roi-btn,
+  .ari-btn,
+  .gil-btn,
+  .contact-btn,
+  .home-submit-wrap button,
+  .home-submit-wrap a {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 640px) {
+  h1 {
+    font-size: clamp(38px, 11vw, 46px) !important;
+    line-height: 1 !important;
+  }
+
+  h2 {
+    font-size: clamp(30px, 9vw, 40px) !important;
+    line-height: 1.05 !important;
+  }
+
+  .resources-hero-v2,
+  .tenant-hero,
+  .roi-hero,
+  .rooms-hero,
+  .ari-hero,
+  .gil-hero,
+  .contact-clean-hero,
+  .legal-hero {
+    padding-top: 132px !important;
+  }
+
+  .resource-card-actions-v2,
+  .resource-card-actions-v2 button,
+  .contact-submit,
+  .contact-submit button,
+  .contact-submit a,
+  .home-submit-wrap,
+  .home-submit-wrap button,
+  .home-submit-wrap a {
+    width: 100% !important;
+  }
+}

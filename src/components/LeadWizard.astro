@@ -155,7 +155,7 @@
       <section class="wizard-panel" data-step="4">
         <div class="wizard-panel-head">
           <span>Contacto</span>
-          <h3>Te decimos qué ruta encaja mejor.</h3>
+          <h3>Te decimos qué modelo encaja mejor.</h3>
           <p>
             Déjanos tus datos y te contactamos con una valoración inicial.
             Sin compromiso.
@@ -170,7 +170,7 @@
 
           <label class="field">
             <span>Teléfono</span>
-            <input name="telefono" type="tel" placeholder="Tu teléfono" required />
+            <input name="telefono" type="tel" placeholder="Tu teléfono" required inputmode="numeric" pattern="[0-9]{9,15}" maxlength="15" autocomplete="tel" />
           </label>
         </div>
 
@@ -633,12 +633,7 @@
 
     const payload = Object.fromEntries(data.entries());
 
-    const runningInPreview =
-      location.hostname.includes("localhost") ||
-      location.hostname.includes("github.dev") ||
-      location.hostname.includes("app.github.dev");
-
-    const endpoint = runningInPreview ? "" : "/wp-json/dosllaves/v1/lead";
+    const endpoint = "/wpback/wp-json/dosllaves/v1/lead";
 
     let sent = false;
 

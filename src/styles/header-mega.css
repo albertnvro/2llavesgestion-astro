@@ -495,3 +495,69 @@
     background 0.16s ease,
     box-shadow 0.16s ease;
 }
+
+/* =========================================================
+   Header móvil — navegación más accesible
+   ========================================================= */
+
+.dl-mobile-panel-section {
+  display: grid;
+  gap: 6px;
+}
+
+.dl-mobile-panel-section + .dl-mobile-panel-section {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(6, 55, 126, 0.10);
+}
+
+.dl-mobile-panel-label {
+  display: block;
+  padding: 4px 4px 6px;
+  color: #66758b;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.dl-mobile-panel a.is-service {
+  font-weight: 850;
+}
+
+@media (max-width: 1040px) {
+  .dl-mobile-panel {
+    max-height: min(72vh, 640px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+/* =========================================================
+   Header — submenú servicios más limpio
+   ========================================================= */
+
+.dl-mega-kicker:empty,
+.dl-mega-label:empty,
+.dl-mega-chip:empty,
+.dl-mega-subtitle:empty,
+.dl-mobile-panel-label:empty {
+  display: none !important;
+}
+
+.dl-mega-panel p:empty,
+.dl-mega-panel span:empty,
+.dl-mega-panel small:empty {
+  display: none !important;
+}
+
+.dl-mega-panel {
+  row-gap: 14px;
+}
+
+.dl-mega-grid,
+.dl-services-grid,
+.dl-mega-services {
+  margin-top: 0;
+}

@@ -1,0 +1,564 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import "../../styles/service-reformas-roi.css";
+
+import {
+  ArrowRight,
+  BadgeEuro,
+  BarChart3,
+  CalendarClock,
+  Camera,
+  CheckCircle2,
+  ClipboardList,
+  Clock3,
+  Hammer,
+  Home,
+  KeyRound,
+  Layers3,
+  Paintbrush,
+  Ruler,
+  ShieldCheck,
+  Sparkles,
+  TrendingUp,
+  Wrench,
+} from "@lucide/astro";
+
+const pageTitle = "Reformas orientadas a ROI para alquiler | DosLlavesGestión";
+const pageDescription =
+  "Reformas orientadas a ROI para propietarios e inversores que quieren preparar su vivienda, reducir plazos y poner el inmueble en alquiler cuanto antes en Valencia y Castellón.";
+
+const benefits = [
+  {
+    icon: Clock3,
+    title: "Plazos más ágiles",
+    text: "Equipo propio para reducir dependencias externas y avanzar con mayor control.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Foco en rentabilidad",
+    text: "No reformamos por gusto: priorizamos mejoras que ayudan a alquilar mejor.",
+  },
+  {
+    icon: Sparkles,
+    title: "Efecto WOW",
+    text: "Preparamos viviendas que destaquen visualmente en portales y visitas.",
+  },
+  {
+    icon: BadgeEuro,
+    title: "Coste controlado",
+    text: "Buscamos invertir donde más impacto pueda tener en ocupación y precio.",
+  },
+];
+
+const improvements = [
+  {
+    icon: Paintbrush,
+    title: "Imagen y acabados",
+    text: "Pintura, suelos, iluminación, detalles visuales y acabados que elevan la percepción del inmueble.",
+  },
+  {
+    icon: Ruler,
+    title: "Distribución funcional",
+    text: "Ajustes para mejorar uso, circulación, habitaciones, zonas comunes y experiencia del futuro inquilino.",
+  },
+  {
+    icon: Wrench,
+    title: "Puesta a punto",
+    text: "Revisión de elementos críticos para reducir incidencias iniciales y acelerar la entrada al mercado.",
+  },
+  {
+    icon: Home,
+    title: "Preparación para alquiler",
+    text: "Decisiones pensadas para portales, visitas, ocupación, durabilidad y mantenimiento posterior.",
+  },
+];
+
+const process = [
+  {
+    step: "01",
+    title: "Diagnóstico del inmueble",
+    text: "Revisamos estado, zona, objetivo de alquiler, inversión necesaria y margen de mejora.",
+  },
+  {
+    step: "02",
+    title: "Plan de reforma ROI",
+    text: "Priorizamos actuaciones que pueden mejorar atractivo, velocidad de alquiler y rentabilidad.",
+  },
+  {
+    step: "03",
+    title: "Ejecución con equipo propio",
+    text: "Coordinamos trabajos con control de plazos, materiales, costes y seguimiento.",
+  },
+  {
+    step: "04",
+    title: "Preparación final",
+    text: "Dejamos la vivienda lista para fotografía, publicación, visitas y entrada al mercado.",
+  },
+  {
+    step: "05",
+    title: "Comercialización o gestión",
+    text: "Podemos conectar la reforma con alquiler tradicional, habitaciones o gestión integral.",
+  },
+];
+
+const comparison = [
+  {
+    generic: "Reforma pensada para gusto personal.",
+    roi: "Reforma pensada para alquilar mejor.",
+  },
+  {
+    generic: "Decisiones sin estrategia de rentabilidad.",
+    roi: "Inversión priorizada según impacto en alquiler.",
+  },
+  {
+    generic: "Más proveedores, más coordinación y más tiempo.",
+    roi: "Equipo propio y proceso más controlado.",
+  },
+  {
+    generic: "Acabados bonitos pero poco resistentes.",
+    roi: "Materiales y soluciones pensadas para uso intensivo.",
+  },
+  {
+    generic: "La vivienda tarda más en volver al mercado.",
+    roi: "Objetivo: ponerla en alquiler cuanto antes.",
+  },
+];
+
+const faqs = [
+  {
+    question: "¿Qué significa una reforma orientada a ROI?",
+    answer:
+      "Significa reformar con foco en retorno: priorizar actuaciones que pueden mejorar la percepción de la vivienda, reducir tiempos vacíos, facilitar el alquiler y controlar la inversión necesaria.",
+  },
+  {
+    question: "¿Tenéis equipo propio de reformas?",
+    answer:
+      "Sí. Contamos con equipo propio de obras especializado en viviendas de alquiler, lo que nos permite reducir dependencias externas, controlar mejor los plazos y preparar el inmueble para salir al mercado cuanto antes.",
+  },
+  {
+    question: "¿Trabajáis reformas completas o solo adecuaciones?",
+    answer:
+      "Podemos valorar desde puestas a punto y mejoras visuales hasta reformas más amplias, siempre con el criterio de rentabilidad, durabilidad y velocidad de salida al mercado.",
+  },
+  {
+    question: "¿También podéis gestionar el alquiler después de la reforma?",
+    answer:
+      "Sí. La reforma puede conectarse con gestión integral, alquiler tradicional, alquiler por habitaciones o análisis de rentabilidad del inmueble.",
+  },
+  {
+    question: "¿Trabajáis en Valencia y Castellón?",
+    answer:
+      "Sí. Actuamos principalmente en Valencia y Castellón, valorando cada vivienda según zona, estado, demanda y objetivo del propietario.",
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.dosllavesgestion.com/servicios/reformas-orientadas-roi/#service",
+      name: "Reformas orientadas a ROI",
+      serviceType: "Reformas para alquilar y mejorar rentabilidad",
+      description: pageDescription,
+      provider: {
+        "@type": "Organization",
+        name: "DosLlavesGestión",
+        url: "https://www.dosllavesgestion.com",
+      },
+      areaServed: [
+        { "@type": "AdministrativeArea", name: "Valencia" },
+        { "@type": "AdministrativeArea", name: "Castellón" },
+      ],
+      audience: {
+        "@type": "Audience",
+        audienceType: "Propietarios e inversores inmobiliarios",
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.dosllavesgestion.com/servicios/reformas-orientadas-roi/#breadcrumb",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Inicio",
+          item: "https://www.dosllavesgestion.com/",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Servicios",
+          item: "https://www.dosllavesgestion.com/#planes",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: "Reformas orientadas a ROI",
+          item: "https://www.dosllavesgestion.com/servicios/reformas-orientadas-roi/",
+        },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.dosllavesgestion.com/servicios/reformas-orientadas-roi/#faq",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/servicios/reformas-orientadas-roi/"
+>
+  <Header />
+
+  <main class="roi-page">
+    <section class="roi-hero">
+      <div class="shell roi-hero-grid">
+        <div class="roi-hero-copy" data-roi-reveal>
+          <nav class="roi-breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Inicio</a>
+            <span>/</span>
+            <a href="/#planes">Servicios</a>
+            <span>/</span>
+            <strong>Reformas orientadas a ROI</strong>
+          </nav>
+
+          <p class="landing-chip roi-chip">Valencia y Castellón · Propietarios e inversores</p>
+
+          <h1>Reformas orientadas a ROI</h1>
+
+          <p>
+            Tenemos equipo propio de reformas especializado en propietarios que quieren
+            plazos cortos, inversión controlada y poner su inmueble en el mercado cuanto antes.
+          </p>
+
+          <div class="roi-actions">
+            <a href="/#contacto" class="roi-btn roi-btn-primary">
+              Valorar reforma
+              <ArrowRight size={17} strokeWidth={2.1} />
+            </a>
+
+            <a href="#proceso" class="roi-btn roi-btn-secondary">
+              Ver proceso
+            </a>
+          </div>
+
+          <div class="roi-proof">
+            <span><CheckCircle2 size={14} /> Equipo propio</span>
+            <span><CheckCircle2 size={14} /> Plazos ágiles</span>
+            <span><CheckCircle2 size={14} /> Foco en rentabilidad</span>
+          </div>
+        </div>
+
+        <div class="roi-hero-visual" data-roi-reveal>
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=82"
+              alt="Reforma de vivienda orientada a rentabilidad de alquiler"
+              loading="eager"
+              width="1200"
+              height="900"
+            />
+          </figure>
+
+          <div class="roi-hero-card">
+            <span>
+              <Hammer size={16} strokeWidth={2} />
+              Reforma enfocada al alquiler
+            </span>
+            <strong>Menos obra innecesaria. Más impacto en salida al mercado.</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="roi-benefits-section">
+      <div class="shell roi-benefits-grid">
+        {benefits.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <article data-roi-reveal>
+              <div class="roi-icon">
+                <Icon size={23} strokeWidth={1.9} />
+              </div>
+
+              <h2>{item.title}</h2>
+              <p>{item.text}</p>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+
+    <section class="roi-section roi-philosophy">
+      <div class="shell roi-centered-head" data-roi-reveal>
+        <p class="landing-chip is-soft">No reformamos por reformar</p>
+
+        <h2>La reforma tiene que ayudar a alquilar antes, mejor y con menos inversión innecesaria.</h2>
+
+        <p>
+          Una reforma para vivir no es lo mismo que una reforma para alquilar.
+          En viviendas de inversión, cada decisión debe tener sentido: plazo,
+          coste, durabilidad, impacto visual y rentabilidad.
+        </p>
+      </div>
+
+      <div class="shell roi-improvement-grid">
+        {improvements.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <article data-roi-reveal>
+              <div class="roi-icon">
+                <Icon size={22} strokeWidth={1.9} />
+              </div>
+
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+
+    <section class="roi-section roi-split">
+      <div class="shell roi-split-grid">
+        <div class="roi-media-card" data-roi-reveal>
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=82"
+              alt="Interior reformado con efecto wow para alquiler"
+              loading="lazy"
+              width="1200"
+              height="900"
+            />
+          </figure>
+
+          <div class="roi-media-badge">
+            <span>Efecto WOW</span>
+            <strong>Una vivienda que destaca se alquila mejor.</strong>
+          </div>
+        </div>
+
+        <div class="roi-content-card" data-roi-reveal>
+          <p class="landing-chip is-soft">Equipo propio de reformas</p>
+
+          <h2>Menos dependencia externa, más control de plazos y una vivienda lista antes.</h2>
+
+          <p>
+            Nuestro equipo propio nos permite coordinar la reforma con la estrategia de alquiler:
+            qué tocar, qué no tocar, cuánto invertir y cómo preparar el inmueble para publicar,
+            enseñar y alquilar con mayor rapidez.
+          </p>
+
+          <ul>
+            <li>Equipo especializado en viviendas destinadas al alquiler.</li>
+            <li>Priorización de actuaciones con mayor impacto en rentabilidad.</li>
+            <li>Control de costes, plazos, materiales y seguimiento.</li>
+            <li>Conexión directa con comercialización y gestión posterior.</li>
+          </ul>
+
+          <a href="/#contacto" class="roi-text-link">
+            Quiero preparar mi inmueble
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="roi-section roi-comparison roi-comparison-visual-section">
+      <div class="shell roi-centered-head" data-roi-reveal>
+        <p class="landing-chip is-soft">Reforma genérica vs reforma ROI</p>
+
+        <h2>La diferencia está en reformar con objetivo de mercado.</h2>
+
+        <p>
+          En una vivienda de alquiler, la mejor reforma no siempre es la más cara.
+          Es la que mejora percepción, reduce tiempos, controla costes y protege el retorno.
+        </p>
+      </div>
+
+      <div class="shell roi-compare-visual" data-roi-reveal>
+        <div class="roi-compare-header">
+          <div class="roi-compare-title is-generic">
+            <span class="roi-compare-x">×</span>
+            <strong>Reforma genérica</strong>
+          </div>
+
+          <div class="roi-compare-title is-dosllaves">
+            <span class="roi-compare-brand">
+              <img src="/images/Logo.png" alt="" aria-hidden="true" />
+              <strong>Reforma orientada a ROI con 2LlavesGestión</strong>
+            </span>
+          </div>
+        </div>
+
+        <div class="roi-compare-body">
+          {comparison.map((row) => (
+            <article class="roi-compare-row">
+              <div class="roi-compare-cell is-generic">
+                <span class="roi-compare-x">×</span>
+                <p>{row.generic}</p>
+              </div>
+
+              <div class="roi-compare-cell is-roi">
+                <span class="roi-compare-check">✓</span>
+                <p>{row.roi}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="roi-section roi-process" id="proceso">
+      <div class="shell roi-centered-head" data-roi-reveal>
+        <p class="landing-chip is-soft">Proceso</p>
+
+        <h2>Un proceso pensado para poner la vivienda en el mercado cuanto antes.</h2>
+
+        <p>
+          Ordenamos diagnóstico, inversión, ejecución y salida al mercado para que la reforma
+          no se convierta en un proyecto eterno.
+        </p>
+      </div>
+
+      <div class="shell roi-process-grid">
+        {process.map((item) => (
+          <article data-roi-reveal>
+            <span>{item.step}</span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="roi-section roi-seo">
+      <div class="shell roi-seo-layout">
+        <div class="roi-seo-copy" data-roi-reveal>
+          <p class="landing-chip is-soft">SEO inmobiliario real</p>
+
+          <h2>Reformas para alquilar en Valencia y Castellón con foco en rentabilidad.</h2>
+
+          <p>
+            Si tienes una vivienda vacía, heredada, antigua o poco competitiva, una reforma
+            orientada a alquiler puede ayudarte a mejorar la percepción del inmueble, reducir
+            tiempos de publicación y hacerlo más atractivo para inquilinos.
+          </p>
+        </div>
+
+        <div class="roi-seo-grid">
+          <article data-roi-reveal>
+            <span>01</span>
+            <strong>Viviendas vacías</strong>
+            <p>Preparación rápida para evitar meses sin ingresos.</p>
+          </article>
+
+          <article data-roi-reveal>
+            <span>02</span>
+            <strong>Pisos heredados</strong>
+            <p>Adecuación para convertir una vivienda parada en activo rentable.</p>
+          </article>
+
+          <article data-roi-reveal>
+            <span>03</span>
+            <strong>Alquiler por habitaciones</strong>
+            <p>Reformas pensadas para distribución, convivencia y ocupación.</p>
+          </article>
+
+          <article data-roi-reveal>
+            <span>04</span>
+            <strong>Gestión integral</strong>
+            <p>Conectamos la obra con la posterior explotación del inmueble.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="roi-section roi-faq">
+      <div class="shell roi-faq-grid">
+        <div data-roi-reveal>
+          <p class="landing-chip is-soft">FAQ</p>
+          <h2>Dudas frecuentes sobre reformas orientadas a ROI.</h2>
+        </div>
+
+        <div class="roi-accordion" data-roi-accordion data-roi-reveal>
+          {faqs.map((faq, index) => (
+            <details open={index === 0}>
+              <summary>{faq.question}</summary>
+              <p>{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="roi-final">
+      <div class="shell roi-final-card" data-roi-reveal>
+        <p class="landing-chip is-on-dark">Siguiente paso</p>
+
+        <h2>¿Quieres reformar tu vivienda para ponerla en alquiler cuanto antes?</h2>
+
+        <p>
+          Analizamos el estado del inmueble, inversión necesaria, plazo estimado y modelo de alquiler
+          para que tomes una decisión con criterio.
+        </p>
+
+        <a href="/#contacto" class="roi-btn roi-btn-primary">
+          Solicitar valoración
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+
+  <script>
+    const revealItems = document.querySelectorAll("[data-roi-reveal]");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+
+    document.querySelectorAll("[data-roi-accordion]").forEach((accordion) => {
+      const items = accordion.querySelectorAll("details");
+
+      items.forEach((item) => {
+        item.addEventListener("toggle", () => {
+          if (!item.open) return;
+
+          items.forEach((otherItem) => {
+            if (otherItem !== item) {
+              otherItem.removeAttribute("open");
+            }
+          });
+        });
+      });
+    });
+  </script>
+</BaseLayout>

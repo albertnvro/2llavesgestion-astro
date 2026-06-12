@@ -1,0 +1,637 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import "../../styles/service-comercializacion-inquilinos.css";
+
+import {
+  ArrowRight,
+  BadgeCheck,
+  BarChart3,
+  Camera,
+  CheckCircle2,
+  ClipboardCheck,
+  Clock3,
+  DoorOpen,
+  Eye,
+  FileCheck2,
+  FileSearch,
+  Home,
+  KeyRound,
+  Megaphone,
+  MessageSquareText,
+  Search,
+  ShieldCheck,
+  Sparkles,
+  TrendingUp,
+  UserCheck,
+  UsersRound,
+} from "@lucide/astro";
+
+const pageTitle = "Comercialización y selección de inquilinos | DosLlavesGestión";
+const pageDescription =
+  "Comercialización y selección de inquilinos para propietarios en Valencia y Castellón. Publicación, filtros, visitas, solvencia, documentación y selección del perfil adecuado.";
+
+const benefits = [
+  {
+    icon: Megaphone,
+    title: "Más visibilidad",
+    text: "Preparamos la vivienda para portales y canales donde realmente puede generar demanda.",
+  },
+  {
+    icon: Clock3,
+    title: "Menos visitas improductivas",
+    text: "Filtramos antes de enseñar para evitar perder tiempo con perfiles que no encajan.",
+  },
+  {
+    icon: UserCheck,
+    title: "Mejor selección",
+    text: "Buscamos perfiles solventes, compatibles y alineados con el tipo de vivienda.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Más tranquilidad",
+    text: "Ordenamos documentación, comunicación y proceso antes de la entrada.",
+  },
+];
+
+const serviceItems = [
+  {
+    icon: Search,
+    title: "Análisis del inmueble",
+    text: "Revisamos estado, zona, demanda, precio, público objetivo y estrategia de salida.",
+  },
+  {
+    icon: Camera,
+    title: "Fotografía y presentación",
+    text: "Preparamos el inmueble para que destaque visualmente y transmita confianza.",
+  },
+  {
+    icon: Megaphone,
+    title: "Publicación en portales",
+    text: "Redactamos anuncios, seleccionamos canales y activamos la comercialización.",
+  },
+  {
+    icon: MessageSquareText,
+    title: "Gestión de consultas",
+    text: "Filtramos interesados, resolvemos dudas y priorizamos perfiles adecuados.",
+  },
+  {
+    icon: UserCheck,
+    title: "Selección de inquilinos",
+    text: "Analizamos solvencia, estabilidad, documentación y compatibilidad con la vivienda.",
+  },
+  {
+    icon: FileCheck2,
+    title: "Documentación y entrada",
+    text: "Coordinamos documentación, reserva, firma, entrada y transición hacia la gestión.",
+  },
+];
+
+const selectionFactors = [
+  {
+    icon: BadgeCheck,
+    title: "Solvencia",
+    text: "Revisamos documentación económica y coherencia del perfil antes de avanzar.",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Documentación",
+    text: "Ordenamos información, verificaciones y datos necesarios para decidir con criterio.",
+  },
+  {
+    icon: UsersRound,
+    title: "Compatibilidad",
+    text: "Valoramos si el perfil encaja con la vivienda, condiciones y tipo de alquiler.",
+  },
+  {
+    icon: Eye,
+    title: "Trazabilidad",
+    text: "El propietario tiene una visión clara del proceso y de los perfiles seleccionados.",
+  },
+];
+
+const process = [
+  {
+    step: "01",
+    title: "Diagnóstico",
+    text: "Analizamos vivienda, zona, precio, estado y perfil de inquilino objetivo.",
+  },
+  {
+    step: "02",
+    title: "Preparación",
+    text: "Mejoramos presentación, fotografías, texto del anuncio y propuesta de valor.",
+  },
+  {
+    step: "03",
+    title: "Publicación",
+    text: "Activamos portales, canales y captación con una estrategia ordenada.",
+  },
+  {
+    step: "04",
+    title: "Filtro",
+    text: "Gestionamos consultas y descartamos perfiles que no encajan.",
+  },
+  {
+    step: "05",
+    title: "Selección",
+    text: "Revisamos solvencia, documentación, estabilidad y compatibilidad.",
+  },
+  {
+    step: "06",
+    title: "Entrada",
+    text: "Coordinamos reserva, firma, entrega y transición hacia la gestión.",
+  },
+];
+
+const comparison = [
+  {
+    generic: "Anuncio publicado sin estrategia ni posicionamiento.",
+    dosllaves: "Anuncio preparado para destacar y atraer perfiles adecuados.",
+  },
+  {
+    generic: "Muchas consultas sin filtro previo.",
+    dosllaves: "Gestión de interesados y selección antes de enseñar la vivienda.",
+  },
+  {
+    generic: "Visitas improductivas y pérdida de tiempo.",
+    dosllaves: "Priorizamos perfiles con mayor encaje y documentación coherente.",
+  },
+  {
+    generic: "Decisión basada solo en intuición.",
+    dosllaves: "Selección con solvencia, estabilidad, compatibilidad y trazabilidad.",
+  },
+  {
+    generic: "Entrada desordenada y riesgo de incidencias iniciales.",
+    dosllaves: "Proceso documentado y transición clara hacia la gestión del alquiler.",
+  },
+];
+
+const faqs = [
+  {
+    question: "¿Qué incluye el servicio de comercialización e inquilinos?",
+    answer:
+      "Incluye análisis del inmueble, estrategia de publicación, preparación del anuncio, fotografía, gestión de consultas, filtros, visitas, revisión de documentación y selección del inquilino más adecuado.",
+  },
+  {
+    question: "¿También seleccionáis al inquilino?",
+    answer:
+      "Sí. Revisamos solvencia, documentación, estabilidad, compatibilidad con la vivienda y condiciones del alquiler para ayudar al propietario a tomar una decisión con criterio.",
+  },
+  {
+    question: "¿Publicáis la vivienda en portales?",
+    answer:
+      "Sí. Preparamos el anuncio, fotografías, texto, precio y estrategia de publicación para aumentar la visibilidad y atraer perfiles adecuados.",
+  },
+  {
+    question: "¿Este servicio sirve si luego quiero gestión integral?",
+    answer:
+      "Sí. La comercialización puede ser el primer paso antes de una gestión integral del alquiler, seguimiento de pagos, incidencias y mantenimiento.",
+  },
+  {
+    question: "¿Trabajáis en Valencia y Castellón?",
+    answer:
+      "Sí. Actuamos principalmente en Valencia y Castellón, valorando cada inmueble según zona, demanda, estado y perfil de inquilino objetivo.",
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.dosllavesgestion.com/servicios/comercializacion-inquilinos/#service",
+      name: "Comercialización y selección de inquilinos",
+      serviceType: "Comercialización de alquiler y selección de inquilinos",
+      description: pageDescription,
+      provider: {
+        "@type": "Organization",
+        name: "DosLlavesGestión",
+        url: "https://www.dosllavesgestion.com",
+      },
+      areaServed: [
+        { "@type": "AdministrativeArea", name: "Valencia" },
+        { "@type": "AdministrativeArea", name: "Castellón" },
+      ],
+      audience: {
+        "@type": "Audience",
+        audienceType: "Propietarios e inversores inmobiliarios",
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.dosllavesgestion.com/servicios/comercializacion-inquilinos/#breadcrumb",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Inicio",
+          item: "https://www.dosllavesgestion.com/",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Servicios",
+          item: "https://www.dosllavesgestion.com/#planes",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: "Comercialización e inquilinos",
+          item: "https://www.dosllavesgestion.com/servicios/comercializacion-inquilinos/",
+        },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.dosllavesgestion.com/servicios/comercializacion-inquilinos/#faq",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/servicios/comercializacion-inquilinos/"
+>
+  <Header />
+
+  <main class="tenant-page">
+    <section class="tenant-hero">
+      <div class="shell tenant-hero-grid">
+        <div class="tenant-hero-copy" data-tenant-reveal>
+          <nav class="tenant-breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Inicio</a>
+            <span>/</span>
+            <a href="/#planes">Servicios</a>
+            <span>/</span>
+            <strong>Comercialización e inquilinos</strong>
+          </nav>
+
+          <p class="landing-chip tenant-chip">
+            Valencia y Castellón · Propietarios e inversores
+          </p>
+
+          <h1>Comercialización e inquilinos</h1>
+
+          <p>
+            Publicamos tu vivienda con estrategia, filtramos interesados y seleccionamos
+            perfiles adecuados para reducir visitas improductivas y empezar el alquiler
+            con más seguridad.
+          </p>
+
+          <div class="tenant-actions">
+            <a href="/#contacto" class="tenant-btn tenant-btn-primary">
+              Solicitar valoración
+              <ArrowRight size={17} strokeWidth={2.1} />
+            </a>
+
+            <a href="#proceso" class="tenant-btn tenant-btn-secondary">
+              Ver proceso
+            </a>
+          </div>
+
+          <div class="tenant-proof">
+            <span><CheckCircle2 size={14} /> Publicación profesional</span>
+            <span><CheckCircle2 size={14} /> Filtro de perfiles</span>
+            <span><CheckCircle2 size={14} /> Selección documentada</span>
+          </div>
+        </div>
+
+        <div class="tenant-hero-visual" data-tenant-reveal>
+          <figure>
+            <img
+              src="/images/oscar-ochando-2llavesgestion-2.jpeg"
+              alt="Óscar Ochando, responsable de DosLlavesGestión, revisando la comercialización y selección de inquilinos"
+              loading="eager"
+              width="1200"
+              height="900"
+            />
+          </figure>
+
+          <div class="tenant-hero-card">
+            <span>
+              <UserCheck size={16} strokeWidth={2} />
+              Mejor perfil de entrada
+            </span>
+            <strong>No se trata de llenar visitas. Se trata de elegir bien.</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tenant-benefits-section">
+      <div class="shell tenant-benefits-grid">
+        {benefits.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <article data-tenant-reveal>
+              <div class="tenant-icon">
+                <Icon size={23} strokeWidth={1.9} />
+              </div>
+
+              <h2>{item.title}</h2>
+              <p>{item.text}</p>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+
+    <section class="tenant-section tenant-service">
+      <div class="shell tenant-service-layout">
+        <div class="tenant-service-copy" data-tenant-reveal>
+          <p class="landing-chip is-soft">Captación con criterio</p>
+
+          <h2>El objetivo no es recibir muchos mensajes. Es encontrar al inquilino adecuado.</h2>
+
+          <p>
+            Una buena comercialización no empieza cuando se publica el anuncio. Empieza antes:
+            precio, presentación, fotografías, texto, perfil objetivo, filtros y gestión de interesados.
+          </p>
+
+          <a href="/#contacto" class="tenant-text-link">
+            Quiero comercializar mi vivienda
+          </a>
+        </div>
+
+        <div class="tenant-service-grid">
+          {serviceItems.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <article data-tenant-reveal>
+                <div class="tenant-icon">
+                  <Icon size={22} strokeWidth={1.9} />
+                </div>
+
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <section class="tenant-section tenant-split">
+      <div class="shell tenant-split-grid">
+        <div class="tenant-media-card" data-tenant-reveal>
+          <figure>
+            <img
+              src="/images/comercializacioninquilinos.webp"
+              alt="Comercialización de vivienda y selección de inquilinos por DosLlavesGestión"
+              loading="lazy"
+              width="1200"
+              height="900"
+            />
+          </figure>
+
+          <div class="tenant-media-badge">
+            <span>Filtro previo</span>
+            <strong>Menos visitas improductivas, más decisión con criterio.</strong>
+          </div>
+        </div>
+
+        <div class="tenant-content-card" data-tenant-reveal>
+          <p class="landing-chip is-soft">Selección de inquilinos</p>
+
+          <h2>Filtramos antes de enseñar para no perder tiempo ni asumir riesgos innecesarios.</h2>
+
+          <p>
+            Gestionamos interesados, revisamos documentación y analizamos si el perfil
+            encaja con la vivienda, las condiciones y el tipo de alquiler.
+          </p>
+
+          <ul>
+            <li>Filtro de interesados antes de visitas.</li>
+            <li>Revisión de solvencia y documentación.</li>
+            <li>Comunicación ordenada con candidatos.</li>
+            <li>Selección pensada para estabilidad y tranquilidad.</li>
+          </ul>
+
+          <a href="/#contacto" class="tenant-text-link">
+            Quiero filtrar mejor
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="tenant-section tenant-factors">
+      <div class="shell tenant-centered-head" data-tenant-reveal>
+        <p class="landing-chip is-soft">Qué valoramos</p>
+
+        <h2>Una buena selección reduce problemas antes de que empiece el alquiler.</h2>
+
+        <p>
+          No existe el riesgo cero, pero sí existe una forma más profesional de seleccionar:
+          documentación, solvencia, estabilidad, compatibilidad y trazabilidad.
+        </p>
+      </div>
+
+      <div class="shell tenant-factors-grid">
+        {selectionFactors.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <article data-tenant-reveal>
+              <div class="tenant-icon">
+                <Icon size={22} strokeWidth={1.9} />
+              </div>
+
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+
+    <section class="tenant-section tenant-comparison">
+      <div class="shell tenant-centered-head" data-tenant-reveal>
+        <p class="landing-chip is-soft">Publicar sin filtro vs comercializar con sistema</p>
+
+        <h2>La diferencia está en cómo se prepara la entrada del inquilino.</h2>
+
+        <p>
+          Una vivienda puede recibir muchos contactos y aun así acabar con un mal perfil.
+          La comercialización debe estar conectada con la selección.
+        </p>
+      </div>
+
+      <div class="shell tenant-compare-visual" data-tenant-reveal>
+        <div class="tenant-compare-header">
+          <div class="tenant-compare-title is-generic">
+            <span class="tenant-compare-x">×</span>
+            <strong>Publicar sin filtro</strong>
+          </div>
+
+          <div class="tenant-compare-title is-dosllaves">
+            <span class="tenant-compare-brand">
+              <img src="/images/Logo.png" alt="" aria-hidden="true" />
+              <strong>Comercialización e inquilinos con 2LlavesGestión</strong>
+            </span>
+          </div>
+        </div>
+
+        <div class="tenant-compare-body">
+          {comparison.map((row) => (
+            <article class="tenant-compare-row">
+              <div class="tenant-compare-cell is-generic">
+                <span class="tenant-compare-x">×</span>
+                <p>{row.generic}</p>
+              </div>
+
+              <div class="tenant-compare-cell is-roi">
+                <span class="tenant-compare-check">✓</span>
+                <p>{row.dosllaves}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="tenant-section tenant-process" id="proceso">
+      <div class="shell tenant-centered-head" data-tenant-reveal>
+        <p class="landing-chip is-soft">Proceso</p>
+
+        <h2>Un sistema claro para pasar de vivienda disponible a inquilino seleccionado.</h2>
+      </div>
+
+      <div class="shell tenant-process-grid">
+        {process.map((item) => (
+          <article data-tenant-reveal>
+            <span>{item.step}</span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="tenant-section tenant-seo">
+      <div class="shell tenant-seo-layout">
+        <div class="tenant-seo-copy" data-tenant-reveal>
+          <p class="landing-chip is-soft">SEO inmobiliario real</p>
+
+          <h2>Comercialización de alquiler y selección de inquilinos en Valencia y Castellón.</h2>
+
+          <p>
+            Si tienes una vivienda vacía, una vivienda que no recibe buenos perfiles o has tenido
+            malas experiencias alquilando, el problema puede no estar solo en el precio. Puede estar
+            en presentación, canal, filtro y proceso de selección.
+          </p>
+        </div>
+
+        <div class="tenant-seo-grid">
+          <article data-tenant-reveal>
+            <span>01</span>
+            <strong>Viviendas vacías</strong>
+            <p>Activamos la comercialización para reducir tiempo sin ingresos.</p>
+          </article>
+
+          <article data-tenant-reveal>
+            <span>02</span>
+            <strong>Malos perfiles</strong>
+            <p>Revisamos anuncio, precio, canal y filtro de interesados.</p>
+          </article>
+
+          <article data-tenant-reveal>
+            <span>03</span>
+            <strong>Visitas sin avance</strong>
+            <p>Filtramos mejor antes de enseñar la vivienda.</p>
+          </article>
+
+          <article data-tenant-reveal>
+            <span>04</span>
+            <strong>Gestión posterior</strong>
+            <p>Conectamos la selección con gestión integral si el propietario quiere delegar.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="tenant-section tenant-faq">
+      <div class="shell tenant-faq-grid">
+        <div data-tenant-reveal>
+          <p class="landing-chip is-soft">FAQ</p>
+          <h2>Dudas frecuentes sobre comercialización e inquilinos.</h2>
+        </div>
+
+        <div class="tenant-accordion" data-tenant-accordion data-tenant-reveal>
+          {faqs.map((faq, index) => (
+            <details open={index === 0}>
+              <summary>{faq.question}</summary>
+              <p>{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="tenant-final">
+      <div class="shell tenant-final-card" data-tenant-reveal>
+        <p class="landing-chip is-on-dark">Siguiente paso</p>
+
+        <h2>¿Quieres encontrar un buen inquilino sin perder tiempo con perfiles que no encajan?</h2>
+
+        <p>
+          Revisamos tu vivienda, precio, presentación y tipo de inquilino objetivo para definir
+          un modelo de comercialización más claro.
+        </p>
+
+        <a href="/#contacto" class="tenant-btn tenant-btn-primary">
+          Solicitar valoración
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+
+  <script>
+    const revealItems = document.querySelectorAll("[data-tenant-reveal]");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+
+    document.querySelectorAll("[data-tenant-accordion]").forEach((accordion) => {
+      const items = accordion.querySelectorAll("details");
+
+      items.forEach((item) => {
+        item.addEventListener("toggle", () => {
+          if (!item.open) return;
+
+          items.forEach((otherItem) => {
+            if (otherItem !== item) {
+              otherItem.removeAttribute("open");
+            }
+          });
+        });
+      });
+    });
+  </script>
+</BaseLayout>

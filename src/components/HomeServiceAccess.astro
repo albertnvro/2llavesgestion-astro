@@ -1,0 +1,113 @@
+---
+import "../styles/home-service-access.css";
+
+import {
+  ArrowRight,
+  BarChart3,
+  BedDouble,
+  Calculator,
+  Hammer,
+  KeyRound,
+  UserCheck,
+} from "@lucide/astro";
+
+const base = import.meta.env.BASE_URL;
+
+const items = [
+  {
+    label: "Servicio principal",
+    title: "Gestión integral del alquiler",
+    text: "Delegamos inquilinos, cobros, incidencias, mantenimiento y seguimiento.",
+    href: "servicios/gestion-integral-alquiler/",
+    icon: KeyRound,
+    featured: true,
+  },
+  {
+    label: "Herramienta",
+    title: "Calculadora de rentabilidad",
+    text: "Calcula la rentabilidad bruta y neta de una vivienda antes de comprar o alquilar.",
+    href: "servicios/analisis-rentabilidad/#calculadora-rentabilidad",
+    icon: Calculator,
+    accent: true,
+  },
+  {
+    label: "Servicio",
+    title: "Análisis de rentabilidad",
+    text: "Valoramos números, inversión, reforma, gastos y estrategia del inmueble.",
+    href: "servicios/analisis-rentabilidad/",
+    icon: BarChart3,
+  },
+  {
+    label: "Servicio",
+    title: "Alquiler por habitaciones",
+    text: "Maximizamos ocupación, selección y gestión habitación por habitación.",
+    href: "servicios/alquiler-por-habitaciones/",
+    icon: BedDouble,
+  },
+  {
+    label: "Servicio",
+    title: "Reformas orientadas a ROI",
+    text: "Equipo propio para preparar viviendas y ponerlas antes en el mercado.",
+    href: "servicios/reformas-orientadas-roi/",
+    icon: Hammer,
+  },
+  {
+    label: "Servicio",
+    title: "Comercialización e inquilinos",
+    text: "Publicación, filtros, visitas y selección documentada del perfil adecuado.",
+    href: "servicios/comercializacion-inquilinos/",
+    icon: UserCheck,
+  },
+];
+---
+
+<section class="home-access" aria-labelledby="home-access-title">
+  <div class="shell home-access-shell">
+    <div class="home-access-head">
+      <p class="landing-chip is-soft">Modelos disponibles</p>
+
+      <h2 id="home-access-title">
+        Accede rápido al servicio que necesita tu inmueble.
+      </h2>
+
+      <p>
+        Si vienes desde Instagram o quieres entender la propuesta de un vistazo,
+        aquí tienes los modelos principales: gestión, rentabilidad, reformas,
+        habitaciones, comercialización y calculadora.
+      </p>
+    </div>
+
+    <div class="home-access-grid">
+      {items.map((item) => {
+        const Icon = item.icon;
+
+        return (
+          <a
+            class:list={[
+              "home-access-card",
+              { "is-featured": item.featured, "is-accent": item.accent },
+            ]}
+            href={`${base}${item.href}`}
+          >
+            <div class="home-access-card-top">
+              <span>{item.label}</span>
+
+              <div class="home-access-icon" aria-hidden="true">
+                <Icon size={22} strokeWidth={1.9} />
+              </div>
+            </div>
+
+            <strong>{item.title}</strong>
+
+            <p>{item.text}</p>
+
+            <em>
+              Ver más
+              <ArrowRight size={15} strokeWidth={2} />
+            </em>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</section>
